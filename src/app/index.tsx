@@ -1,12 +1,10 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
-import { AnimatedIcon } from '@/features/shared/components/animated-icon';
 
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
-      <AnimatedIcon />
+      <Text>Home</Text>
     </SafeAreaView>
   );
 }
