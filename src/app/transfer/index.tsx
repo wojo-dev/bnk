@@ -16,10 +16,10 @@ const transferFormSchema = z.object({
 type TransferFormSchema = z.infer<typeof transferFormSchema>;
 
 const defaultValues: TransferFormSchema = {
-  amount: 0,
-  description: '',
-  date: '',
-  recipientId: '',
+  amount: 200,
+  description: 'test',
+  date: '2026-02-10',
+  recipientId: '1234567890',
 };
 
 const TransferForm = () => {
