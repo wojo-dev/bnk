@@ -13,7 +13,6 @@ export default function SearchIndex() {
   if (isLoading) {
     return <ActivityIndicator />;
   }
-  console.log(recipients);
   return (
     <>
       <Stack.Screen.Title>Search</Stack.Screen.Title>
