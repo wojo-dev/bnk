@@ -21,10 +21,16 @@
       "predictiveBackGestureEnabled": false
     },
     "web": {
-      "output": "static",
+      "output": "server",
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "Allow bnk to access your contacts."
+        }
+      ],
       "expo-router",
       [
         "expo-splash-screen",
