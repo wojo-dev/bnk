@@ -1,14 +1,13 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Stack } from 'expo-router';
 import React from 'react';
-
-import AppTabs from '@/features/shared/components/app-tabs';
 
 const queryClient = new QueryClient();
 
-export default function TabLayout() {
+export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppTabs />
+      <Stack screenOptions={{ headerShown: false }} />
     </QueryClientProvider>
   );
 }

@@ -1,10 +1,15 @@
-import { StyleSheet, Text } from 'react-native';
+import { useBalance } from '@/features/balance/hooks/use-balance';
+import { useRouter } from 'expo-router';
+import { Button, StyleSheet, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function HomeScreen() {
+  const { data: balance } = useBalance();
+  const router = useRouter();
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Text>Home</Text>
+      <Text>Balance: ${balance?.data.balance.amount}</Text>
+      <Button title="Transfer" onPress={() => router.push('/transfer')} />
     </SafeAreaView>
   );
 }
