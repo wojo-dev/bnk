@@ -1,3 +1,6 @@
-export async function GET(request: Request) {
-  return Response.json({ balance: 1000 });
+// balance API
+import { balance } from '@/server/balance';
+
+export async function GET() {
+  return Response.json({ balance: balance.amount });
 }
