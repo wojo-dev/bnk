@@ -1,10 +1,9 @@
 // transfer form
 
-import { apiClient } from '@/features/shared/lib/api-client';
+import { useTransfer } from '@/features/transfer/hooks/use-transfer';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useRouter } from 'expo-router';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { Alert, Button, StyleSheet, TextInput, View } from 'react-native';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { z } from 'zod';
 const transferFormSchema = z.object({
@@ -24,19 +23,13 @@ const defaultValues: TransferFormSchema = {
 };
 
 const TransferForm = () => {
-  const router = useRouter();
+  const { mutateAsync } = useTransfer();
   const form = useForm<TransferFormSchema>({
     resolver: zodResolver(transferFormSchema),
     defaultValues,
   });
   const onSubmit = async (data: TransferFormSchema) => {
-    const response = await apiClient.post('/transfer', data);
-    if (response.data.success) {
-      Alert.alert('Success', 'Transfer successful');
-      router.back();
-    } else {
-      Alert.alert('Error', response.data.error ?? 'An unknown error occurred');
-    }
+    await mutateAsync(data);
   };
   return (
     <FormProvider {...form}>

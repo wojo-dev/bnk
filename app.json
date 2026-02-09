@@ -26,6 +26,12 @@
     },
     "plugins": [
       [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to use Face ID."
+        }
+      ],
+      [
         "expo-contacts",
         {
           "contactsPermission": "Allow bnk to access your contacts."
