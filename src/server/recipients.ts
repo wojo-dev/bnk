@@ -99,9 +99,3 @@ export const recipients = [
     addedAt: '2026-01-20T13:00:00Z',
   },
 ];
-
-// ============================================
-// HELPERS
-// ============================================
-
-export const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

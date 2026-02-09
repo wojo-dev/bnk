@@ -1,8 +1,6 @@
-import { delay, recipients } from '@/server/mock-data';
+import { recipients } from '@/server/recipients';
 
 export async function GET(request: Request) {
-  await delay(400);
-
   const url = new URL(request.url);
   const search = url.searchParams.get('q')?.toLowerCase();
   const favourites = url.searchParams.get('favourites');
