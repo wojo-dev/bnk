@@ -1,8 +1,8 @@
 // button styles
 
-import { colors } from '@/features/shared/styles/tokens/colors';
-import { radius, spacing } from '@/features/shared/styles/tokens/spacing';
-import { typography } from '@/features/shared/styles/tokens/typography';
+import { colors } from '@/tokens/colors';
+import { radius, spacing } from '@/tokens/spacing';
+import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const buttonStyles = StyleSheet.create({

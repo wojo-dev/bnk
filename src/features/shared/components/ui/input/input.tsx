@@ -1,5 +1,5 @@
 // components/input.tsx
-import { colors } from '@/features/shared/styles/tokens/colors';
+import { colors } from '@/tokens/colors';
 import { useState } from 'react';
 import { Text, TextInput, View, type TextInputProps } from 'react-native';
 import { inputStyles } from './input.styles';

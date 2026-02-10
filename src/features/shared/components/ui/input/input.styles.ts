@@ -1,8 +1,8 @@
 // input styles
 
-import { colors } from '@/features/shared/styles/tokens/colors';
-import { spacing } from '@/features/shared/styles/tokens/spacing';
-import { typography } from '@/features/shared/styles/tokens/typography';
+import { colors } from '@/tokens/colors';
+import { spacing } from '@/tokens/spacing';
+import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const inputStyles = StyleSheet.create({

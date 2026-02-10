@@ -1,6 +1,6 @@
 import { getInitials } from '@/features/shared/hooks/get-initials';
 import { getRandomAvatarGradient } from '@/features/shared/hooks/get-random-gradient';
-import { scale } from '@/features/shared/styles/tokens/scale';
+import { scale } from '@/tokens/scale';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text, type ViewProps } from 'react-native';
 import { avatarStyles as styles } from './avatar.styles';

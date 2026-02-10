@@ -1,5 +1,5 @@
-import { radius } from '@/features/shared/styles/tokens/spacing';
-import { typography } from '@/features/shared/styles/tokens/typography';
+import { radius } from '@/tokens/spacing';
+import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const avatarStyles = StyleSheet.create({
