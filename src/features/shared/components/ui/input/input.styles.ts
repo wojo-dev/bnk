@@ -27,3 +27,11 @@ export const inputStyles = StyleSheet.create({
     color: typography.error.color,
   },
 });
+
+export const getBorderColor = (isFocused: boolean, error?: string) => {
+  if (error) {
+    return colors.border.error;
+  }
+
+  return isFocused ? colors.border.focus : colors.border.input;
+};

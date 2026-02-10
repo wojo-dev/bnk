@@ -1,39 +1,12 @@
 // components/badge.tsx
-import { Text, View, type ViewProps } from 'react-native';
-import { badgeStyles as styles } from './badge.styles';
-
-type BadgeVariant = 'default' | 'primary' | 'success' | 'error' | 'warning' | 'outline';
-
-type BadgeProps = ViewProps & {
-  label: string;
-  variant?: BadgeVariant;
-};
-
-const variantStyleMap = {
-  default: styles.default,
-  primary: styles.primary,
-  success: styles.success,
-  error: styles.error,
-  warning: styles.warning,
-  outline: styles.outline,
-} as const;
-
-const labelStyleMap = {
-  default: styles.defaultLabel,
-  primary: styles.primaryLabel,
-  success: styles.successLabel,
-  error: styles.errorLabel,
-  warning: styles.warningLabel,
-  outline: styles.outlineLabel,
-} as const;
+import { Text, View } from 'react-native';
+import { labelVariantStyle, badgeStyles as styles, variantStyle } from './badge.styles';
+import { BadgeProps } from './badge.types';
 
 export const Badge = ({ label, variant = 'default', style, ...props }: BadgeProps) => {
   return (
-    <View
-      style={[styles.base, variantStyleMap[variant], style]}
-      accessibilityRole="text"
-      {...props}>
-      <Text style={[styles.label, labelStyleMap[variant]]}>{label}</Text>
+    <View style={[styles.base, variantStyle(variant), style]} accessibilityRole="text" {...props}>
+      <Text style={[styles.label, labelVariantStyle(variant)]}>{label}</Text>
     </View>
   );
 };

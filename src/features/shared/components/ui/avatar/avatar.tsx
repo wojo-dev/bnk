@@ -2,13 +2,9 @@ import { getInitials } from '@/features/shared/hooks/get-initials';
 import { getRandomAvatarGradient } from '@/features/shared/hooks/get-random-gradient';
 import { scale } from '@/tokens/scale';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Text, type ViewProps } from 'react-native';
+import { Text } from 'react-native';
 import { avatarStyles as styles } from './avatar.styles';
-
-type AvatarProps = ViewProps & {
-  name: string;
-  size?: number;
-};
+import { AvatarProps } from './avatar.types';
 
 const DEFAULT_SIZE = 52;
 

@@ -1,27 +1,11 @@
 // components/input.tsx
-import { colors } from '@/tokens/colors';
 import { useState } from 'react';
-import { Text, TextInput, View, type TextInputProps } from 'react-native';
-import { inputStyles } from './input.styles';
-
-type InputProps = TextInputProps & {
-  label?: string;
-  error?: string;
-  disabled?: boolean;
-};
-
-const getBorderColor = (isFocused: boolean, error?: string) => {
-  if (error) {
-    return colors.border.error;
-  }
-
-  return isFocused ? colors.border.focus : colors.border.input;
-};
+import { Text, TextInput, View } from 'react-native';
+import { getBorderColor, inputStyles } from './input.styles';
+import { InputProps } from './input.types';
 
 export const Input = ({ disabled, label, error, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
-
-  const borderColor = getBorderColor(isFocused, error);
 
   return (
     <View style={inputStyles.container}>
@@ -32,7 +16,7 @@ export const Input = ({ disabled, label, error, ...props }: InputProps) => {
       <TextInput
         aria-labelledby="input-label"
         aria-disabled={disabled}
-        style={[inputStyles.input, { borderColor }]}
+        style={[inputStyles.input, { borderColor: getBorderColor(isFocused, error) }]}
         editable={!disabled}
         onFocus={() => {
           setIsFocused(true);

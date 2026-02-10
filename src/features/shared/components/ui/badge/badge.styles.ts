@@ -4,6 +4,7 @@ import { colors } from '@/tokens/colors';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
+import { BadgeProps } from './badge.types';
 
 export const badgeStyles = StyleSheet.create({
   base: {
@@ -60,3 +61,25 @@ export const badgeStyles = StyleSheet.create({
     color: colors.label.text,
   },
 });
+const variantStyles = {
+  default: badgeStyles.default,
+  primary: badgeStyles.primary,
+  success: badgeStyles.success,
+  error: badgeStyles.error,
+  warning: badgeStyles.warning,
+  outline: badgeStyles.outline,
+};
+
+export const variantStyle = (variant: BadgeProps['variant']) => variantStyles[variant ?? 'default'];
+
+const labelVariantStyles = {
+  default: badgeStyles.defaultLabel,
+  primary: badgeStyles.primaryLabel,
+  success: badgeStyles.successLabel,
+  error: badgeStyles.errorLabel,
+  warning: badgeStyles.warningLabel,
+  outline: badgeStyles.outlineLabel,
+};
+
+export const labelVariantStyle = (variant: BadgeProps['variant']) =>
+  labelVariantStyles[variant ?? 'default'];
