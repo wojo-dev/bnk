@@ -16,15 +16,15 @@ export const buttonStyles = StyleSheet.create({
     gap: spacing.xs,
   },
   primary: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.background.primary,
   },
   secondary: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.border.primary,
   },
   disabled: {
-    backgroundColor: colors.disabled,
+    backgroundColor: colors.border.disabled,
   },
   label: {
     fontSize: typography.button.fontSize,
@@ -36,9 +36,9 @@ export const buttonStyles = StyleSheet.create({
     color: '#FFFFFF',
   },
   secondaryLabel: {
-    color: colors.text,
+    color: colors.label.text,
   },
   disabledLabel: {
-    color: colors.placeholder,
+    color: colors.label.placeholder,
   },
 });

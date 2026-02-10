@@ -15,24 +15,24 @@ export const badgeStyles = StyleSheet.create({
     paddingHorizontal: spacing.sm,
   },
   default: {
-    backgroundColor: colors.background,
+    backgroundColor: colors.background.neutral,
   },
   primary: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.background.primary,
   },
   success: {
-    backgroundColor: colors.success,
+    backgroundColor: colors.background.success,
   },
   error: {
-    backgroundColor: colors.error,
+    backgroundColor: colors.background.error,
   },
   warning: {
-    backgroundColor: colors.warning,
+    backgroundColor: colors.background.warning,
   },
   outline: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: colors.border.primary,
   },
   label: {
     fontSize: typography.caption.fontSize,
@@ -41,21 +41,21 @@ export const badgeStyles = StyleSheet.create({
     lineHeight: typography.caption.lineHeight,
   },
   defaultLabel: {
-    color: colors.text,
+    color: colors.label.text,
   },
   primaryLabel: {
-    color: '#FFFFFF',
+    color: colors.label.primary,
   },
   successLabel: {
-    color: '#FFFFFF',
+    color: colors.label.success,
   },
   errorLabel: {
-    color: '#FFFFFF',
+    color: colors.label.error,
   },
   warningLabel: {
-    color: '#FFFFFF',
+    color: colors.label.warning,
   },
   outlineLabel: {
-    color: colors.text,
+    color: colors.label.text,
   },
 });

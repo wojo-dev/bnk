@@ -12,10 +12,10 @@ type InputProps = TextInputProps & {
 
 const getBorderColor = (isFocused: boolean, error?: string) => {
   if (error) {
-    return colors.error;
+    return colors.border.error;
   }
 
-  return isFocused ? colors.focus : colors.border;
+  return isFocused ? colors.border.focus : colors.border.input;
 };
 
 export const Input = ({ disabled, label, error, ...props }: InputProps) => {

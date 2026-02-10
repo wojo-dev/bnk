@@ -17,8 +17,8 @@ export const inputStyles = StyleSheet.create({
     borderWidth: 1,
     padding: 12,
     borderRadius: 8,
-    borderColor: colors.border,
-    backgroundColor: colors.input,
+    borderColor: colors.border.input,
+    backgroundColor: colors.background.neutral,
   },
   error: {
     fontSize: typography.error.fontSize,
