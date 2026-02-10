@@ -1,5 +1,5 @@
-import { getInitials } from '@/features/shared/hooks/get-initials';
-import { getRandomAvatarGradient } from '@/features/shared/hooks/get-random-gradient';
+import { getInitials } from '@/hooks/get-initials';
+import { getRandomAvatarGradient } from '@/hooks/get-random-gradient';
 import { scale } from '@/tokens/scale';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from 'react-native';

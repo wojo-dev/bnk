@@ -6,7 +6,8 @@
       "@/*": ["./src/*"],
       "@/assets/*": ["./assets/*"],
       "@/tokens/*": ["./src/features/shared/styles/tokens/*"],
-      "@/ui/*": ["./src/features/shared/components/ui/*"]
+      "@/ui/*": ["./src/features/shared/components/ui/*"],
+      "@/hooks/*": ["./src/features/shared/hooks/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

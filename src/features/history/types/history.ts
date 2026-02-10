@@ -5,6 +5,7 @@ export type History = {
   name: string;
   bank: string;
   amount: number;
+  currency: string;
   status: TransactionStatus;
   createdAt: string;
 };

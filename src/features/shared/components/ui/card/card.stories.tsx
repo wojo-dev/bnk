@@ -22,8 +22,12 @@ export const Default: Story = {
   args: {
     title: 'Card Title',
     description: 'This is a default card with a description.',
-    children: <Text>Card content goes here.</Text>,
   },
+  render: (args) => (
+    <Card {...args}>
+      <Text>Card content goes here.</Text>
+    </Card>
+  ),
 };
 
 export const Elevated: Story = {
@@ -31,8 +35,12 @@ export const Elevated: Story = {
     variant: 'elevated',
     title: 'Elevated Card',
     description: 'This card has a shadow for depth.',
-    children: <Text>Card content goes here.</Text>,
   },
+  render: (args) => (
+    <Card {...args}>
+      <Text>Card content goes here.</Text>
+    </Card>
+  ),
 };
 
 export const Outlined: Story = {
@@ -40,15 +48,23 @@ export const Outlined: Story = {
     variant: 'outlined',
     title: 'Outlined Card',
     description: 'This card has a border outline.',
-    children: <Text>Card content goes here.</Text>,
   },
+  render: (args) => (
+    <Card {...args}>
+      <Text>Card content goes here.</Text>
+    </Card>
+  ),
 };
 
 export const ContentOnly: Story = {
   args: {
     variant: 'elevated',
-    children: <Text>A card with only content, no title or description.</Text>,
   },
+  render: (args) => (
+    <Card {...args}>
+      <Text>A card with only content, no title or description.</Text>
+    </Card>
+  ),
 };
 
 export const WithFooter: Story = {
@@ -56,6 +72,6 @@ export const WithFooter: Story = {
     variant: 'outlined',
     title: 'Card with Footer',
     description: 'This card includes a footer section.',
-    footer: <Text>Footer content</Text>,
   },
+  render: (args) => <Card {...args} footer={<Text>Footer content</Text>} />,
 };
