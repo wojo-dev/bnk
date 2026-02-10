@@ -8,6 +8,7 @@ export default function HomeScreen() {
   const router = useRouter();
   return (
     <SafeAreaView style={styles.safeArea}>
+      <Button title="Storybook" onPress={() => router.push('/storybook')} />
       <Text>Balance: ${balance?.data.balance.amount}</Text>
       <Button title="Transfer" onPress={() => router.push('/transfer')} />
     </SafeAreaView>

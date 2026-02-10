@@ -8,6 +8,9 @@ export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
       <Stack screenOptions={{ headerShown: false }} />
+      <Stack.Protected guard={__DEV__}>
+        <Stack.Screen name="storybook" />
+      </Stack.Protected>
     </QueryClientProvider>
   );
 }
