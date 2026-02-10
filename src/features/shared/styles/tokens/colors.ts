@@ -31,6 +31,17 @@ export const colors = {
     error: '#DC2626',
     icon: '#6B7280',
   },
+  avatar: {
+    red: '#F87171',
+    orange: '#F97316',
+    yellow: '#F59E0B',
+    green: '#10B981',
+    blue: '#3B82F6',
+    purple: '#8B5CF6',
+    pink: '#EC4899',
+    brown: '#854D3D',
+    gray: '#6B7280',
+  },
 } as const;
 
 export const gradients = {

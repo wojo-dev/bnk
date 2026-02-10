@@ -1,6 +1,5 @@
-// components/button.tsx
 import { Pressable, Text, type PressableProps } from 'react-native';
-import { buttonStyles } from './button.styles';
+import { buttonStyles as styles } from './button.styles';
 
 type ButtonVariant = 'primary' | 'secondary';
 
@@ -11,18 +10,17 @@ type ButtonProps = PressableProps & {
 };
 
 export const Button = ({ label, variant = 'primary', disabled, ...props }: ButtonProps) => {
-  const variantStyle = variant === 'primary' ? buttonStyles.primary : buttonStyles.secondary;
+  const variantStyle = variant === 'primary' ? styles.primary : styles.secondary;
 
-  const labelVariantStyle =
-    variant === 'primary' ? buttonStyles.primaryLabel : buttonStyles.secondaryLabel;
+  const labelVariantStyle = variant === 'primary' ? styles.primaryLabel : styles.secondaryLabel;
 
   return (
     <Pressable
-      style={[buttonStyles.base, variantStyle, disabled && buttonStyles.disabled]}
+      style={[styles.base, variantStyle, disabled && styles.disabled]}
       disabled={disabled}
       accessibilityRole="button"
       {...props}>
-      <Text style={[buttonStyles.label, labelVariantStyle, disabled && buttonStyles.disabledLabel]}>
+      <Text style={[styles.label, labelVariantStyle, disabled && styles.disabledLabel]}>
         {label}
       </Text>
     </Pressable>
