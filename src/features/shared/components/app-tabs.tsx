@@ -6,7 +6,8 @@ export default function AppTabs() {
     <NativeTabs
       minimizeBehavior="onScrollDown"
       backgroundColor="white"
-      indicatorColor="gray"
+      tintColor="white"
+      indicatorColor="white"
       labelStyle={{ selected: { color: 'black' } }}>
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
