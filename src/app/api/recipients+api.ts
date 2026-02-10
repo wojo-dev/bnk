@@ -1,3 +1,4 @@
+import { paginate } from '@/server/helpers';
 import { recipients } from '@/server/recipients';
 
 export async function GET(request: Request) {
@@ -21,10 +22,7 @@ export async function GET(request: Request) {
 
   const pageSize = 3;
   const page = Math.max(1, Number(url.searchParams.get('page')) || 1);
-  const start = (page - 1) * pageSize;
-  const end = start + pageSize;
-  const paged = filtered.slice(start, end);
-  const nextPage = end < filtered.length ? page + 1 : null;
+  const { data, nextPage } = paginate(filtered, page, pageSize);
 
-  return Response.json({ data: paged, nextPage });
+  return Response.json({ data, nextPage });
 }

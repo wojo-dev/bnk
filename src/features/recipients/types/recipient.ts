@@ -11,7 +11,7 @@ export type Recipient = {
   addedAt: string;
 };
 
-export type PaginatedRecipientResponse = {
+export type RecipientsPaginatedResponse = {
   data: Recipient[];
   nextPage: number | null;
 };

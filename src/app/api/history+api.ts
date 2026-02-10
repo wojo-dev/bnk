@@ -1,0 +1,20 @@
+// history API
+
+import { paginate } from '@/server/helpers';
+import { history } from '@/server/history';
+
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const search = url.searchParams.get('q')?.toLowerCase();
+  let filtered = [...history];
+
+  if (search) {
+    filtered = filtered.filter((t) => t.name.toLowerCase().includes(search));
+  }
+
+  const pageSize = 3;
+  const page = Math.max(1, Number(url.searchParams.get('page')) || 1);
+  const { data, nextPage } = paginate(filtered, page, pageSize);
+
+  return Response.json({ data, nextPage });
+}

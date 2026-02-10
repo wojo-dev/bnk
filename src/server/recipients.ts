@@ -1,6 +1,3 @@
-// ============================================
-// MOCK DATABASE — shared across all API routes
-// ============================================
 export const recipients = [
   {
     id: 'rcp_001',

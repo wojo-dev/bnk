@@ -1,4 +1,4 @@
-import { PaginatedRecipientResponse } from '@/features/recipients/types/recipient';
+import { RecipientsPaginatedResponse } from '@/features/recipients/types/recipient';
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
 
@@ -7,7 +7,7 @@ export function useRecipients(search?: string) {
     queryKey: ['recipients', search],
     queryFn: ({ signal, pageParam }) =>
       apiClient
-        .get<PaginatedRecipientResponse>('/recipients', {
+        .get<RecipientsPaginatedResponse>('/recipients', {
           signal,
           params: { page: pageParam, q: search || undefined },
         })
