@@ -1,23 +1,45 @@
 import * as Contacts from 'expo-contacts';
 import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
 
 export function useContacts() {
-  // let user have the option to add contacts
   const [contacts, setContacts] = useState<Contacts.Contact[]>([]);
   const [permissions, setPermissions] = useState<Contacts.PermissionStatus | null>(null);
-  useEffect(() => {
-    (async () => {
+
+  const fetchContacts = async () => {
+    try {
       const { data } = await Contacts.getContactsAsync({
         fields: [Contacts.Fields.Emails],
       });
       setContacts(data);
-      const { status } = await Contacts.requestPermissionsAsync();
+    } catch (e: unknown) {
+      Alert.alert('Failed to fetch contacts: ', String(e));
+      setContacts([]);
+      setPermissions(null);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Contacts.getPermissionsAsync();
       setPermissions(status);
+      if (status === 'granted') {
+        await fetchContacts();
+      }
     })();
-  }, [permissions]);
+  }, []);
+
+  const requestPermissions = async () => {
+    const { status } = await Contacts.requestPermissionsAsync();
+    setPermissions(status);
+    if (status === 'granted') {
+      await fetchContacts();
+    }
+  };
+
   return {
     hasPermissions: permissions === 'granted',
-    requestPermissions: () => Contacts.requestPermissionsAsync(),
+    requestPermissions,
     contacts,
     permissions,
   };
