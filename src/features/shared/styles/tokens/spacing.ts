@@ -1,12 +1,14 @@
+import { scale } from './scale';
+
 export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 16,
-  lg: 24,
-  xl: 32,
-  '2xl': 48,
-  '3xl': 64,
-  '4xl': 80,
+  xs: scale(4),
+  sm: scale(8),
+  md: scale(16),
+  lg: scale(24),
+  xl: scale(32),
+  '2xl': scale(48),
+  '3xl': scale(64),
+  '4xl': scale(80),
 } as const;
 
 export const radius = {

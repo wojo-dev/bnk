@@ -10,11 +10,14 @@ export const colors = {
   border: '#E0E0E0',
   icon: '#212121',
   button: '#212121',
-  input: '#212121',
+  input: '#FFFFFF',
   card: '#212121',
   modal: '#212121',
   overlay: '#212121',
   shadow: '#212121',
+  placeholder: '#A0A0A0',
+  disabled: '#E0E0E0',
+  focus: '#1B4FD8',
 } as const;
 
 export const gradients = {
