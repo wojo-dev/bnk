@@ -2,7 +2,7 @@ export const colors = {
   primary: '#1B4FD8',
   neutral: '#212121',
   label: {
-    primary: '#1B4FD8',
+    primary: '#000000',
     neutral: '#212121',
     background: '#F5F5F5',
     success: '#16A34A',
@@ -15,7 +15,7 @@ export const colors = {
   },
   background: {
     primary: '#1B4FD8',
-    neutral: '#212121',
+    neutral: '#FFFFFF',
     background: '#F5F5F5',
     success: '#DCFCE7',
     warning: '#FEF9C4',
@@ -31,21 +31,21 @@ export const colors = {
     error: '#DC2626',
     icon: '#6B7280',
   },
-  avatar: {
-    red: '#F87171',
-    orange: '#F97316',
-    yellow: '#F59E0B',
-    green: '#10B981',
-    blue: '#3B82F6',
-    purple: '#8B5CF6',
-    pink: '#EC4899',
-    brown: '#854D3D',
-    gray: '#6B7280',
-  },
 } as const;
 
 export const gradients = {
   primary: ['#1B4FD8', '#3B82F6'],
   secondary: ['#6B7280', '#9CA3AF'],
   tertiary: ['#16A34A', '#4ADE80'],
+  avatar: {
+    green: ['#34C759', '#6EDE8A'] as const,
+    blue: ['#3478F6', '#6AA3FF'] as const,
+    purple: ['#8B6FC0', '#B49ADB'] as const,
+    orange: ['#f6a20f', '#fabb21'] as const,
+    pink: ['#E8548C', '#F27EAD'] as const,
+    teal: ['#2ABFB3', '#5DDDD3'] as const,
+    emerald: ['#2EA87E', '#52C99E'] as const,
+    coral: ['#F06B5B', '#F5948A'] as const,
+    indigo: ['#5C6BC0', '#8E99DB'] as const,
+  },
 } as const;

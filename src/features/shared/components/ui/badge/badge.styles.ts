@@ -35,10 +35,11 @@ export const badgeStyles = StyleSheet.create({
     borderColor: colors.border.primary,
   },
   label: {
-    fontSize: typography.caption.fontSize,
-    fontWeight: typography.caption.fontWeight,
-    fontFamily: typography.caption.fontFamily,
-    lineHeight: typography.caption.lineHeight,
+    fontSize: typography.badge.fontSize,
+    fontWeight: typography.badge.fontWeight,
+    fontFamily: typography.badge.fontFamily,
+    lineHeight: typography.badge.lineHeight,
+    marginHorizontal: spacing.xs,
   },
   defaultLabel: {
     color: colors.label.text,

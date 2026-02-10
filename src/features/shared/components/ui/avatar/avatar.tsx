@@ -1,7 +1,8 @@
 import { getInitials } from '@/features/shared/hooks/get-initials';
-import { getRandomColor } from '@/features/shared/hooks/get-random-color';
+import { getRandomAvatarGradient } from '@/features/shared/hooks/get-random-gradient';
 import { scale } from '@/features/shared/styles/tokens/scale';
-import { Text, View, type ViewProps } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { Text, type ViewProps } from 'react-native';
 import { avatarStyles as styles } from './avatar.styles';
 
 type AvatarProps = ViewProps & {
@@ -15,15 +16,18 @@ export const Avatar = ({ name, size = DEFAULT_SIZE, style, ...props }: AvatarPro
   const scaledSize = scale(size);
   const fontSize = scale(size * 0.34);
   const initials = getInitials(name);
+  const gradientColors = getRandomAvatarGradient();
 
   return (
-    <View
+    <LinearGradient
+      colors={gradientColors}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
       style={[
         styles.container,
         {
           width: scaledSize,
           height: scaledSize,
-          backgroundColor: getRandomColor(),
         },
         style,
       ]}
@@ -31,6 +35,6 @@ export const Avatar = ({ name, size = DEFAULT_SIZE, style, ...props }: AvatarPro
       accessibilityLabel={initials}
       {...props}>
       <Text style={[styles.initials, { fontSize }]}>{initials}</Text>
-    </View>
+    </LinearGradient>
   );
 };
