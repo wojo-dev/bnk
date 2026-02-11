@@ -1,6 +1,6 @@
 import { Badge } from '@/ui/badge/badge';
 import { Text, View } from 'react-native';
-import { transferDetailStyles as styles } from './transfer-detail.styles.';
+import { transferDetailStyles as styles } from './transfer-detail.styles';
 import { TransferDetailProps, TransferStatus } from './transfer-detail.type';
 
 const statusVariant: Record<TransferStatus, 'success' | 'warning' | 'error'> = {

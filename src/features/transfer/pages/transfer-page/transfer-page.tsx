@@ -9,7 +9,7 @@ import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRecipient } from '../../hooks/use-receipient';
+import { useRecipient } from '../../hooks/use-recipient';
 
 export function TransferPage() {
   const { data: balance } = useBalance();
