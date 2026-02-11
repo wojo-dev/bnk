@@ -5,7 +5,11 @@ import { ButtonProps } from './button.types';
 export const Button = ({ title, variant = 'primary', disabled, ...props }: ButtonProps) => {
   return (
     <Pressable
-      style={[styles.base, variantStyle(variant), disabled && styles.disabled]}
+      style={[
+        styles.base,
+        variantStyle(variant),
+        disabled && variant !== 'link' && styles.disabled,
+      ]}
       disabled={disabled}
       accessibilityRole="button"
       {...props}>

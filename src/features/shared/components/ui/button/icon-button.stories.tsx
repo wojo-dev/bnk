@@ -18,45 +18,84 @@ const meta = {
 
 export default meta;
 
-// icon is provided via render, so make all args optional
 type Story = Omit<StoryObj<typeof meta>, 'args'> & {
   args?: Partial<ComponentProps<typeof IconButton>>;
 };
 
-export const Primary: Story = {
+export const Blue: Story = {
   args: {
-    accessibilityLabel: 'Add',
+    label: 'Send',
+    color: 'blue',
+    accessibilityLabel: 'Send',
   },
-  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="plus" />} />,
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="send" />} />,
 };
 
-export const Secondary: Story = {
+export const Green: Story = {
   args: {
-    variant: 'secondary',
-    accessibilityLabel: 'Edit',
+    label: 'Request',
+    color: 'green',
+    accessibilityLabel: 'Request',
   },
-  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="pencil" />} />,
+  render: (args) => (
+    <IconButton {...args} icon={<MaterialCommunityIcons name="arrow-down-bold-box" />} />
+  ),
 };
 
-export const Small: Story = {
+export const Orange: Story = {
   args: {
-    size: 'sm',
-    accessibilityLabel: 'Close',
+    label: 'Pay Bills',
+    color: 'orange',
+    accessibilityLabel: 'Pay Bills',
   },
-  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="close" />} />,
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="credit-card" />} />,
 };
 
-export const Large: Story = {
+export const Purple: Story = {
   args: {
-    size: 'lg',
-    accessibilityLabel: 'Next',
+    label: 'Top Up',
+    color: 'purple',
+    accessibilityLabel: 'Top Up',
   },
-  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="arrow-right" />} />,
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="currency-usd" />} />,
+};
+
+export const AllColors: Story = {
+  render: () => (
+    <View style={{ flexDirection: 'row', gap: 24 }}>
+      <IconButton
+        icon={<MaterialCommunityIcons name="send" />}
+        label="Send"
+        color="blue"
+        accessibilityLabel="Send"
+      />
+      <IconButton
+        icon={<MaterialCommunityIcons name="arrow-down-bold-box" />}
+        label="Request"
+        color="green"
+        accessibilityLabel="Request"
+      />
+      <IconButton
+        icon={<MaterialCommunityIcons name="credit-card" />}
+        label="Pay Bills"
+        color="orange"
+        accessibilityLabel="Pay Bills"
+      />
+      <IconButton
+        icon={<MaterialCommunityIcons name="currency-usd" />}
+        label="Top Up"
+        color="purple"
+        accessibilityLabel="Top Up"
+      />
+    </View>
+  ),
 };
 
 export const Disabled: Story = {
   args: {
     disabled: true,
+    label: 'Send',
+    color: 'blue',
     accessibilityLabel: 'Send',
   },
   render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="send" />} />,

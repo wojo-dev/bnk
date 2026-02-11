@@ -12,7 +12,7 @@ export function useTransfer() {
     mutationFn: (data: TransferRequest) => apiClient.post<TransferResponse>('/transfer', data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['balance'] as const });
-      router.push('/transfer/confirm');
+      router.push('/transfer/process');
     },
     onError: (error) => {
       Alert.alert('Error', error.message);

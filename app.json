@@ -8,13 +8,14 @@
     "scheme": "bnk",
     "userInterfaceStyle": "automatic",
     "ios": {
-      "bundleIdentifier": "com.sasanda.biometricauth",
+      "bundleIdentifier": "com.wes.biometricauth",
       "infoPlist": {
         "NSFaceIDUsageDescription": "This app uses Face ID to securely log you into your account."
       },
       "icon": "./assets/expo.icon"
     },
     "android": {
+      "package": "com.wes.bnk",
       "softwareKeyboardLayoutMode": "pan",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",

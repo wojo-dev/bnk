@@ -24,6 +24,11 @@ export const buttonStyles = StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.border.secondary,
   },
+  link: {
+    backgroundColor: 'transparent',
+    paddingVertical: 0,
+    paddingHorizontal: 0,
+  },
   disabled: {
     backgroundColor: colors.border.disabled,
   },
@@ -39,6 +44,10 @@ export const buttonStyles = StyleSheet.create({
   secondaryLabel: {
     color: colors.label.text,
   },
+  linkLabel: {
+    color: colors.primary,
+    textDecorationLine: 'underline' as const,
+  },
   disabledLabel: {
     color: colors.label.placeholder,
   },
@@ -47,6 +56,7 @@ export const buttonStyles = StyleSheet.create({
 const variantStyles = {
   primary: buttonStyles.primary,
   secondary: buttonStyles.secondary,
+  link: buttonStyles.link,
 };
 export const variantStyle = (variant: ButtonProps['variant']) =>
   variantStyles[variant ?? 'primary'];
@@ -54,6 +64,7 @@ export const variantStyle = (variant: ButtonProps['variant']) =>
 const labelVariantStyles = {
   primary: buttonStyles.primaryLabel,
   secondary: buttonStyles.secondaryLabel,
+  link: buttonStyles.linkLabel,
 };
 export const labelVariantStyle = (variant: ButtonProps['variant']) =>
   labelVariantStyles[variant ?? 'primary'];

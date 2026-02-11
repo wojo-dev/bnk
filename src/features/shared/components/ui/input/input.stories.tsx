@@ -30,22 +30,27 @@ export const Basic: Story = {
 export const WithSearchIcon: Story = {
   args: {
     placeholder: 'Search name or account',
-    icon: <Feather name="search" size={20} color="#9CA3AF" />,
   },
+  render: (args) => <Input {...args} icon={<Feather name="search" size={20} color="#9CA3AF" />} />,
 };
 
 export const WithUserIcon: Story = {
   args: {
     placeholder: 'Recipient name',
-    icon: <Feather name="user" size={20} color="#9CA3AF" />,
   },
+  render: (args) => <Input {...args} icon={<Feather name="user" size={20} color="#9CA3AF" />} />,
 };
 
 export const WithTextIcon: Story = {
   args: {
     placeholder: '0.00',
-    icon: <Text style={{ fontSize: 16, fontWeight: '600', color: '#1F2937' }}>RM</Text>,
   },
+  render: (args) => (
+    <Input
+      {...args}
+      icon={<Text style={{ fontSize: 16, fontWeight: '600', color: '#1F2937' }}>RM</Text>}
+    />
+  ),
 };
 
 export const Error: Story = {

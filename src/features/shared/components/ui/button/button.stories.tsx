@@ -32,6 +32,13 @@ export const Secondary: Story = {
   },
 };
 
+export const Link: Story = {
+  args: {
+    title: 'Use PIN instead',
+    variant: 'link',
+  },
+};
+
 export const Disabled: Story = {
   args: {
     title: 'Submit',

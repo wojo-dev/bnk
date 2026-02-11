@@ -2,7 +2,7 @@
 
 import { PressableProps } from 'react-native';
 
-export type ButtonVariant = 'primary' | 'secondary';
+export type ButtonVariant = 'primary' | 'secondary' | 'link';
 
 export type ButtonProps = PressableProps & {
   title: string;
