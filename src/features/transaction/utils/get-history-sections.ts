@@ -1,4 +1,4 @@
-import { History } from '@/features/history/types/history.types';
+import { History } from '@/features/transaction/types/history.types';
 import { getIsTodayYesterday } from '@/utils/get-format-date';
 
 export function getHistorySections(history: History[]): (string | History)[] {

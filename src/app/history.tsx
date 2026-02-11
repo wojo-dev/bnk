@@ -1,4 +1,4 @@
-import { HistoryPage } from '@/features/history/pages/history-page/history-page';
+import { HistoryPage } from '@/features/transaction/pages/history-page/history-page';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
 export default function HistoryScreen() {

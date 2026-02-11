@@ -1,7 +1,7 @@
 // history page
 
-import { HistoryList } from '@/features/history/components/history-list/history-list';
-import { useHistory } from '@/features/history/hooks/use-history';
+import { HistoryList } from '@/features/transaction/components/history-list/history-list';
+import { useHistory } from '@/features/transaction/hooks/use-history';
 import { ActivityIndicator, View } from 'react-native';
 import { styles } from './history-page.styles';
 export const HistoryPage = ({ search }: { search: string }) => {

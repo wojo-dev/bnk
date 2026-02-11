@@ -1,4 +1,4 @@
-import { History } from '@/features/history/types/history.types';
+import { History } from '@/features/transaction/types/history.types';
 import * as formatDate from '@/utils/get-format-date';
 import { getHistorySections } from './get-history-sections';
 

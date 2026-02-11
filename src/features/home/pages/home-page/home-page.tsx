@@ -1,7 +1,7 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
-import { HistoryList } from '@/features/history/components/history-list/history-list';
-import { useHistory } from '@/features/history/hooks/use-history';
+import { HistoryList } from '@/features/transaction/components/history-list/history-list';
+import { useHistory } from '@/features/transaction/hooks/use-history';
 import { Card } from '@/ui/card/card';
 import { SectionTitle } from '@/ui/section-title/section-title';
 import { Link, RelativePathString, useRouter } from 'expo-router';
