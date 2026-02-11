@@ -15,7 +15,10 @@ export function TransferPage() {
   return (
     <SafeAreaView>
       <BalanceCard amount={balance?.data.balance.amount ?? 0} />
-      <TransferForm recipient={recipient as Recipient} />
+      <TransferForm
+        recipient={recipient as Recipient}
+        balance={balance?.data.balance.amount ?? 0}
+      />
     </SafeAreaView>
   );
 }

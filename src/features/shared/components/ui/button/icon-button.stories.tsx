@@ -1,5 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Meta, StoryObj } from '@storybook/react-native';
+import { ComponentProps } from 'react';
 import { View } from 'react-native';
 import { IconButton } from './icon-button';
 
@@ -16,43 +17,46 @@ const meta = {
 
 export default meta;
 
-type Story = StoryObj<typeof meta>;
+// icon is provided via render, so make all args optional
+type Story = Omit<StoryObj<typeof meta>, 'args'> & {
+  args?: Partial<ComponentProps<typeof IconButton>>;
+};
 
 export const Primary: Story = {
   args: {
-    icon: <MaterialCommunityIcons name="plus" />,
     accessibilityLabel: 'Add',
   },
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="plus" />} />,
 };
 
 export const Secondary: Story = {
   args: {
-    icon: <MaterialCommunityIcons name="pencil" />,
     variant: 'secondary',
     accessibilityLabel: 'Edit',
   },
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="pencil" />} />,
 };
 
 export const Small: Story = {
   args: {
-    icon: <MaterialCommunityIcons name="close" />,
     size: 'sm',
     accessibilityLabel: 'Close',
   },
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="close" />} />,
 };
 
 export const Large: Story = {
   args: {
-    icon: <MaterialCommunityIcons name="arrow-right" />,
     size: 'lg',
     accessibilityLabel: 'Next',
   },
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="arrow-right" />} />,
 };
 
 export const Disabled: Story = {
   args: {
-    icon: <MaterialCommunityIcons name="send" />,
     disabled: true,
     accessibilityLabel: 'Send',
   },
+  render: (args) => <IconButton {...args} icon={<MaterialCommunityIcons name="send" />} />,
 };

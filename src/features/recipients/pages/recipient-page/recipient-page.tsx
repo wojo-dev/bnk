@@ -2,9 +2,10 @@ import { RecipientList } from '@/features/recipients/components/recipient-list/r
 import { useContacts } from '@/features/recipients/hooks/use-contacts';
 import { useRecipients } from '@/features/recipients/hooks/use-recipients';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
+import { Button } from '@/ui/button/button';
 import { router, Stack } from 'expo-router';
 import { useState } from 'react';
-import { ActivityIndicator, Button, Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { styles } from './recipient-page.styles';
 
 export function RecipientPage() {
@@ -27,7 +28,7 @@ export function RecipientPage() {
       />
       <View style={styles.container}>
         <Button
-          title={hasPermissions ? 'Contacts added' : 'Add Contacts'}
+          label={hasPermissions ? 'Contacts added' : 'Add Contacts'}
           onPress={() => requestPermissions()}
           disabled={hasPermissions}
         />
@@ -49,7 +50,7 @@ export function RecipientPage() {
         />
         {selectedId ? (
           <Button
-            title="Continue"
+            label="Continue"
             onPress={() =>
               router.push({
                 pathname: '/transfer',
