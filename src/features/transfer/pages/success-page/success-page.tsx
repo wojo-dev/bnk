@@ -48,7 +48,8 @@ export function SuccessPage() {
           onPress={() => {
             clearTransferDetail();
             resetRecipientStore();
-            router.replace('/');
+            router.dismissAll();
+            router.back();
           }}
         />
 

@@ -14,7 +14,7 @@ export default function TabLayout() {
           haptic.light();
         },
       }}>
-      <NativeTabs.Trigger name="index">
+      <NativeTabs.Trigger name="index" disableAutomaticContentInsets>
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/hh.png')} />
       </NativeTabs.Trigger>
