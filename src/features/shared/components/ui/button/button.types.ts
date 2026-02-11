@@ -5,7 +5,7 @@ import { PressableProps } from 'react-native';
 export type ButtonVariant = 'primary' | 'secondary';
 
 export type ButtonProps = PressableProps & {
-  label: string;
+  title: string;
   variant?: ButtonVariant;
   disabled?: boolean;
 };

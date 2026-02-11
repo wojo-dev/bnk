@@ -1,14 +1,19 @@
 import { Recipient } from '@/features/recipients/types/recipient';
 import { Input } from '@/features/shared/components/ui/input/input';
-import { useTransfer } from '@/features/transfer/hooks/use-transfer';
+import { Button } from '@/ui/button/button';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { Button, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { transferFormStyles as styles } from './transfer-form.styles';
 import { TransferFormSchema, defaultValues, transferFormSchema } from './transfer-form.types';
 
-export const TransferForm = ({ recipient, balance }: { recipient: Recipient; balance: number }) => {
-  const { mutateAsync } = useTransfer();
+type TransferFormProps = {
+  recipient: Recipient;
+  balance: number;
+  onTransfer: (data: TransferFormSchema) => Promise<void>;
+};
+
+export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormProps) => {
   const form = useForm<TransferFormSchema>({
     resolver: zodResolver(transferFormSchema),
     defaultValues: {
@@ -22,7 +27,7 @@ export const TransferForm = ({ recipient, balance }: { recipient: Recipient; bal
       form.setError('amount', { message: 'Amount exceeds your current balance' });
       return;
     }
-    await mutateAsync(data);
+    await onTransfer(data);
   };
   return (
     <FormProvider {...form}>
@@ -32,7 +37,7 @@ export const TransferForm = ({ recipient, balance }: { recipient: Recipient; bal
           control={form.control}
           render={({ field, fieldState }) => (
             <Input
-              label="Amount"
+              title="Amount"
               placeholder="Amount"
               keyboardType="numeric"
               value={field.value ? field.value.toString() : ''}
@@ -47,7 +52,7 @@ export const TransferForm = ({ recipient, balance }: { recipient: Recipient; bal
           control={form.control}
           render={({ field, fieldState }) => (
             <Input
-              label="Description"
+              title="Description"
               placeholder="Description"
               value={field.value}
               onChangeText={field.onChange}

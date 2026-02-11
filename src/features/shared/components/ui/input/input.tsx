@@ -4,13 +4,13 @@ import { Text, TextInput, View } from 'react-native';
 import { getBorderColor, inputStyles } from './input.styles';
 import { InputProps } from './input.types';
 
-export const Input = ({ disabled, label, error, ...props }: InputProps) => {
+export const Input = ({ disabled, title, error, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View style={inputStyles.container}>
       <Text id="input-label" style={inputStyles.label}>
-        {label}
+        {title}
       </Text>
 
       <TextInput

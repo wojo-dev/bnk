@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { BalanceCard } from './balance-card';
 
 const meta = {
+  title: 'Balance/BalanceCard',
   component: BalanceCard,
   decorators: [
     (Story) => (

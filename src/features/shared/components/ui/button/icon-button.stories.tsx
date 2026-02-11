@@ -5,6 +5,7 @@ import { View } from 'react-native';
 import { IconButton } from './icon-button';
 
 const meta = {
+  title: 'UI/IconButton',
   component: IconButton,
   decorators: [
     (Story) => (

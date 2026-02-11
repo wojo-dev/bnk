@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { Badge } from './badge';
 
 const meta = {
+  title: 'UI/Badge',
   component: Badge,
   decorators: [
     (Story) => (
@@ -20,41 +21,41 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    label: 'Default',
+    title: 'Default',
   },
 };
 
 export const Primary: Story = {
   args: {
-    label: 'Primary',
+    title: 'Primary',
     variant: 'primary',
   },
 };
 
 export const Success: Story = {
   args: {
-    label: 'Approved',
+    title: 'Approved',
     variant: 'success',
   },
 };
 
 export const Error: Story = {
   args: {
-    label: 'Failed',
+    title: 'Failed',
     variant: 'error',
   },
 };
 
 export const Warning: Story = {
   args: {
-    label: 'Pending',
+    title: 'Pending',
     variant: 'warning',
   },
 };
 
 export const Outline: Story = {
   args: {
-    label: 'Draft',
+    title: 'Draft',
     variant: 'outline',
   },
 };

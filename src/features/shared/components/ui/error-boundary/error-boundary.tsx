@@ -16,7 +16,7 @@ export function ErrorBoundary({ error, retry }: ErrorBoundaryProps) {
       </View>
       <Text style={styles.heading}>Something went wrong</Text>
       <Text style={styles.message}>{error.message}</Text>
-      <Button label="Try Again" variant="secondary" onPress={retry} />
+      <Button title="Try Again" variant="secondary" onPress={retry} />
     </View>
   );
 }

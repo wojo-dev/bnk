@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { OfflineBanner } from './offline-banner';
 
 const meta = {
+  title: 'UI/OfflineBanner',
   component: OfflineBanner,
   decorators: [
     (Story) => (

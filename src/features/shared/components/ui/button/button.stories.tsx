@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { Button } from './button';
 
 const meta = {
+  title: 'UI/Button',
   component: Button,
   decorators: [
     (Story) => (
@@ -20,20 +21,20 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
   args: {
-    label: 'Continue',
+    title: 'Continue',
   },
 };
 
 export const Secondary: Story = {
   args: {
-    label: 'Cancel',
+    title: 'Cancel',
     variant: 'secondary',
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: 'Submit',
+    title: 'Submit',
     disabled: true,
   },
 };

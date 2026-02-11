@@ -22,7 +22,7 @@ export const buttonStyles = StyleSheet.create({
   secondary: {
     backgroundColor: 'transparent',
     borderWidth: 1,
-    borderColor: colors.border.primary,
+    borderColor: colors.border.secondary,
   },
   disabled: {
     backgroundColor: colors.border.disabled,

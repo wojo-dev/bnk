@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { Avatar } from './avatar';
 
 const meta = {
+  title: 'UI/Avatar',
   component: Avatar,
   decorators: [
     (Story) => (

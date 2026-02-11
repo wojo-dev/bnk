@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { Card } from './card';
 
 const meta = {
+  title: 'UI/Card',
   component: Card,
   decorators: [
     (Story) => (

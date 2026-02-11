@@ -28,7 +28,7 @@ export function RecipientPage() {
       />
       <View style={styles.container}>
         <Button
-          label={hasPermissions ? 'Contacts added' : 'Add Contacts'}
+          title={hasPermissions ? 'Contacts added' : 'Add Contacts'}
           onPress={() => requestPermissions()}
           disabled={hasPermissions}
         />
@@ -50,7 +50,7 @@ export function RecipientPage() {
         />
         {selectedId ? (
           <Button
-            label="Continue"
+            title="Continue"
             onPress={() =>
               router.push({
                 pathname: '/transfer',

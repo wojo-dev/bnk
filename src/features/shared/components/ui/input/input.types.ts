@@ -3,7 +3,7 @@
 import { TextInputProps } from 'react-native';
 
 export type InputProps = TextInputProps & {
-  label?: string;
+  title?: string;
   error?: string;
   disabled?: boolean;
 };

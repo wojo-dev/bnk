@@ -31,7 +31,7 @@ const TransactionRow = ({ item }: { item: History }) => {
             <Text style={styles.amount}>{getFormatPrice(item.currency, item.amount)}</Text>
           </View>
           <Badge
-            label={badgeLabel(item.status)}
+            title={badgeLabel(item.status)}
             variant={badgeVariant(item.status)}
             style={styles.badge}
           />

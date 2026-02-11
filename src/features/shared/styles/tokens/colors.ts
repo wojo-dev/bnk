@@ -24,6 +24,7 @@ export const colors = {
   },
   border: {
     primary: '#1B4FD8',
+    secondary: '#E0E0E0',
     input: '#E0E0E0',
     focus: '#1B4FD8',
     disabled: '#E0E0E0',

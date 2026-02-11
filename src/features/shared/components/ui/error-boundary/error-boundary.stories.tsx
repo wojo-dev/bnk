@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react-native';
 import { ErrorBoundary } from './error-boundary';
 
 const meta = {
+  title: 'UI/ErrorBoundary',
   component: ErrorBoundary,
 } satisfies Meta<typeof ErrorBoundary>;
 

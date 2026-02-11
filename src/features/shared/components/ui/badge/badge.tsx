@@ -3,10 +3,10 @@ import { Text, View } from 'react-native';
 import { labelVariantStyle, badgeStyles as styles, variantStyle } from './badge.styles';
 import { BadgeProps } from './badge.types';
 
-export const Badge = ({ label, variant = 'default', style, ...props }: BadgeProps) => {
+export const Badge = ({ title, variant = 'default', style, ...props }: BadgeProps) => {
   return (
     <View style={[styles.base, variantStyle(variant), style]} accessibilityRole="text" {...props}>
-      <Text style={[styles.label, labelVariantStyle(variant)]}>{label}</Text>
+      <Text style={[styles.label, labelVariantStyle(variant)]}>{title}</Text>
     </View>
   );
 };

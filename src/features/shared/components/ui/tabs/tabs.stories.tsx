@@ -11,6 +11,7 @@ const sampleTabs = [
 ];
 
 const meta = {
+  title: 'UI/Tabs',
   component: Tabs,
   decorators: [
     (Story) => (

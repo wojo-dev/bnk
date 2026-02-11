@@ -2,7 +2,7 @@ import { Pressable, Text } from 'react-native';
 import { labelVariantStyle, buttonStyles as styles, variantStyle } from './button.styles';
 import { ButtonProps } from './button.types';
 
-export const Button = ({ label, variant = 'primary', disabled, ...props }: ButtonProps) => {
+export const Button = ({ title, variant = 'primary', disabled, ...props }: ButtonProps) => {
   return (
     <Pressable
       style={[styles.base, variantStyle(variant), disabled && styles.disabled]}
@@ -10,7 +10,7 @@ export const Button = ({ label, variant = 'primary', disabled, ...props }: Butto
       accessibilityRole="button"
       {...props}>
       <Text style={[styles.label, labelVariantStyle(variant), disabled && styles.disabledLabel]}>
-        {label}
+        {title}
       </Text>
     </Pressable>
   );

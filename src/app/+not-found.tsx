@@ -16,7 +16,7 @@ export default function NotFound() {
       </View>
       <Text style={styles.heading}>Page not found</Text>
       <Text style={styles.message}>The page you&apos;re looking for doesn&apos;t exist.</Text>
-      <Button label="Go Home" variant="secondary" onPress={() => router.replace('/')} />
+      <Button title="Go Home" variant="secondary" onPress={() => router.replace('/')} />
     </View>
   );
 }

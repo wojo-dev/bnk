@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { Input } from './input';
 
 const meta = {
+  title: 'UI/Input',
   component: Input,
   decorators: [
     // Here we're adding a container with 16px padding.
@@ -22,14 +23,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
-    label: 'First Name',
+    title: 'First Name',
     placeholder: 'John',
   },
 };
 
 export const Error: Story = {
   args: {
-    label: 'Email',
+    title: 'Email',
     error: 'Email is required',
     disabled: false,
     placeholder: 'example@example.com',
@@ -38,7 +39,7 @@ export const Error: Story = {
 
 export const Disabled: Story = {
   args: {
-    label: 'Disabled',
+    title: 'Disabled',
     error: '',
     disabled: true,
     placeholder: 'Disabled',

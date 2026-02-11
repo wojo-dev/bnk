@@ -5,6 +5,7 @@ import { Recipient } from '../../types/recipient';
 import { RecipientList } from './recipient-list';
 
 const meta = {
+  title: 'Recipients/RecipientList',
   component: RecipientList,
   decorators: [
     (Story) => (
