@@ -2,11 +2,12 @@ import { ContactsPermission } from '@/features/recipients/components/contacts-pe
 import { RecipientList } from '@/features/recipients/components/recipient-list/recipient-list';
 import { useContacts } from '@/features/recipients/hooks/use-contacts';
 import { useRecipients } from '@/features/recipients/hooks/use-recipients';
-import { Recipient } from '@/features/recipients/types/recipient.types';
+import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
+import { getRecipientFromContact } from '@/features/recipients/utils/get-recipient-from-contact';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
 import { Button } from '@/ui/button/button';
 import { router, Stack } from 'expo-router';
-import { useCallback, useMemo, useRef, useState } from 'react';
+import { useCallback, useMemo, useRef } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
@@ -18,42 +19,32 @@ const TABS = [
 ];
 
 export function RecipientPage() {
-  const [search, setSearch] = useState('');
+  const { search, selectedId, activeTab, setSearch, setSelectedId, setActiveTab } =
+    useRecipientStore();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useRecipients(search);
   const recipients = data?.pages.flatMap((p) => p.data) ?? [];
   const { contacts, hasPermissions, requestPermissions } = useContacts();
-  const [selectedId, setSelectedId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState('recents');
 
   const pagerRef = useRef<PagerView>(null);
   const scrollOffset = useSharedValue(0);
 
-  const contactRecipients = useMemo<Recipient[]>(
-    () =>
-      contacts.map((c) => ({
-        id: c.id ?? '',
-        name: `${c.firstName ?? ''} ${c.lastName ?? ''}`.trim(),
-        initials: `${(c.firstName ?? '')[0] ?? ''}${(c.lastName ?? '')[0] ?? ''}`.toUpperCase(),
-        bank: '',
-        bankCode: '',
-        accountNumber: '',
-        maskedNumber: '',
-        isFavourite: false,
-        avatarColor: 'blue',
-        addedAt: '',
-      })),
-    [contacts],
+  const contactRecipients = useMemo(() => contacts.map(getRecipientFromContact), [contacts]);
+
+  const handleTabChange = useCallback(
+    (key: string) => {
+      const index = TABS.findIndex((t) => t.key === key);
+      pagerRef.current?.setPage(index);
+      setActiveTab(key);
+    },
+    [setActiveTab],
   );
 
-  const handleTabChange = useCallback((key: string) => {
-    const index = TABS.findIndex((t) => t.key === key);
-    pagerRef.current?.setPage(index);
-    setActiveTab(key);
-  }, []);
-
-  const handlePageSelected = useCallback((e: { nativeEvent: { position: number } }) => {
-    setActiveTab(TABS[e.nativeEvent.position].key);
-  }, []);
+  const handlePageSelected = useCallback(
+    (e: { nativeEvent: { position: number } }) => {
+      setActiveTab(TABS[e.nativeEvent.position].key);
+    },
+    [setActiveTab],
+  );
 
   const handlePageScroll = useCallback(
     (e: { nativeEvent: { position: number; offset: number } }) => {

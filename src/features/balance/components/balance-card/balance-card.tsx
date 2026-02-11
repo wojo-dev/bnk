@@ -1,4 +1,4 @@
-import { useHideAmount } from '@/features/balance/hooks/use-hide-amount';
+import { useBalanceStore } from '@/features/balance/store/use-balance-store';
 import { getFormatPrice } from '@/utils/get-format-price';
 import { gradients } from '@/tokens/colors';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -15,7 +15,7 @@ export const BalanceCard = ({
   style,
   ...props
 }: BalanceCardProps) => {
-  const { isHidden, toggle, mask } = useHideAmount();
+  const { isHidden, toggle } = useBalanceStore();
 
   return (
     <LinearGradient
@@ -43,7 +43,7 @@ export const BalanceCard = ({
 
       <View style={styles.amountRow}>
         {isHidden ? (
-          <Text style={styles.hiddenAmount}>{mask('')}</Text>
+          <Text style={styles.hiddenAmount}>{'••••••'}</Text>
         ) : (
           <>
             <Text style={styles.currency}>{currency}</Text>

@@ -1,9 +1,9 @@
 import { ApiError } from '@/features/shared/lib/api-client';
-import { useNetworkStatus } from '@/hooks/use-network-status';
+import { useNetworkStore } from '@/features/shared/store/use-network-store';
 import { OfflineBanner } from '@/ui/offline-banner/offline-banner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View } from 'react-native';
 
 export { ErrorBoundary } from '@/features/shared/components/ui/error-boundary/error-boundary';
@@ -32,7 +32,13 @@ const queryClient = new QueryClient({
 });
 
 function RootLayoutContent() {
-  const { isConnected } = useNetworkStatus();
+  const isConnected = useNetworkStore((s) => s.isConnected);
+  const initNetworkListener = useNetworkStore((s) => s.initNetworkListener);
+
+  useEffect(() => {
+    const unsubscribe = initNetworkListener();
+    return unsubscribe;
+  }, [initNetworkListener]);
 
   return (
     <View style={{ flex: 1 }}>

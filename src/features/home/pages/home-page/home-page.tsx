@@ -36,7 +36,6 @@ export function HomePage() {
           }}
         />
         <RecentRecipients />
-        <Button title="Transfer" onPress={() => router.push('/transfer')} />
         <Link href="/history" asChild={true}>
           <Link.AppleZoom>
             <Pressable>
