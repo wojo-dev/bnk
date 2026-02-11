@@ -1,5 +1,5 @@
 import Constants from 'expo-constants';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 function getBaseUrl() {
   const host = Constants.expoConfig?.hostUri;
@@ -9,6 +9,66 @@ function getBaseUrl() {
   return 'http://localhost:8081/api';
 }
 
+export class ApiError extends Error {
+  status: number | undefined;
+  isTimeout: boolean;
+  isNetworkError: boolean;
+
+  constructor(
+    message: string,
+    options: { status?: number; isTimeout?: boolean; isNetworkError?: boolean } = {},
+  ) {
+    super(message);
+    this.name = 'ApiError';
+    this.status = options.status;
+    this.isTimeout = options.isTimeout ?? false;
+    this.isNetworkError = options.isNetworkError ?? false;
+  }
+}
+
+function getStatusMessage(status: number): string {
+  switch (status) {
+    case 400:
+      return 'Invalid request. Please check your input and try again.';
+    case 401:
+      return 'Your session has expired. Please log in again.';
+    case 403:
+      return 'You do not have permission to perform this action.';
+    case 404:
+      return 'The requested resource was not found.';
+    default:
+      return 'Something went wrong. Please try again later.';
+  }
+}
+
 export const apiClient = axios.create({
   baseURL: getBaseUrl(),
+  timeout: 15000,
 });
+
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error: AxiosError<{ error?: string }>) => {
+    if (error.code === 'ECONNABORTED') {
+      return Promise.reject(
+        new ApiError('Request timed out. Please check your connection and try again.', {
+          isTimeout: true,
+        }),
+      );
+    }
+
+    if (!error.response) {
+      return Promise.reject(
+        new ApiError('Unable to connect. Please check your internet connection.', {
+          isNetworkError: true,
+        }),
+      );
+    }
+
+    const status = error.response.status;
+    const serverMessage = error.response.data?.error;
+    const message = serverMessage || getStatusMessage(status);
+
+    return Promise.reject(new ApiError(message, { status }));
+  },
+);

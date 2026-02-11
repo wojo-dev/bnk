@@ -1,5 +1,6 @@
-import { radius, spacing } from '@/tokens/spacing';
 import { scale } from '@/tokens/scale';
+import { sizes } from '@/tokens/sizes';
+import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
@@ -27,8 +28,8 @@ export const balanceCardStyles = StyleSheet.create({
     color: 'rgba(255, 255, 255, 0.9)',
   },
   eyeButton: {
-    width: scale(40),
-    height: scale(40),
+    width: sizes['2xl'],
+    height: sizes['2xl'],
     borderRadius: radius.lg,
     backgroundColor: 'rgba(255, 255, 255, 0.2)',
     alignItems: 'center',

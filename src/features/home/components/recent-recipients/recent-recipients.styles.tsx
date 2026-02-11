@@ -1,6 +1,7 @@
 // recent recipients styles
 
-import { spacing } from '@/features/shared/styles/tokens/spacing';
+import { sizes } from '@/tokens/sizes';
+import { spacing } from '@/tokens/spacing';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -11,6 +12,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     gap: spacing.sm,
     padding: spacing.sm,
-    minWidth: 100,
+    minWidth: sizes['6xl'],
   },
 });

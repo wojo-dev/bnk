@@ -1,4 +1,5 @@
 import { colors } from '@/tokens/colors';
+import { sizes } from '@/tokens/sizes';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
@@ -45,10 +46,10 @@ export const recipientListStyles = StyleSheet.create({
     color: colors.border.icon,
   },
   radio: {
-    width: 28,
-    height: 28,
-    borderRadius: 14,
-    borderWidth: 2,
+    width: sizes.xl,
+    height: sizes.xl,
+    borderRadius: radius.lg,
+    borderWidth: sizes['xs'],
     borderColor: colors.border.input,
     alignItems: 'center',
     justifyContent: 'center',
