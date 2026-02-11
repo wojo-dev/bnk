@@ -1,3 +1,4 @@
+import { colors } from '@/features/shared/styles/tokens/colors';
 import { sizes } from '@/tokens/sizes';
 import { spacing } from '@/tokens/spacing';
 import { StyleSheet } from 'react-native';
@@ -5,7 +6,9 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: sizes['7xl'],
+    paddingTop: sizes['7xl'] + spacing.md,
+    paddingHorizontal: spacing.sm,
+    backgroundColor: colors.background.neutral,
   },
   pager: {
     flex: 1,

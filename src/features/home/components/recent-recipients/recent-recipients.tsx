@@ -1,13 +1,16 @@
 // recent recipients
 
+import { useRecentRecipients } from '@/features/home/hooks/use-recent-recipients';
 import { Recipient } from '@/features/recipients/types/recipient.types';
-import { recipients } from '@/server/recipients.data';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';
 import { Pressable, Text, View } from 'react-native';
 import { styles } from './recent-recipients.styles';
 
 export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => void }) => {
+  const { data } = useRecentRecipients();
+  const recipients = data?.data?.data ?? [];
+
   const handlePress = (item: Recipient) => {
     onPress(item);
   };
