@@ -1,9 +1,13 @@
 // history API
 
+import { requireAuth } from '@/server/auth';
 import { paginate } from '@/server/helpers';
 import { history } from '@/server/history';
 
 export async function GET(request: Request) {
+  const authError = requireAuth(request);
+  if (authError) return authError;
+
   const url = new URL(request.url);
   const search = url.searchParams.get('q')?.toLowerCase();
   let filtered = [...history];

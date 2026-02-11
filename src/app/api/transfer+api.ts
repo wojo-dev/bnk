@@ -1,5 +1,6 @@
 // transfer API
 import { TransferRequest } from '@/features/transfer/types/transfer.types';
+import { requireAuth } from '@/server/auth';
 import { balance } from '@/server/balance';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -7,6 +8,9 @@ const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 const processedKeys = new Set<string>();
 
 export async function POST(request: Request) {
+  const authError = requireAuth(request);
+  if (authError) return authError;
+
   const idempotencyKey = request.headers.get('Idempotency-Key');
 
   if (idempotencyKey && processedKeys.has(idempotencyKey)) {

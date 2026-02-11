@@ -1,5 +1,9 @@
+import { requireAuth } from '@/server/auth';
 import { profile } from '@/server/profile';
 
-export async function GET() {
+export async function GET(request: Request) {
+  const authError = requireAuth(request);
+  if (authError) return authError;
+
   return Response.json({ profile, success: true });
 }

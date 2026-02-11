@@ -1,7 +1,11 @@
+import { requireAuth } from '@/server/auth';
 import { paginate } from '@/server/helpers';
 import { recipients } from '@/server/recipients';
 
 export async function GET(request: Request) {
+  const authError = requireAuth(request);
+  if (authError) return authError;
+
   const url = new URL(request.url);
   const search = url.searchParams.get('q')?.toLowerCase();
   const favourites = url.searchParams.get('favourites');
@@ -28,6 +32,9 @@ export async function GET(request: Request) {
 }
 
 export async function GET_RECIPIENT(request: Request) {
+  const authError = requireAuth(request);
+  if (authError) return authError;
+
   const url = new URL(request.url);
   const recipientId = url.searchParams.get('id');
   const recipient = recipients.find((r) => r.id === recipientId);

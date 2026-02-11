@@ -1,5 +1,8 @@
 import Constants from 'expo-constants';
+import * as SecureStore from 'expo-secure-store';
 import axios, { AxiosError } from 'axios';
+
+const AUTH_TOKEN_KEY = 'auth_token';
 
 function getBaseUrl() {
   const host = Constants.expoConfig?.hostUri;
@@ -44,6 +47,14 @@ function getStatusMessage(status: number): string {
 export const apiClient = axios.create({
   baseURL: getBaseUrl(),
   timeout: 15000,
+});
+
+apiClient.interceptors.request.use(async (config) => {
+  const token = await SecureStore.getItemAsync(AUTH_TOKEN_KEY);
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 apiClient.interceptors.response.use(

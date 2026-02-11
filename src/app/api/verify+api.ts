@@ -1,4 +1,5 @@
 // verify-pin API
+import { STUB_TOKEN } from '@/server/auth';
 import { delay } from '@/server/helpers';
 import { pin } from '@/server/pin';
 
@@ -21,5 +22,6 @@ export async function POST(request: Request) {
   return Response.json({
     success: true,
     message: 'PIN verified',
+    token: STUB_TOKEN,
   });
 }
