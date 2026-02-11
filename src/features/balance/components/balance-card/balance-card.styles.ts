@@ -8,13 +8,12 @@ export const balanceCardStyles = StyleSheet.create({
   gradient: {
     borderRadius: radius.xl,
     padding: spacing.lg,
-    paddingVertical: spacing.lg,
+    paddingVertical: spacing.md,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: spacing.md,
   },
   headerLeft: {
     flexDirection: 'row',
@@ -31,7 +30,6 @@ export const balanceCardStyles = StyleSheet.create({
     width: sizes['2xl'],
     height: sizes['2xl'],
     borderRadius: radius.lg,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
     alignItems: 'center',
     justifyContent: 'center',
   },

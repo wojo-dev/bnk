@@ -11,13 +11,13 @@ export const buttonStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: radius.md,
-    paddingVertical: spacing.sm,
+    borderRadius: radius.xl,
+    paddingVertical: spacing.sm + spacing.sm,
     paddingHorizontal: spacing.md,
     gap: spacing.xs,
   },
   primary: {
-    backgroundColor: colors.background.primary,
+    backgroundColor: colors.accent.primary,
   },
   secondary: {
     backgroundColor: 'transparent',

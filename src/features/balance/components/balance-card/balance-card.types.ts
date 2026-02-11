@@ -5,4 +5,5 @@ export type BalanceCardProps = ViewProps & {
   currency?: string;
   accountType?: string;
   accountNumber?: string;
+  compact?: boolean;
 };

@@ -14,13 +14,21 @@ export const colors = {
     placeholder: '#A0A0A0',
   },
   background: {
-    primary: '#1B4FD8',
+    primary: '#226bf5',
     neutral: '#FFFFFF',
     background: '#F5F5F5',
     success: '#DCFCE7',
     warning: '#FEF9C4',
     error: '#FEF2F2',
     info: '#0EA5E9',
+  },
+  accent: {
+    primary: '#226bf5',
+    secondary: '#3b82f6',
+    tertiary: '#60a5fa',
+    quaternary: '#93c5fd',
+    quinary: '#bfdbfe',
+    senary: '#dbeafe',
   },
   border: {
     primary: '#1B4FD8',

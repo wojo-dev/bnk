@@ -8,8 +8,10 @@ import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { randomUUID } from 'expo-crypto';
 import { useLocalSearchParams, useRouter } from 'expo-router';
+import { View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRecipient } from '../../hooks/use-recipient';
+import { transferPageStyles as styles } from './transfer-page.styles';
 
 export function TransferPage() {
   const { data: balance } = useBalance();
@@ -19,10 +21,10 @@ export function TransferPage() {
   const setTransferDetail = useTransferStore((s) => s.setTransferDetail);
   const setTransferRequest = useTransferStore((s) => s.setTransferRequest);
   return (
-    <SafeAreaView>
-      <BalanceCard amount={balance?.data.balance.amount ?? 0} />
+    <SafeAreaView style={styles.container}>
+      <BalanceCard amount={balance?.data.balance.amount ?? 0} compact={true} />
       {recipient && (
-        <>
+        <View style={styles.content}>
           <RecipientCard
             item={recipient}
             selected={false}
@@ -39,7 +41,7 @@ export function TransferPage() {
               router.push('/transfer/process');
             }}
           />
-        </>
+        </View>
       )}
     </SafeAreaView>
   );

@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     alignItems: 'center',
-    padding: spacing.lg,
+    padding: spacing.md,
     paddingTop: spacing['2xl'],
   },
   checkCircle: {
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
   },
   detail: {
     width: '100%',
-    marginBottom: spacing.lg,
+    marginBottom: spacing.md,
   },
   actionRow: {
     flexDirection: 'row',

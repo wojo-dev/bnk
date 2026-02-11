@@ -1,6 +1,6 @@
 import { useBalanceStore } from '@/features/balance/store/use-balance-store';
-import { getFormatPrice } from '@/utils/get-format-price';
 import { gradients } from '@/tokens/colors';
+import { getFormatPrice } from '@/utils/get-format-price';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Pressable, Text, View } from 'react-native';
@@ -13,6 +13,7 @@ export const BalanceCard = ({
   accountType = 'Savings Account',
   accountNumber = '4821',
   style,
+  compact = false,
   ...props
 }: BalanceCardProps) => {
   const { isHidden, toggle } = useBalanceStore();
@@ -52,9 +53,11 @@ export const BalanceCard = ({
         )}
       </View>
 
-      <Text style={styles.accountInfo}>
-        {accountType} {'\u2022\u2022\u2022\u2022'} {accountNumber}
-      </Text>
+      {!compact && (
+        <Text style={styles.accountInfo}>
+          {accountType} {'\u2022\u2022\u2022\u2022'} {accountNumber}
+        </Text>
+      )}
     </LinearGradient>
   );
 };
