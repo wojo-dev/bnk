@@ -9,6 +9,8 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     alignSelf: 'stretch',
+    paddingTop: spacing.sm,
+    paddingHorizontal: spacing.xs,
   },
   left: {
     flexDirection: 'row',
@@ -27,7 +29,7 @@ export const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: radius.lg,
-    backgroundColor: colors.background.neutral,
+    backgroundColor: 'transparent',
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',

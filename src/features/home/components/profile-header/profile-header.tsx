@@ -13,7 +13,7 @@ export const ProfileHeader = ({
   return (
     <View style={styles.container}>
       <View style={styles.left}>
-        <Avatar name={name} size={48} />
+        <Avatar name={name} size={42} />
         <View>
           <Text style={styles.greeting}>{getGreeting()}</Text>
           <Text style={styles.name}>{name}</Text>

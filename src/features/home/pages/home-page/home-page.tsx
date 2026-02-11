@@ -1,6 +1,7 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
 import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
+import { haptic } from '@/features/shared/lib/haptics';
 import { TransactionList } from '@/features/transaction/components/transaction-list/transaction-list';
 import { useTransaction } from '@/features/transaction/hooks/use-transaction';
 import { Card } from '@/ui/card/card';
@@ -67,7 +68,7 @@ export function HomePage() {
           />
           <Link href="/transaction" asChild={true}>
             <Link.AppleZoom>
-              <Pressable>
+              <Pressable onPressIn={() => haptic.light()}>
                 <Card style={styles.transactionCard}>
                   <TransactionList transactions={transactions} isHome={true} />
                 </Card>

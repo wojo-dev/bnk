@@ -11,17 +11,17 @@ export const sectionTitleStyles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: typography.medium.fontSize,
-    lineHeight: typography.medium.lineHeight,
+    fontSize: typography.body.fontSize,
+    lineHeight: typography.body.lineHeight,
     fontWeight: '700' as const,
-    fontFamily: typography.medium.fontFamily,
+    fontFamily: typography.body.fontFamily,
     color: colors.label.text,
   },
   action: {
-    fontSize: typography.medium.fontSize,
-    lineHeight: typography.medium.lineHeight,
+    fontSize: typography.badge.fontSize,
+    lineHeight: typography.badge.lineHeight,
     fontWeight: '600' as const,
-    fontFamily: typography.medium.fontFamily,
+    fontFamily: typography.badge.fontFamily,
     color: colors.accent.primary,
   },
 });

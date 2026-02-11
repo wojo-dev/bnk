@@ -13,8 +13,8 @@ export const balanceCardStyles = StyleSheet.create({
   },
   gradient: {
     borderRadius: radius.xl,
-    padding: spacing.lg,
-    paddingVertical: spacing.md,
+    padding: spacing.md + spacing.xs,
+    paddingVertical: spacing.md + spacing.xs,
   },
   header: {
     flexDirection: 'row',

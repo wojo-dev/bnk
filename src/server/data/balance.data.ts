@@ -1,3 +1,3 @@
 export const balance = {
-  amount: 1000,
+  amount: 1245.8,
 };

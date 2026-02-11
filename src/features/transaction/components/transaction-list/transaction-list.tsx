@@ -17,20 +17,25 @@ export const TransactionList = ({
   onEndReached,
   isFetchingNextPage,
   isHome = false,
+  onTransactionPress,
 }: {
   transactions: Transaction[];
   onEndReached?: () => void;
   isFetchingNextPage?: boolean;
   isHome?: boolean;
+  onTransactionPress?: (item: Transaction) => void;
 }) => {
   const data = useMemo(() => getTransactionSections(transactions), [transactions]);
 
-  const renderItem = useCallback(({ item }: { item: string | Transaction }) => {
-    if (typeof item === 'string') {
-      return <SectionHeader title={item} />;
-    }
-    return <TransactionCard item={item} />;
-  }, []);
+  const renderItem = useCallback(
+    ({ item }: { item: string | Transaction }) => {
+      if (typeof item === 'string') {
+        return <SectionHeader title={item} />;
+      }
+      return <TransactionCard item={item} onPress={onTransactionPress} />;
+    },
+    [onTransactionPress],
+  );
 
   return (
     <List<string | Transaction>

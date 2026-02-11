@@ -1,6 +1,7 @@
 export const transactions = [
   {
     id: '1',
+    recipientId: 'rcp_001',
     name: 'Sarah Lim',
     bank: 'Maybank',
     currency: 'RM',
@@ -10,6 +11,7 @@ export const transactions = [
   },
   {
     id: '2',
+    recipientId: 'rcp_002',
     name: 'Mohd Hassan',
     bank: 'CIMB',
     currency: 'RM',
@@ -19,6 +21,7 @@ export const transactions = [
   },
   {
     id: '3',
+    recipientId: 'rcp_003',
     name: 'Raj Kumar',
     bank: 'Public Bank',
     currency: 'RM',
@@ -28,6 +31,7 @@ export const transactions = [
   },
   {
     id: '4',
+    recipientId: 'rcp_004',
     name: 'Mei Yin Tan',
     bank: 'RHB',
     currency: 'RM',
@@ -37,6 +41,7 @@ export const transactions = [
   },
   {
     id: '5',
+    recipientId: 'rcp_005',
     name: 'Nurul Rahman',
     bank: 'Bank Islam',
     currency: 'RM',
@@ -46,6 +51,7 @@ export const transactions = [
   },
   {
     id: '6',
+    recipientId: 'rcp_006',
     name: 'Jason Wong',
     bank: 'Hong Leong',
     currency: 'RM',
@@ -55,6 +61,7 @@ export const transactions = [
   },
   {
     id: '7',
+    recipientId: 'rcp_001',
     name: 'Sarah Lim',
     bank: 'Maybank',
     currency: 'RM',
@@ -64,6 +71,7 @@ export const transactions = [
   },
   {
     id: '8',
+    recipientId: 'rcp_007',
     name: 'Siti Aisyah',
     bank: 'Bank Rakyat',
     currency: 'RM',
@@ -73,6 +81,7 @@ export const transactions = [
   },
   {
     id: '9',
+    recipientId: 'rcp_008',
     name: 'Lim Wei Jie',
     bank: 'AmBank',
     currency: 'RM',
@@ -82,6 +91,7 @@ export const transactions = [
   },
   {
     id: '10',
+    recipientId: 'rcp_002',
     name: 'Mohd Hassan',
     bank: 'CIMB',
     currency: 'RM',
@@ -91,6 +101,7 @@ export const transactions = [
   },
   {
     id: '11',
+    recipientId: 'rcp_009',
     name: 'Priya Nair',
     bank: 'OCBC',
     currency: 'RM',
@@ -100,6 +111,7 @@ export const transactions = [
   },
   {
     id: '12',
+    recipientId: 'rcp_006',
     name: 'Jason Wong',
     bank: 'Hong Leong',
     currency: 'RM',
@@ -109,6 +121,7 @@ export const transactions = [
   },
   {
     id: '13',
+    recipientId: 'rcp_010',
     name: 'Ahmad Faizal',
     bank: 'Maybank',
     currency: 'RM',
@@ -118,6 +131,7 @@ export const transactions = [
   },
   {
     id: '14',
+    recipientId: 'rcp_005',
     name: 'Nurul Rahman',
     bank: 'Bank Islam',
     currency: 'RM',
@@ -127,6 +141,7 @@ export const transactions = [
   },
   {
     id: '15',
+    recipientId: 'rcp_011',
     name: 'Tan Chee Keong',
     bank: 'Public Bank',
     currency: 'RM',
@@ -136,6 +151,7 @@ export const transactions = [
   },
   {
     id: '16',
+    recipientId: 'rcp_003',
     name: 'Raj Kumar',
     bank: 'Public Bank',
     currency: 'RM',
@@ -145,6 +161,7 @@ export const transactions = [
   },
   {
     id: '17',
+    recipientId: 'rcp_001',
     name: 'Sarah Lim',
     bank: 'Maybank',
     currency: 'RM',
@@ -154,6 +171,7 @@ export const transactions = [
   },
   {
     id: '18',
+    recipientId: 'rcp_012',
     name: 'Chen Mei Ling',
     bank: 'UOB',
     currency: 'RM',
@@ -163,6 +181,7 @@ export const transactions = [
   },
   {
     id: '19',
+    recipientId: 'rcp_004',
     name: 'Mei Yin Tan',
     bank: 'RHB',
     currency: 'RM',
@@ -172,6 +191,7 @@ export const transactions = [
   },
   {
     id: '20',
+    recipientId: 'rcp_008',
     name: 'Lim Wei Jie',
     bank: 'AmBank',
     currency: 'RM',

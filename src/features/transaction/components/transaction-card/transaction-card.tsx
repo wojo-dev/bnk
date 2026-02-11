@@ -1,9 +1,10 @@
+import { haptic } from '@/features/shared/lib/haptics';
 import { Avatar } from '@/ui/avatar/avatar';
 import { Badge } from '@/ui/badge/badge';
 import { getFormatTime } from '@/utils/get-format-date';
 import { getFormatPrice } from '@/utils/get-format-price';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { Transaction } from '../../types/transaction.types';
 import {
   badgeLabel,
@@ -13,11 +14,17 @@ import {
 
 export const TransactionCard = React.memo(function TransactionCard({
   item,
+  onPress,
 }: {
   item: Transaction;
+  onPress?: (item: Transaction) => void;
 }) {
+  const Container = onPress ? Pressable : View;
   return (
-    <View style={styles.row}>
+    <Container
+      style={styles.row}
+      onPressIn={onPress ? () => haptic.light() : undefined}
+      onPress={onPress ? () => onPress(item) : undefined}>
       <Avatar name={item.name} />
       <View style={styles.rowContent}>
         <View style={styles.rowLeft}>
@@ -38,6 +45,6 @@ export const TransactionCard = React.memo(function TransactionCard({
           />
         </View>
       </View>
-    </View>
+    </Container>
   );
 });

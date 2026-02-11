@@ -1,10 +1,24 @@
+import { Recipient } from '@/features/recipient/types/recipient.types';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
+import { apiClient } from '@/features/shared/lib/api-client';
 import { TransactionPage } from '@/features/transaction/pages/transaction-page/transaction-page';
+import { Transaction } from '@/features/transaction/types/transaction.types';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, router } from 'expo-router';
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 export default function TransactionScreen() {
   const [search, setSearch] = useState('');
+  const setSelectedRecipient = useRecipientStore((s) => s.setSelectedRecipient);
+
+  const handleTransactionPress = async (transaction: Transaction) => {
+    const res = await apiClient.get<Recipient>('/recipient', {
+      params: { id: transaction.recipientId },
+    });
+    setSelectedRecipient(res.data);
+    router.push('/transfer');
+  };
+
   return (
     <>
       <Stack.Screen
@@ -22,7 +36,7 @@ export default function TransactionScreen() {
         placeholder="Search"
         onChangeText={(e) => setSearch(e.nativeEvent.text)}
       />
-      <TransactionPage search={search} />
+      <TransactionPage search={search} onTransactionPress={handleTransactionPress} />
     </>
   );
 }

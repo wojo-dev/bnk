@@ -47,7 +47,7 @@ export const iconButtonStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1,
+    borderWidth: 0.5,
   },
   disabled: {
     opacity: 0.4,
@@ -62,7 +62,7 @@ export const iconButtonStyles = StyleSheet.create({
 export const containerStyle = (size: IconButtonSize, color: IconButtonColor) => ({
   width: containerSizeMap[size],
   height: containerSizeMap[size],
-  borderRadius: radius.lg + radius.sm,
+  borderRadius: radius['2xl'],
   backgroundColor: colorScheme[color].background,
   borderColor: colorScheme[color].border,
 });

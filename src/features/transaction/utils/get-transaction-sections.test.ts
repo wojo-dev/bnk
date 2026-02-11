@@ -7,6 +7,7 @@ const mockGetIsTodayYesterday = jest.mocked(formatDate.getIsTodayYesterday);
 
 const makeItem = (overrides: Partial<Transaction> = {}): Transaction => ({
   id: '1',
+  recipientId: 'rcp_001',
   name: 'John',
   bank: 'Chase',
   amount: 100,

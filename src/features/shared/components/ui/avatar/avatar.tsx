@@ -2,7 +2,7 @@ import { getGradient } from '@/hooks/get-gradient';
 import { getInitials } from '@/hooks/get-initials';
 import { scale } from '@/tokens/scale';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import { avatarStyles as styles } from './avatar.styles';
 import { AvatarProps } from './avatar.types';
 
@@ -15,22 +15,29 @@ export const Avatar = ({ name, size = DEFAULT_SIZE, style, ...props }: AvatarPro
   const gradientColors = getGradient(name);
 
   return (
-    <LinearGradient
-      colors={gradientColors}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 1 }}
+    <View
       style={[
-        styles.container,
         {
           width: scaledSize,
           height: scaledSize,
+          shadowColor: gradientColors[0],
+          shadowOffset: { width: 3, height: 2 },
+          shadowOpacity: 0.3,
+          shadowRadius: 3,
+          elevation: 6,
         },
         style,
       ]}
       accessibilityRole="image"
       accessibilityLabel={initials}
       {...props}>
-      <Text style={[styles.initials, { fontSize }]}>{initials}</Text>
-    </LinearGradient>
+      <LinearGradient
+        colors={gradientColors}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[styles.container, { width: scaledSize, height: scaledSize }]}>
+        <Text style={[styles.initials, { fontSize }]}>{initials}</Text>
+      </LinearGradient>
+    </View>
   );
 };

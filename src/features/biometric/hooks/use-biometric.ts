@@ -47,6 +47,9 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
     if (authResult.success) {
       setResult({ success: true, error: '', cancelled: false });
       onSuccessRef.current?.();
+    } else if ((authResult.error as string) === 'missing_usage_description') {
+      setRequiresPin(true);
+      setResult({ success: false, error: 'Biometric not available', cancelled: false });
     } else {
       const cancelled = CANCEL_ERRORS.has(authResult.error);
       setResult({ success: false, error: authResult.error ?? 'Authentication failed', cancelled });
