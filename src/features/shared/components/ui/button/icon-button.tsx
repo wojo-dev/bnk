@@ -1,3 +1,4 @@
+import { haptic } from '@/features/shared/lib/haptics';
 import { cloneElement } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import {
@@ -25,6 +26,7 @@ export const IconButton = ({
       <Pressable
         style={[styles.container, containerStyle(size, color), disabled && styles.disabled]}
         disabled={disabled}
+        onPressIn={() => haptic.light()}
         accessibilityRole="button"
         accessibilityLabel={accessibilityLabel}
         {...props}>

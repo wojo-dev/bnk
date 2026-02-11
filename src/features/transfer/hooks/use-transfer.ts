@@ -4,7 +4,7 @@ import { apiClient } from '@/features/shared/lib/api-client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { Alert } from 'react-native';
-import { TransferRequest, TransferResponse } from '../types/transfer';
+import { TransferRequest, TransferResponse } from '../types/transfer.types';
 
 export function useTransfer() {
   const queryClient = useQueryClient();

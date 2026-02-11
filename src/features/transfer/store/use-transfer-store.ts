@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { TransferDetailData } from '../components/transfer-detail/transfer-detail.type';
-import { TransferRequest } from '../types/transfer';
+import { TransferRequest } from '../types/transfer.types';
 
 type TransferStore = {
   transferDetail: TransferDetailData | null;

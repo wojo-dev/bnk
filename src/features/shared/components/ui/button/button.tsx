@@ -1,3 +1,4 @@
+import { haptic } from '@/features/shared/lib/haptics';
 import { Pressable, StyleProp, Text, ViewStyle } from 'react-native';
 import { labelVariantStyle, buttonStyles as styles, variantStyle } from './button.styles';
 import { ButtonProps } from './button.types';
@@ -18,6 +19,7 @@ export const Button = ({
         style as ViewStyle,
       ]}
       disabled={disabled}
+      onPressIn={() => haptic.light()}
       accessibilityRole="button"
       {...props}>
       <Text style={[styles.label, labelVariantStyle(variant), disabled && styles.disabledLabel]}>

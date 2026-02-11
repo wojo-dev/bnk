@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { haptic } from '@/features/shared/lib/haptics';
+import { useEffect, useRef, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
 import { getCellStyle, pinInputStyles as styles } from './pin-input.styles';
 import { PinInputProps } from './pin-input.types';
@@ -23,11 +24,19 @@ export const PinInput = ({
     }
   };
 
+  const prevErrorRef = useRef(error);
+  useEffect(() => {
+    if (error && !prevErrorRef.current) haptic.error();
+    prevErrorRef.current = error;
+  }, [error]);
+
   const handleChange = (text: string) => {
     const sanitized = text.replace(/[^0-9]/g, '').slice(0, length);
+    if (sanitized.length > value.length) haptic.light();
     onChangeValue?.(sanitized);
 
     if (sanitized.length === length) {
+      haptic.success();
       onComplete?.(sanitized);
     }
   };

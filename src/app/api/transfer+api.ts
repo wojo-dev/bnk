@@ -1,5 +1,5 @@
 // transfer API
-import { TransferRequest } from '@/features/transfer/types/transfer';
+import { TransferRequest } from '@/features/transfer/types/transfer.types';
 import { balance } from '@/server/balance';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
