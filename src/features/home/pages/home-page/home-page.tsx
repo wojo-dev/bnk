@@ -5,6 +5,7 @@ import { haptic } from '@/features/shared/lib/haptics';
 import { TransactionList } from '@/features/transaction/components/transaction-list/transaction-list';
 import { useTransaction } from '@/features/transaction/hooks/use-transaction';
 import { Card } from '@/ui/card/card';
+import { ErrorBoundary } from '@/ui/error-boundary/error-boundary';
 import { SectionTitle } from '@/ui/section-title/section-title';
 import { Link, RelativePathString, useRouter } from 'expo-router';
 import { ActivityIndicator, Pressable, ScrollView, View } from 'react-native';
@@ -20,13 +21,22 @@ import { styles } from './home-page.styles';
 export function HomePage() {
   const router = useRouter();
   const setSelectedRecipient = useRecipientStore((s) => s.setSelectedRecipient);
-  const { data: profile } = useProfile();
-  const { data: balance } = useBalance();
+  const profile = useProfile();
+  const balance = useBalance();
   const { data, isLoading } = useTransaction();
   const transactions = data?.pages.flatMap((p) => p.data) ?? [];
 
-  if (isLoading) {
+  if (profile.isLoading || balance.isLoading || isLoading) {
     return <ActivityIndicator />;
+  }
+
+  if (profile.isError || balance.isError) {
+    const error = profile.error ?? balance.error!;
+    const retry = () => {
+      profile.refetch();
+      balance.refetch();
+    };
+    return <ErrorBoundary error={error} retry={retry} />;
   }
 
   return (
@@ -34,11 +44,11 @@ export function HomePage() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <ProfileHeader
-            name={profile?.profile.name ?? ''}
+            name={profile.data?.profile.name ?? ''}
             onNotificationPress={() => router.push('/storybook')}
           />
           <View style={styles.balanceCardContainer}>
-            <BalanceCard amount={balance?.balance.amount ?? 0} />
+            <BalanceCard amount={balance.data?.balance.amount ?? 0} />
           </View>
           <ActionButtons
             actions={actions as Action[]}

@@ -3,9 +3,10 @@ import { ShareButton } from '@/features/transfer/components/share-button/share-b
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
+import { StackActions } from '@react-navigation/native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
-import { router } from 'expo-router';
+import { useNavigation } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
 import { styles } from './success-page.styles';
 
@@ -13,6 +14,7 @@ export function SuccessPage() {
   const transferDetail = useTransferStore((s) => s.transferDetail);
   const clearTransferDetail = useTransferStore((s) => s.clearTransferDetail);
   const resetRecipientStore = useRecipientStore((s) => s.reset);
+  const rootNavigation = useNavigation().getParent();
 
   if (!transferDetail) {
     return null;
@@ -48,8 +50,7 @@ export function SuccessPage() {
           onPress={() => {
             clearTransferDetail();
             resetRecipientStore();
-            router.dismissAll();
-            router.back();
+            rootNavigation?.dispatch(StackActions.popToTop());
           }}
         />
 

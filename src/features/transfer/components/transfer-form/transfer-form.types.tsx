@@ -10,7 +10,7 @@ export const transferFormSchema = z.object({
 
 export type TransferFormSchema = z.infer<typeof transferFormSchema>;
 
-export const defaultValues: TransferFormSchema = {
+export const defaultValues: Partial<TransferFormSchema> = {
   amount: 0,
   description: '',
   date: new Date().toISOString(),

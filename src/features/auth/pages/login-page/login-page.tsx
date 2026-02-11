@@ -100,7 +100,7 @@ export function LoginPage() {
     const pinDisabled = verifyingPin || pinAttempts >= MAX_PIN_ATTEMPTS;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <Text style={styles.heading}>Enter your PIN</Text>
           <PinInput
@@ -123,7 +123,7 @@ export function LoginPage() {
   // Biometric failed — show retry / PIN fallback
   if (result && !result.success) {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <View style={styles.iconContainer}>
             <MaterialCommunityIcons name="shield-lock-outline" size={56} color={colors.primary} />
@@ -145,7 +145,7 @@ export function LoginPage() {
   // Biometric succeeded — loading
   if (result?.success) {
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <ActivityIndicator size="large" />
         </View>
@@ -155,7 +155,7 @@ export function LoginPage() {
 
   // Awaiting biometric prompt
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.iconContainer}>
           <MaterialCommunityIcons

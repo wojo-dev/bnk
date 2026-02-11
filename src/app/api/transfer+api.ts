@@ -1,6 +1,6 @@
 // transfer API
 import { TransferRequest } from '@/features/transfer/types/transfer.types';
-import { balance } from '@/server/data/balance.data';
+import { deductBalance, getBalance } from '@/server/data/balance.data';
 import { requireAuth } from '@/server/utils/auth';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
   await delay(2000);
   const { amount, description, date, recipientId } = (await request.json()) as TransferRequest;
   // check balance
-  if (balance.amount < amount) {
+  if (getBalance() < amount) {
     return Response.json(
       {
         success: false,
@@ -35,7 +35,7 @@ export async function POST(request: Request) {
     );
   }
 
-  balance.amount -= amount;
+  deductBalance(amount);
 
   if (idempotencyKey) {
     processedKeys.add(idempotencyKey);
