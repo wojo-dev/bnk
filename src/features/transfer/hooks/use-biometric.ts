@@ -3,7 +3,11 @@
 import * as LocalAuthentication from 'expo-local-authentication';
 import { useCallback, useEffect, useState } from 'react';
 
-export function useBiometric() {
+type UseBiometricOptions = {
+  onSuccess?: () => void;
+};
+
+export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
   const [result, setResult] = useState<{ success: boolean; error: string } | null>(null);
   const [requiresPin, setRequiresPin] = useState(false);
 
@@ -28,7 +32,10 @@ export function useBiometric() {
       success: authResult.success,
       error: authResult.success ? '' : authResult.error,
     });
-  }, []);
+    if (authResult.success) {
+      onSuccess?.();
+    }
+  }, [onSuccess]);
 
   useEffect(() => {
     authenticate();

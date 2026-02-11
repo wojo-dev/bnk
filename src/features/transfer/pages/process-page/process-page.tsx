@@ -1,6 +1,8 @@
-import { Button } from '@/features/shared/components/ui/button/button';
-import { PinInput } from '@/features/shared/components/ui/pin-input/pin-input';
 import { useBiometric } from '@/features/transfer/hooks/use-biometric';
+import { useTransfer } from '@/features/transfer/hooks/use-transfer';
+import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
+import { Button } from '@/ui/button/button';
+import { PinInput } from '@/ui/pin-input/pin-input';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
@@ -8,7 +10,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './process-page.styles';
 
 export function ProcessPage() {
-  const { result, requiresPin, retry } = useBiometric();
+  const { mutateAsync } = useTransfer();
+  const transferRequest = useTransferStore((s) => s.transferRequest);
+
+  const handleTransfer = async () => {
+    if (!transferRequest) return;
+    await mutateAsync(transferRequest);
+  };
+
+  const { result, requiresPin, retry } = useBiometric({ onSuccess: handleTransfer });
   const [pin, setPin] = useState('');
 
   if (!result) {
@@ -32,7 +42,7 @@ export function ProcessPage() {
             value={pin}
             secure
             onChangeValue={setPin}
-            onComplete={() => router.push('/transfer/success')}
+            onComplete={handleTransfer}
           />
           <Button onPress={() => router.back()} title="Cancel" variant="secondary" />
         </View>
@@ -55,9 +65,8 @@ export function ProcessPage() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.statusText}>Authentication successful</Text>
-        <Button onPress={() => router.push('/transfer/success')} title="Confirm" />
-        <Button onPress={() => router.back()} title="Cancel" variant="secondary" />
+        <ActivityIndicator size="large" />
+        <Text style={styles.statusText}>Processing transfer...</Text>
       </View>
     </SafeAreaView>
   );

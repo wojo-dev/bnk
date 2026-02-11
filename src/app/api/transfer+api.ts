@@ -2,7 +2,10 @@
 import { TransferRequest } from '@/features/transfer/types/transfer';
 import { balance } from '@/server/balance';
 
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 export async function POST(request: Request) {
+  await delay(2000);
   const { amount, description, date, recipientId } = (await request.json()) as TransferRequest;
   // check balance
   if (balance.amount < amount) {

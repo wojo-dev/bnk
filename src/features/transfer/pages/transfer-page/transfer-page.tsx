@@ -5,7 +5,6 @@ import { useBalance } from '@/features/balance/hooks/use-balance';
 import { RecipientCard } from '@/features/recipients/components/recipient-card/recipient-card';
 import { Recipient } from '@/features/recipients/types/recipient';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
-import { useTransfer } from '@/features/transfer/hooks/use-transfer';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { useLocalSearchParams, useRouter } from 'expo-router';
@@ -17,8 +16,8 @@ export function TransferPage() {
   const { recipientId } = useLocalSearchParams<{ recipientId: string }>();
   const { data: recipient } = useRecipient(recipientId);
   const router = useRouter();
-  const { mutateAsync } = useTransfer();
   const setTransferDetail = useTransferStore((s) => s.setTransferDetail);
+  const setTransferRequest = useTransferStore((s) => s.setTransferRequest);
   return (
     <SafeAreaView>
       <BalanceCard amount={balance?.data.balance.amount ?? 0} />
@@ -35,7 +34,8 @@ export function TransferPage() {
             balance={balance?.data.balance.amount ?? 0}
             onTransfer={async (data) => {
               setTransferDetail(getTransferDetail(data, recipient as Recipient));
-              await mutateAsync(data);
+              setTransferRequest(data);
+              router.push('/transfer/process');
             }}
           />
         </>

@@ -1,6 +1,7 @@
 import { Button } from '@/ui/button/button';
 import { Chip } from '@/ui/chip/chip';
 import { Input } from '@/ui/input/input';
+import { TextArea } from '@/ui/textarea/textarea';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
@@ -65,7 +66,7 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
           name="description"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Input
+            <TextArea
               title="Description"
               placeholder="Description"
               value={field.value}
