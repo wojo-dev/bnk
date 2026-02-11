@@ -1,5 +1,5 @@
 import { apiClient } from '@/features/shared/lib/api-client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 import { TransactionPaginatedResponse } from '../types/transaction.types';
 
 export function useTransaction(search?: string) {
@@ -14,5 +14,6 @@ export function useTransaction(search?: string) {
         .then((res) => res.data),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.nextPage,
+    placeholderData: keepPreviousData,
   });
 }

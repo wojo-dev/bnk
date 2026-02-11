@@ -1,3 +1,4 @@
+import { haptic } from '@/features/shared/lib/haptics';
 import { NativeTabs } from 'expo-router/unstable-native-tabs';
 
 export default function TabLayout() {
@@ -7,7 +8,12 @@ export default function TabLayout() {
       backgroundColor="white"
       tintColor="#057efa"
       indicatorColor="white"
-      labelStyle={{ selected: { color: 'black' } }}>
+      labelStyle={{ selected: { color: 'black' } }}
+      screenListeners={{
+        tabPress: () => {
+          haptic.light();
+        },
+      }}>
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/hh.png')} />

@@ -1,6 +1,6 @@
 import { RecipientsPaginatedResponse } from '@/features/recipient/types/recipient.types';
 import { apiClient } from '@/features/shared/lib/api-client';
-import { useInfiniteQuery } from '@tanstack/react-query';
+import { keepPreviousData, useInfiniteQuery } from '@tanstack/react-query';
 
 export function useRecipients(search?: string) {
   return useInfiniteQuery({
@@ -14,5 +14,6 @@ export function useRecipients(search?: string) {
         .then((res) => res.data),
     initialPageParam: 1,
     getNextPageParam: (lastPage) => lastPage.nextPage,
+    placeholderData: keepPreviousData,
   });
 }

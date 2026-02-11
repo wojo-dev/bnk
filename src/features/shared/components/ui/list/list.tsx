@@ -1,4 +1,5 @@
-import { FlashList } from '@shopify/flash-list';
+import { FlashList, FlashListRef } from '@shopify/flash-list';
+import { Ref } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { listStyles as styles } from './list.styles';
 import { ListProps } from './list.types';
@@ -11,13 +12,14 @@ const DefaultEmpty = ({ title, subtitle }: { title?: string; subtitle?: string }
 );
 
 export function List<T>({
+  ref,
   isFetchingNextPage,
   emptyTitle,
   emptySubtitle,
   ListEmptyComponent,
   onEndReachedThreshold = 0.5,
   ...props
-}: ListProps<T>) {
+}: ListProps<T> & { ref?: Ref<FlashListRef<T>> }) {
   const emptyComponent =
     ListEmptyComponent ??
     (emptyTitle || emptySubtitle ? (
@@ -26,6 +28,7 @@ export function List<T>({
 
   return (
     <FlashList<T>
+      ref={ref}
       onEndReachedThreshold={onEndReachedThreshold}
       ListEmptyComponent={emptyComponent}
       ListFooterComponent={isFetchingNextPage ? <ActivityIndicator style={styles.loader} /> : null}

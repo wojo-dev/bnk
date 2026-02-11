@@ -16,7 +16,7 @@ export const colors = {
   background: {
     primary: '#226bf5',
     neutral: '#FFFFFF',
-    background: '#F5F5F5',
+    background: '#f6f7fa',
     success: '#DCFCE7',
     warning: '#FEF9C4',
     error: '#FEF2F2',

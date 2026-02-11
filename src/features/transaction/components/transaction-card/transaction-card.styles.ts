@@ -27,9 +27,9 @@ export const transactionCardStyles = StyleSheet.create({
     gap: 2,
   },
   name: {
-    fontSize: typography.medium.fontSize,
-    fontWeight: typography.medium.fontWeight,
-    fontFamily: typography.medium.fontFamily,
+    fontSize: typography.bodyBold.fontSize,
+    fontWeight: typography.bodyBold.fontWeight,
+    fontFamily: typography.bodyBold.fontFamily,
     color: colors.label.text,
   },
   subtitle: {

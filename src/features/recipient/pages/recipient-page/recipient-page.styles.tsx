@@ -6,7 +6,7 @@ import { Platform, StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: Platform.OS === 'android' ? spacing.md : sizes['7xl'] + spacing.md,
+    paddingTop: Platform.OS === 'android' ? spacing.md : 0,
     paddingHorizontal: spacing.sm,
     backgroundColor: colors.background.neutral,
   },

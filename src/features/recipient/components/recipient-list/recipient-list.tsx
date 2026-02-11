@@ -1,5 +1,6 @@
+import { FlashListRef } from '@shopify/flash-list';
 import { List } from '@/ui/list/list';
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { View } from 'react-native';
 import { Recipient } from '../../types/recipient.types';
 import { RecipientCard } from '../recipient-card/recipient-card';
@@ -16,6 +17,12 @@ export const RecipientList = ({
   style,
   ...props
 }: RecipientListProps) => {
+  const listRef = useRef<FlashListRef<Recipient>>(null);
+
+  useEffect(() => {
+    listRef.current?.scrollToOffset({ offset: 0, animated: true });
+  }, [extraData]);
+
   const renderItem = useCallback(
     ({ item }: { item: Recipient }) => (
       <View style={styles.recipientRow}>
@@ -32,6 +39,7 @@ export const RecipientList = ({
   return (
     <View style={[styles.container, style]} {...props}>
       <List<Recipient>
+        ref={listRef}
         data={recipients}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}

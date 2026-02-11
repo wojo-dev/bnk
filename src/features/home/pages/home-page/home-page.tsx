@@ -30,7 +30,7 @@ export function HomePage() {
   }
 
   return (
-    <ScrollView>
+    <ScrollView contentContainerStyle={styles.contentContainer}>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <ProfileHeader

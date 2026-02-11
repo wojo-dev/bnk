@@ -6,6 +6,7 @@ import { getHalfInitials } from '@/features/shared/hooks/get-initials';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';
 import { Pressable, Text, View } from 'react-native';
+import { haptic } from '@/features/shared/lib/haptics';
 import { styles } from './recent-recipients.styles';
 
 export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => void }) => {
@@ -13,6 +14,7 @@ export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => vo
   const recipients = data?.data?.data ?? [];
 
   const handlePress = (item: Recipient) => {
+    haptic.light();
     onPress(item);
   };
   return (

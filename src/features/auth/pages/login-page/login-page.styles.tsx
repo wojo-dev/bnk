@@ -1,7 +1,7 @@
 import { colors } from '@/tokens/colors';
+import { scale } from '@/tokens/scale';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
-import { scale } from '@/tokens/scale';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -15,9 +15,6 @@ export const styles = StyleSheet.create({
     width: scale(120),
     height: scale(120),
     borderRadius: radius['2xl'],
-    backgroundColor: '#EEF2FF',
-    borderWidth: 1,
-    borderColor: '#DEE5F5',
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.lg,

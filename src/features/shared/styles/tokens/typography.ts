@@ -17,6 +17,13 @@ export const typography = {
     fontFamily: fonts.heading,
     color: colors.label.text,
   },
+  bodyBold: {
+    fontSize: scale(16),
+    lineHeight: scale(20),
+    fontWeight: '600' as const,
+    fontFamily: fonts.body,
+    color: colors.label.text,
+  },
   body: {
     fontSize: scale(16),
     lineHeight: scale(24),
@@ -81,7 +88,7 @@ export const typography = {
     color: colors.label.text,
   },
   small: {
-    fontSize: scale(10),
+    fontSize: scale(12),
     lineHeight: scale(16),
     fontWeight: '400' as const,
     fontFamily: fonts.body,
@@ -91,6 +98,13 @@ export const typography = {
     fontSize: scale(14),
     lineHeight: scale(20),
     fontWeight: '500' as const,
+    fontFamily: fonts.body,
+    color: colors.label.text,
+  },
+  action: {
+    fontSize: scale(14),
+    lineHeight: scale(16),
+    fontWeight: '600' as const,
     fontFamily: fonts.body,
     color: colors.label.text,
   },

@@ -7,9 +7,10 @@ import { getRecipientFromContact } from '@/features/recipient/utils/get-recipien
 import { haptic } from '@/lib/haptics';
 import { Button } from '@/ui/button/button';
 import { Tabs } from '@/ui/tabs/tabs';
+import { useHeaderHeight } from '@react-navigation/elements';
 import { router, Stack } from 'expo-router';
 import { useCallback, useMemo, useRef } from 'react';
-import { ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, Platform, View } from 'react-native';
 import PagerView from 'react-native-pager-view';
 import { useSharedValue } from 'react-native-reanimated';
 import { styles } from './recipient-page.styles';
@@ -20,6 +21,7 @@ const TABS = [
 ];
 
 export function RecipientPage() {
+  const headerHeight = useHeaderHeight();
   const { search, selectedRecipient, activeTab, setSearch, setSelectedRecipient, setActiveTab } =
     useRecipientStore();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useRecipients(search);
@@ -74,7 +76,7 @@ export function RecipientPage() {
         placeholder="Search"
         onChangeText={(e) => setSearch(e.nativeEvent.text)}
       />
-      <View style={styles.container}>
+      <View style={[styles.container, Platform.OS === 'ios' && { paddingTop: headerHeight }]}>
         <Tabs
           tabs={TABS}
           activeTab={activeTab}
@@ -91,6 +93,7 @@ export function RecipientPage() {
             <RecipientList
               recipients={recipients}
               selectedId={selectedRecipient?.id}
+              extraData={search}
               onSelect={(recipient) => {
                 setSelectedRecipient(recipient);
                 haptic.light();
