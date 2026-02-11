@@ -13,6 +13,13 @@ export function getFormatTime(date: string) {
   return dayjs(date).format('h:mm A');
 }
 
+export function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return 'Good morning';
+  if (hour < 17) return 'Good afternoon';
+  return 'Good evening';
+}
+
 export function getIsTodayYesterday(date: string) {
   const d = dayjs(date);
   if (d.isToday()) return 'Today';

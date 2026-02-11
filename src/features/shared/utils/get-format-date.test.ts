@@ -1,5 +1,5 @@
 import dayjs from 'dayjs';
-import { getFormatDate, getFormatTime, getIsTodayYesterday } from './get-format-date';
+import { getFormatDate, getFormatTime, getGreeting, getIsTodayYesterday } from './get-format-date';
 
 describe('getFormatDate', () => {
   it('formats a date as "MMMM D, YYYY"', () => {
@@ -14,6 +14,42 @@ describe('getFormatDate', () => {
 describe('getFormatTime', () => {
   it('formats time as "h:mm A"', () => {
     expect(getFormatTime('2025-01-15T14:30:00Z')).toMatch(/\d{1,2}:\d{2} (AM|PM)/);
+  });
+});
+
+describe('getGreeting', () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it('returns "Good morning" before noon', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(8);
+    expect(getGreeting()).toBe('Good morning');
+  });
+
+  it('returns "Good afternoon" between noon and 5pm', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(14);
+    expect(getGreeting()).toBe('Good afternoon');
+  });
+
+  it('returns "Good evening" after 5pm', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(20);
+    expect(getGreeting()).toBe('Good evening');
+  });
+
+  it('returns "Good morning" at midnight', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(0);
+    expect(getGreeting()).toBe('Good morning');
+  });
+
+  it('returns "Good afternoon" at exactly noon', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(12);
+    expect(getGreeting()).toBe('Good afternoon');
+  });
+
+  it('returns "Good evening" at exactly 5pm', () => {
+    jest.spyOn(Date.prototype, 'getHours').mockReturnValue(17);
+    expect(getGreeting()).toBe('Good evening');
   });
 });
 

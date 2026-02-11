@@ -1,20 +1,9 @@
 import { Avatar } from '@/features/shared/components/ui/avatar/avatar';
+import { getGreeting } from '@/features/shared/utils/get-format-date';
 import { Ionicons } from '@expo/vector-icons';
 import { Pressable, Text, View } from 'react-native';
 import { styles } from './profile-header.styles';
-
-const getGreeting = () => {
-  const hour = new Date().getHours();
-  if (hour < 12) return 'Good morning';
-  if (hour < 17) return 'Good afternoon';
-  return 'Good evening';
-};
-
-type ProfileHeaderProps = {
-  name: string;
-  onNotificationPress?: () => void;
-  hasNotifications?: boolean;
-};
+import { ProfileHeaderProps } from './profile-header.types';
 
 export const ProfileHeader = ({
   name,

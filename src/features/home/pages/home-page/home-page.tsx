@@ -7,13 +7,16 @@ import { Link, RelativePathString, useRouter } from 'expo-router';
 import { ActivityIndicator, Button, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActionButtons } from '../../components/action-buttons/action-buttons';
+import { ProfileHeader } from '../../components/profile-header/profile-header';
 import { RecentRecipients } from '../../components/recent-recipients/recent-recipients';
 import { actions } from '../../constants/actions';
+import { useProfile } from '../../hooks/use-profile';
 import { Action } from '../../types/action.types';
 import { styles } from './home-page.styles';
 
 export function HomePage() {
   const router = useRouter();
+  const { data: profile } = useProfile();
   const { data: balance } = useBalance();
   const { data, isLoading } = useHistory();
   const history = data?.pages.flatMap((p) => p.data) ?? [];
@@ -26,6 +29,7 @@ export function HomePage() {
     <ScrollView>
       <SafeAreaView style={styles.safeArea}>
         <Button title="Storybook" onPress={() => router.push('/storybook')} />
+        <ProfileHeader name={profile?.data.profile.name ?? ''} />
         <View style={styles.balanceCardContainer}>
           <BalanceCard amount={balance?.data.balance.amount ?? 0} />
         </View>
