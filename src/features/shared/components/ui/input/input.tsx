@@ -1,26 +1,26 @@
 // components/input.tsx
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { getBorderColor, inputStyles } from './input.styles';
+import { getBorderColor, inputStyles as styles } from './input.styles';
 import { InputProps } from './input.types';
 
 export const Input = ({ disabled, title, error, icon, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
-    <View style={inputStyles.container}>
+    <View style={styles.container}>
       {title && (
-        <Text id="input-label" style={inputStyles.label}>
+        <Text id="input-label" style={styles.label}>
           {title}
         </Text>
       )}
 
-      <View style={[inputStyles.inputWrapper, { borderColor: getBorderColor(isFocused, error) }]}>
-        {icon && <View style={inputStyles.icon}>{icon}</View>}
+      <View style={[styles.inputWrapper, { borderColor: getBorderColor(isFocused, error) }]}>
+        {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput
           aria-labelledby="input-label"
           aria-disabled={disabled}
-          style={inputStyles.input}
+          style={styles.input}
           editable={!disabled}
           onFocus={() => {
             setIsFocused(true);
@@ -32,7 +32,7 @@ export const Input = ({ disabled, title, error, icon, ...props }: InputProps) =>
         />
       </View>
 
-      {error && <Text style={inputStyles.error}>{error}</Text>}
+      {error && <Text style={styles.error}>{error}</Text>}
     </View>
   );
 };

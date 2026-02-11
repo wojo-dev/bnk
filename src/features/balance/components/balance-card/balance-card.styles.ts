@@ -1,10 +1,16 @@
 import { scale } from '@/tokens/scale';
+import { blueShadow } from '@/tokens/shadows';
 import { sizes } from '@/tokens/sizes';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const balanceCardStyles = StyleSheet.create({
+  shadowWrapper: {
+    borderRadius: radius.xl,
+    backgroundColor: '#1B4FD8',
+    ...blueShadow,
+  },
   gradient: {
     borderRadius: radius.xl,
     padding: spacing.lg,

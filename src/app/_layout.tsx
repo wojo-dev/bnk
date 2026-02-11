@@ -73,8 +73,8 @@ function RootLayoutContent() {
       <OfflineBanner visible={!isConnected} />
       {isAuthenticated ? (
         <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ headerBackTitle: 'Home' }} />
-          <Stack.Screen name="history" />
+          <Stack.Screen name="(tabs)" options={{ title: 'Home', headerBackTitle: 'Home' }} />
+          <Stack.Screen name="history" options={{ headerShadowVisible: false }} />
           <Stack.Protected guard={__DEV__}>
             <Stack.Screen name="storybook" />
           </Stack.Protected>

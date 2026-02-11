@@ -17,7 +17,7 @@ export const inputStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: radius.md,
+    borderRadius: radius.lg,
     borderColor: colors.border.input,
     backgroundColor: colors.background.neutral,
     paddingHorizontal: spacing.md,

@@ -1,6 +1,7 @@
 // button styles
 
 import { colors } from '@/tokens/colors';
+import { blueShadow } from '@/tokens/shadows';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
@@ -18,6 +19,7 @@ export const buttonStyles = StyleSheet.create({
   },
   primary: {
     backgroundColor: colors.accent.primary,
+    ...blueShadow,
   },
   secondary: {
     backgroundColor: 'transparent',

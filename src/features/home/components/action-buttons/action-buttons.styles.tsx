@@ -8,6 +8,6 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignSelf: 'stretch',
-    gap: spacing.lg,
+    gap: spacing.xl,
   },
 });

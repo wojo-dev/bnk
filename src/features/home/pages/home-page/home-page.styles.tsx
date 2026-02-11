@@ -11,15 +11,15 @@ export const styles = StyleSheet.create({
   },
   historyCard: {
     width: dimensions.width - spacing.xl - spacing.sm,
-    height: 900,
   },
   balanceCardContainer: {
     marginVertical: spacing.md,
+    marginBottom: spacing.lg,
   },
   sectionTitle: {
     marginTop: spacing.lg,
     marginBottom: spacing.md,
-    paddingHorizontal: spacing.xs,
+    paddingHorizontal: spacing.sm,
   },
   container: {
     marginHorizontal: spacing.md,

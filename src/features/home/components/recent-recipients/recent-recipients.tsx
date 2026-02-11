@@ -21,6 +21,7 @@ export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => vo
         data={recipients}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <Pressable style={styles.recipient} onPress={() => handlePress(item)}>
             <Avatar name={item.name} size={48} />

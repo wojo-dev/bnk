@@ -9,9 +9,11 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  recipient: {
+  list: {
     paddingLeft: spacing.md,
-    width: sizes['4xl'] + spacing.sm,
+  },
+  recipient: {
+    width: sizes['3xl'] + spacing.lg,
     alignItems: 'center',
     gap: spacing.sm,
   },

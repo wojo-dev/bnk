@@ -67,7 +67,7 @@ export const typography = {
     color: colors.label.error,
   },
   badge: {
-    fontSize: scale(12),
+    fontSize: scale(11),
     lineHeight: scale(16),
     fontWeight: '700' as const,
     fontFamily: fonts.body,

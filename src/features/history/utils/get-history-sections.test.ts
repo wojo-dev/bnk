@@ -1,6 +1,6 @@
-import { getHistorySections } from './get-history-sections';
-import { History } from '@/features/history/types/history';
+import { History } from '@/features/history/types/history.types';
 import * as formatDate from '@/utils/get-format-date';
+import { getHistorySections } from './get-history-sections';
 
 jest.mock('@/utils/get-format-date');
 const mockGetIsTodayYesterday = jest.mocked(formatDate.getIsTodayYesterday);

@@ -7,3 +7,11 @@ export const shadows = {
   xl: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)',
   xxl: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
 } as const;
+
+export const blueShadow = {
+  shadowColor: '#3B82F6',
+  shadowOffset: { width: 6, height: 4 },
+  shadowOpacity: 0.35,
+  shadowRadius: 16,
+  elevation: 8,
+} as const;

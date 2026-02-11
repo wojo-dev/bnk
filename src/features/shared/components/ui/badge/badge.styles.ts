@@ -13,7 +13,7 @@ export const badgeStyles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: radius.xl,
     paddingVertical: spacing.xs,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.xs,
   },
   default: {
     backgroundColor: colors.background.neutral,

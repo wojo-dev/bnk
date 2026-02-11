@@ -1,6 +1,6 @@
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { HistoryPaginatedResponse } from '../types/history';
+import { HistoryPaginatedResponse } from '../types/history.types';
 
 export function useHistory(search?: string) {
   return useInfiniteQuery({

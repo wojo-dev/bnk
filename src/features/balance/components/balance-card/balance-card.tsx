@@ -19,45 +19,46 @@ export const BalanceCard = ({
   const { isHidden, toggle } = useBalanceStore();
 
   return (
-    <LinearGradient
-      colors={gradients.primary}
-      start={{ x: 0, y: 0.5 }}
-      end={{ x: 1, y: 0.5 }}
-      style={[styles.gradient, style]}
-      {...props}>
-      <View style={styles.header}>
-        <View style={styles.headerLeft}>
-          <MaterialCommunityIcons
-            name="credit-card-outline"
-            size={20}
-            color="rgba(255,255,255,0.9)"
-          />
-          <Text style={styles.headerLabel}>Available Balance</Text>
+    <View style={[styles.shadowWrapper, style]} {...props}>
+      <LinearGradient
+        colors={gradients.primary}
+        start={{ x: 0, y: 0.5 }}
+        end={{ x: 1, y: 0.5 }}
+        style={styles.gradient}>
+        <View style={styles.header}>
+          <View style={styles.headerLeft}>
+            <MaterialCommunityIcons
+              name="credit-card-outline"
+              size={20}
+              color="rgba(255,255,255,0.9)"
+            />
+            <Text style={styles.headerLabel}>Available Balance</Text>
+          </View>
+          <Pressable
+            style={styles.eyeButton}
+            onPress={toggle}
+            accessibilityLabel="Toggle balance visibility">
+            <Feather name={isHidden ? 'eye-off' : 'eye'} size={20} color="#FFFFFF" />
+          </Pressable>
         </View>
-        <Pressable
-          style={styles.eyeButton}
-          onPress={toggle}
-          accessibilityLabel="Toggle balance visibility">
-          <Feather name={isHidden ? 'eye-off' : 'eye'} size={20} color="#FFFFFF" />
-        </Pressable>
-      </View>
 
-      <View style={styles.amountRow}>
-        {isHidden ? (
-          <Text style={styles.hiddenAmount}>{'••••••'}</Text>
-        ) : (
-          <>
-            <Text style={styles.currency}>{currency}</Text>
-            <Text style={styles.amount}>{getFormatPrice('', amount)}</Text>
-          </>
+        <View style={styles.amountRow}>
+          {isHidden ? (
+            <Text style={styles.hiddenAmount}>{'••••••'}</Text>
+          ) : (
+            <>
+              <Text style={styles.currency}>{currency}</Text>
+              <Text style={styles.amount}>{getFormatPrice('', amount)}</Text>
+            </>
+          )}
+        </View>
+
+        {!compact && (
+          <Text style={styles.accountInfo}>
+            {accountType} {'\u2022\u2022\u2022\u2022'} {accountNumber}
+          </Text>
         )}
-      </View>
-
-      {!compact && (
-        <Text style={styles.accountInfo}>
-          {accountType} {'\u2022\u2022\u2022\u2022'} {accountNumber}
-        </Text>
-      )}
-    </LinearGradient>
+      </LinearGradient>
+    </View>
   );
 };
