@@ -6,6 +6,8 @@ import { RecipientCard } from '@/features/recipients/components/recipient-card/r
 import { Recipient } from '@/features/recipients/types/recipient';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
 import { useTransfer } from '@/features/transfer/hooks/use-transfer';
+import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
+import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRecipient } from '../../hooks/use-receipient';
@@ -16,6 +18,7 @@ export function TransferPage() {
   const { data: recipient } = useRecipient(recipientId);
   const router = useRouter();
   const { mutateAsync } = useTransfer();
+  const setTransferDetail = useTransferStore((s) => s.setTransferDetail);
   return (
     <SafeAreaView>
       <BalanceCard amount={balance?.data.balance.amount ?? 0} />
@@ -31,6 +34,7 @@ export function TransferPage() {
             recipient={recipient as Recipient}
             balance={balance?.data.balance.amount ?? 0}
             onTransfer={async (data) => {
+              setTransferDetail(getTransferDetail(data, recipient as Recipient));
               await mutateAsync(data);
             }}
           />

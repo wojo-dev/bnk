@@ -17,8 +17,7 @@ export const ContactsPermission = ({ onRequestPermission }: ContactsPermissionPr
       </View>
       <Text style={styles.title}>Access Your Contacts</Text>
       <Text style={styles.description}>
-        Allow Ryt Bank to read your contacts so you can quickly find and transfer to people you
-        know.
+        Allow bnk to read your contacts so you can quickly find and transfer to people you know.
       </Text>
       <Pressable style={styles.button} onPress={onRequestPermission}>
         <Text style={styles.buttonLabel}>Allow Access</Text>

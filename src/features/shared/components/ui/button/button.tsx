@@ -1,14 +1,21 @@
-import { Pressable, Text } from 'react-native';
+import { Pressable, StyleProp, Text, ViewStyle } from 'react-native';
 import { labelVariantStyle, buttonStyles as styles, variantStyle } from './button.styles';
 import { ButtonProps } from './button.types';
 
-export const Button = ({ title, variant = 'primary', disabled, ...props }: ButtonProps) => {
+export const Button = ({
+  title,
+  variant = 'primary',
+  disabled,
+  style,
+  ...props
+}: ButtonProps & { style?: StyleProp<ViewStyle> }) => {
   return (
     <Pressable
       style={[
         styles.base,
         variantStyle(variant),
         disabled && variant !== 'link' && styles.disabled,
+        style as ViewStyle,
       ]}
       disabled={disabled}
       accessibilityRole="button"
