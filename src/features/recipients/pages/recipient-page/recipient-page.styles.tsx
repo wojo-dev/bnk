@@ -6,4 +6,10 @@ export const styles = StyleSheet.create({
     flex: 1,
     marginTop: spacing['4xl'],
   },
+  pager: {
+    flex: 1,
+  },
+  page: {
+    flex: 1,
+  },
 });

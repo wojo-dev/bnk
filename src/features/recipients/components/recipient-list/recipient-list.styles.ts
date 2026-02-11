@@ -11,4 +11,7 @@ export const recipientListStyles = StyleSheet.create({
     paddingVertical: spacing.sm,
     gap: spacing.sm,
   },
+  recipientRow: {
+    margin: spacing.sm,
+  },
 });

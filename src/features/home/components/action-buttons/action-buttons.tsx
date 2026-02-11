@@ -3,6 +3,7 @@ import { IconButton } from '@/ui/button/icon-button';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { View } from 'react-native';
 import { Action } from '../../types/action.types';
+import { styles } from './action-buttons.styles';
 
 export const ActionButtons = ({
   actions,
@@ -12,7 +13,7 @@ export const ActionButtons = ({
   onActionPress: (action: Action) => void;
 }) => {
   return (
-    <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignSelf: 'stretch' }}>
+    <View style={styles.container}>
       {actions.map((action) => (
         <IconButton
           key={action.id}

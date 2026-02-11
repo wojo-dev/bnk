@@ -5,9 +5,8 @@ import { View } from 'react-native';
 import { Tabs } from './tabs';
 
 const sampleTabs = [
-  { key: 'all', label: 'All' },
-  { key: 'income', label: 'Income' },
-  { key: 'expenses', label: 'Expenses' },
+  { key: 'recents', label: 'Recents' },
+  { key: 'contacts', label: 'Contacts' },
 ];
 
 const meta = {
@@ -29,7 +28,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     tabs: sampleTabs,
-    activeTab: 'all',
+    activeTab: 'recents',
     onTabChange: () => {},
   },
 };
@@ -37,7 +36,7 @@ export const Default: Story = {
 export const SecondActive: Story = {
   args: {
     tabs: sampleTabs,
-    activeTab: 'income',
+    activeTab: 'contacts',
     onTabChange: () => {},
   },
 };

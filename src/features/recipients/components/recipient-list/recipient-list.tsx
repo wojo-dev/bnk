@@ -18,11 +18,13 @@ export const RecipientList = ({
       <FlashList
         data={recipients}
         renderItem={({ item }) => (
-          <RecipientCard
-            item={item}
-            selected={item.id === selectedId}
-            onPress={() => onSelect?.(item)}
-          />
+          <View style={styles.recipientRow}>
+            <RecipientCard
+              item={item}
+              selected={item.id === selectedId}
+              onPress={() => onSelect?.(item)}
+            />
+          </View>
         )}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.contentContainer}

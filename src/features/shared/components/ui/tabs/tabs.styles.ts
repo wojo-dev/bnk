@@ -7,22 +7,28 @@ import { StyleSheet } from 'react-native';
 
 export const tabsStyles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: spacing.xs,
     backgroundColor: colors.background.background,
-    borderRadius: radius.lg,
+    borderRadius: radius['2xl'],
     padding: spacing.xs,
   },
+  tabRow: {
+    flexDirection: 'row',
+    position: 'relative',
+  },
+  pill: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    backgroundColor: colors.background.primary,
+    borderRadius: radius.xl,
+  },
   tab: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: spacing.sm,
+    paddingVertical: spacing.sm + 2,
     paddingHorizontal: spacing.md,
-    borderRadius: radius.md,
-  },
-  tabActive: {
-    backgroundColor: colors.background.neutral,
   },
   label: {
     fontSize: typography.button.fontSize,
@@ -32,7 +38,7 @@ export const tabsStyles = StyleSheet.create({
     color: colors.label.placeholder,
   },
   activeLabel: {
-    color: colors.label.text,
+    color: colors.background.neutral,
     fontWeight: '600',
   },
 });

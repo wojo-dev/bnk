@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Alert } from 'react-native';
 
 export function useContacts() {
-  const [contacts, setContacts] = useState<Contacts.Contact[]>([]);
+  const [contacts, setContacts] = useState<Contacts.ExistingContact[]>([]);
   const [permissions, setPermissions] = useState<Contacts.PermissionStatus | null>(null);
 
   const fetchContacts = async () => {

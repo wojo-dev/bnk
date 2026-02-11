@@ -3,10 +3,5 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  button: {
-    flex: 1,
-  },
+  container: { flexDirection: 'row', justifyContent: 'space-evenly', alignSelf: 'stretch' },
 });

@@ -37,6 +37,7 @@ function RootLayoutContent() {
     <View style={{ flex: 1 }}>
       <OfflineBanner visible={!isConnected} />
       <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
         <Stack.Screen name="history" />
       </Stack>
       <Stack.Protected guard={__DEV__}>
