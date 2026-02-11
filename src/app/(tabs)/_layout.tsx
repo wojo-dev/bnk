@@ -10,7 +10,7 @@ export default function TabLayout() {
       labelStyle={{ selected: { color: 'black' } }}>
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/bm.png')} />
+        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/hh.png')} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="recipients" role="search">
         <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>

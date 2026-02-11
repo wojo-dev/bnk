@@ -1,7 +1,7 @@
 import { colors } from '@/features/shared/styles/tokens/colors';
 import { sizes } from '@/features/shared/styles/tokens/sizes';
 import { spacing } from '@/features/shared/styles/tokens/spacing';
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export const transactionPageStyles = StyleSheet.create({
   container: {
@@ -13,6 +13,6 @@ export const transactionPageStyles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: spacing.md,
     backgroundColor: colors.background.neutral,
-    paddingTop: sizes['7xl'] + spacing.sm,
+    paddingTop: Platform.OS === 'android' ? spacing.sm : sizes['7xl'] + spacing.sm,
   },
 });
