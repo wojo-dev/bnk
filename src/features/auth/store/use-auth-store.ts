@@ -1,7 +1,7 @@
 import * as SecureStore from 'expo-secure-store';
 import { create } from 'zustand';
 
-const AUTH_TOKEN_KEY = 'auth_token';
+import { AUTH_TOKEN_KEY } from '@/features/shared/lib/api-client';
 
 type AuthStore = {
   isAuthenticated: boolean;

@@ -35,7 +35,7 @@ export function TransferPage() {
             </View>
             <TransferForm
               recipient={recipient}
-              balance={balance?.data.balance.amount ?? 0}
+              balance={balance?.balance.amount ?? 0}
               onTransfer={async (data) => {
                 const request = { ...data, idempotencyKey: randomUUID() };
                 setTransferDetail(getTransferDetail(data, recipient));

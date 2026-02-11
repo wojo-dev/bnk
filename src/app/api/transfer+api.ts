@@ -35,6 +35,8 @@ export async function POST(request: Request) {
     );
   }
 
+  balance.amount -= amount;
+
   if (idempotencyKey) {
     processedKeys.add(idempotencyKey);
   }

@@ -9,6 +9,6 @@ type RecentRecipientsResponse = {
 export function useRecentRecipients() {
   return useQuery({
     queryKey: ['recent-recipients'],
-    queryFn: () => apiClient.get<RecentRecipientsResponse>('/recent'),
+    queryFn: () => apiClient.get<RecentRecipientsResponse>('/recent').then((res) => res.data),
   });
 }

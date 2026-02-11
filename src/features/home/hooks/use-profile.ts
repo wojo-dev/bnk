@@ -9,6 +9,6 @@ type ProfileResponse = {
 export function useProfile() {
   return useQuery({
     queryKey: ['profile'],
-    queryFn: () => apiClient.get<ProfileResponse>('/profile'),
+    queryFn: () => apiClient.get<ProfileResponse>('/profile').then((res) => res.data),
   });
 }

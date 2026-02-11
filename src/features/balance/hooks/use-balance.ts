@@ -7,6 +7,6 @@ import { useQuery } from '@tanstack/react-query';
 export function useBalance() {
   return useQuery({
     queryKey: ['balance'],
-    queryFn: () => apiClient.get<BalanceResponse>('/balance'),
+    queryFn: () => apiClient.get<BalanceResponse>('/balance').then((res) => res.data),
   });
 }

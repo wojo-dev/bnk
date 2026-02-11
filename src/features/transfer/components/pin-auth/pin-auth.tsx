@@ -1,4 +1,4 @@
-import { apiClient } from '@/features/shared/lib/api-client';
+import { AUTH_TOKEN_KEY, apiClient } from '@/features/shared/lib/api-client';
 import { colors } from '@/tokens/colors';
 import { Numpad } from '@/ui/numpad/numpad';
 import { NumpadKey } from '@/ui/numpad/numpad.types';
@@ -28,7 +28,7 @@ export function PinAuth({ transferDetail, onSuccess }: PinAuthProps) {
       try {
         const { data } = await apiClient.post('/verify', { pin: value });
         if (data.token) {
-          await SecureStore.setItemAsync('auth_token', data.token);
+          await SecureStore.setItemAsync(AUTH_TOKEN_KEY, data.token);
         }
         setPin('');
         onSuccess();

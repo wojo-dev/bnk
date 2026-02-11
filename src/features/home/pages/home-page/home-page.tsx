@@ -34,11 +34,11 @@ export function HomePage() {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
           <ProfileHeader
-            name={profile?.data.profile.name ?? ''}
+            name={profile?.profile.name ?? ''}
             onNotificationPress={() => router.push('/storybook')}
           />
           <View style={styles.balanceCardContainer}>
-            <BalanceCard amount={balance?.data.balance.amount ?? 0} />
+            <BalanceCard amount={balance?.balance.amount ?? 0} />
           </View>
           <ActionButtons
             actions={actions as Action[]}

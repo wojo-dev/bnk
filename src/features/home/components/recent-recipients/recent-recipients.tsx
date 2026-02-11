@@ -11,7 +11,7 @@ import { styles } from './recent-recipients.styles';
 
 export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => void }) => {
   const { data } = useRecentRecipients();
-  const recipients = data?.data?.data ?? [];
+  const recipients = data?.data ?? [];
 
   const handlePress = (item: Recipient) => {
     haptic.light();

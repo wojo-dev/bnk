@@ -11,9 +11,11 @@ export function useTransfer() {
   return useMutation({
     mutationFn: (data: TransferRequest) => {
       const { idempotencyKey, ...body } = data;
-      return apiClient.post<TransferResponse>('/transfer', body, {
-        headers: { 'Idempotency-Key': idempotencyKey },
-      });
+      return apiClient
+        .post<TransferResponse>('/transfer', body, {
+          headers: { 'Idempotency-Key': idempotencyKey },
+        })
+        .then((res) => res.data);
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['balance'] as const });

@@ -2,7 +2,7 @@ import Constants from 'expo-constants';
 import * as SecureStore from 'expo-secure-store';
 import axios, { AxiosError } from 'axios';
 
-const AUTH_TOKEN_KEY = 'auth_token';
+export const AUTH_TOKEN_KEY = 'auth_token';
 const AUTH_ENDPOINTS = ['/verify', '/auth'];
 
 let onAuthExpired: (() => void) | null = null;
