@@ -8,7 +8,7 @@ export const transferPageStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.neutral,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.md + spacing.xs,
   },
   content: {
     marginTop: spacing.md,

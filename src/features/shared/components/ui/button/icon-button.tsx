@@ -1,11 +1,11 @@
-import { haptic } from '@/features/shared/lib/haptics';
+import { haptic } from '@/lib/haptics';
 import { cloneElement } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import {
   containerStyle,
   getIconColor,
-  iconButtonStyles as styles,
   iconSizeMap,
+  iconButtonStyles as styles,
 } from './icon-button.styles';
 import { IconButtonProps } from './icon-button.types';
 

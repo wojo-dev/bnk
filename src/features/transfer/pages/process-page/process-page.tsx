@@ -16,7 +16,7 @@ import * as SecureStore from 'expo-secure-store';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Pressable, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styles } from './process-page.styles';
+import { processPageStyles as styles } from './process-page.styles';
 
 const MAX_PIN_ATTEMPTS = 3;
 const AUTH_TTL_MS = 30_000;
@@ -134,21 +134,39 @@ export function ProcessPage() {
     const pinDisabled = verifyingPin || pinAttempts >= MAX_PIN_ATTEMPTS;
 
     return (
-      <SafeAreaView style={{ flex: 1 }}>
+      <SafeAreaView style={styles.safeArea}>
         <View style={styles.container}>
-          <Text style={styles.heading}>Enter your PIN to confirm</Text>
-          <PinInput length={pinLength} value={pin} secure disabled={pinDisabled} error={pinError} />
+          <View style={styles.iconContainer}>
+            <MaterialCommunityIcons name="lock-outline" size={32} color={colors.primary} />
+          </View>
+
+          <Text style={styles.heading}>Enter your PIN</Text>
+          {transferDetail && (
+            <Text style={styles.subtitle}>
+              Sending{' '}
+              <Text style={{ fontWeight: '700' }}>
+                {transferDetail.currency} {transferDetail.amount}
+              </Text>{' '}
+              to {transferDetail.recipientName}
+            </Text>
+          )}
+
+          <PinInput
+            length={pinLength}
+            value={pin}
+            secure
+            disabled={pinDisabled}
+            error={pinError}
+            style={{ marginTop: spacing.xl }}
+          />
           <Numpad
             onKeyPress={handleNumpadPress}
             disabled={pinDisabled}
             style={{ marginTop: spacing.xl }}
           />
-          <Button
-            onPress={() => router.back()}
-            title="Cancel"
-            variant="secondary"
-            style={{ marginTop: spacing.lg }}
-          />
+          <Pressable onPress={() => {}} style={{ marginTop: spacing.lg }}>
+            <Text style={styles.pinLinkText}>Forgot PIN?</Text>
+          </Pressable>
         </View>
       </SafeAreaView>
     );

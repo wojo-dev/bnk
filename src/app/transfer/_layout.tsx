@@ -13,7 +13,8 @@ export default function TransferLayout() {
             <Ionicons name="arrow-back" size={24} color="black" />
           </TouchableOpacity>
         ),
-      }}
-    />
+      }}>
+      <Stack.Screen name="success" options={{ headerShown: false }} />
+    </Stack>
   );
 }

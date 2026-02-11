@@ -1,10 +1,10 @@
-import { haptic } from '@/features/shared/lib/haptics';
-import { Pressable, Text, View } from 'react-native';
-import { numpadStyles as styles } from './numpad.styles';
-import { NumpadKey, NumpadProps } from './numpad.types';
-import Svg, { Path } from 'react-native-svg';
+import { haptic } from '@/lib/haptics';
 import { colors } from '@/tokens/colors';
 import { scale } from '@/tokens/scale';
+import { Pressable, Text, View } from 'react-native';
+import Svg, { Path } from 'react-native-svg';
+import { numpadStyles as styles } from './numpad.styles';
+import { NumpadKey, NumpadProps } from './numpad.types';
 
 const BackspaceIcon = () => (
   <Svg width={scale(28)} height={scale(28)} viewBox="0 0 24 24" fill="none">

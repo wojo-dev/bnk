@@ -18,7 +18,7 @@ const TABS = [
 ];
 
 export function RecipientPage() {
-  const { search, selectedId, activeTab, setSearch, setSelectedId, setActiveTab } =
+  const { search, selectedRecipient, activeTab, setSearch, setSelectedRecipient, setActiveTab } =
     useRecipientStore();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useRecipients(search);
   const recipients = data?.pages.flatMap((p) => p.data) ?? [];
@@ -59,8 +59,8 @@ export function RecipientPage() {
             <View style={styles.page}>
               <RecipientList
                 recipients={recipients}
-                selectedId={selectedId ?? undefined}
-                onSelect={(recipient) => setSelectedId(recipient.id)}
+                selectedId={selectedRecipient?.id}
+                onSelect={(recipient) => setSelectedRecipient(recipient)}
                 onEndReached={() => hasNextPage && fetchNextPage()}
                 isFetchingNextPage={isFetchingNextPage}
               />
@@ -70,8 +70,8 @@ export function RecipientPage() {
               {hasPermissions ? (
                 <RecipientList
                   recipients={contactRecipients}
-                  selectedId={selectedId ?? undefined}
-                  onSelect={(recipient) => setSelectedId(recipient.id)}
+                  selectedId={selectedRecipient?.id}
+                  onSelect={(recipient) => setSelectedRecipient(recipient)}
                 />
               ) : (
                 <ContactsPermission onRequestPermission={requestPermissions} />
@@ -79,19 +79,9 @@ export function RecipientPage() {
             </View>
           )}
         </View>
-        {selectedId ? (
+        {selectedRecipient ? (
           <View style={styles.buttonContainer}>
-            <Button
-              title="Continue"
-              onPress={() =>
-                router.push({
-                  pathname: '/transfer',
-                  params: {
-                    recipientId: selectedId,
-                  },
-                })
-              }
-            />
+            <Button title="Continue" onPress={() => router.push('/transfer')} />
           </View>
         ) : null}
       </View>

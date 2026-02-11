@@ -1,7 +1,7 @@
-import { haptic } from '@/features/shared/lib/haptics';
+import { haptic } from '@/lib/haptics';
 import { useEffect, useRef, useState } from 'react';
 import { Pressable, Text, TextInput, View } from 'react-native';
-import { getCellStyle, pinInputStyles as styles } from './pin-input.styles';
+import { getDotStyle, pinInputStyles as styles } from './pin-input.styles';
 import { PinInputProps } from './pin-input.types';
 
 export const PinInput = ({
@@ -49,16 +49,14 @@ export const PinInput = ({
         accessibilityRole="none"
         accessible={false}>
         {Array.from({ length }, (_, index) => {
-          const char = value[index] ?? '';
+          const isFilled = index < value.length;
           const isCellFocused = isFocused && index === value.length;
-          const isFilled = char !== '';
 
           return (
             <View
               key={index}
-              style={[styles.cell, getCellStyle(isCellFocused, isFilled, error, disabled)]}>
-              <Text style={styles.cellText}>{isFilled ? (secure ? '\u2022' : char) : ''}</Text>
-            </View>
+              style={[styles.dot, getDotStyle(isCellFocused, isFilled, error, disabled)]}
+            />
           );
         })}
       </Pressable>

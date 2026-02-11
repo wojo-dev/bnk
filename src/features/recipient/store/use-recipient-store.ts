@@ -1,21 +1,22 @@
+import { Recipient } from '@/features/recipient/types/recipient.types';
 import { create } from 'zustand';
 
 type RecipientStore = {
   search: string;
-  selectedId: string | null;
+  selectedRecipient: Recipient | null;
   activeTab: string;
   setSearch: (search: string) => void;
-  setSelectedId: (id: string | null) => void;
+  setSelectedRecipient: (recipient: Recipient | null) => void;
   setActiveTab: (tab: string) => void;
   reset: () => void;
 };
 
 export const useRecipientStore = create<RecipientStore>((set) => ({
   search: '',
-  selectedId: null,
+  selectedRecipient: null,
   activeTab: 'recents',
   setSearch: (search) => set({ search }),
-  setSelectedId: (selectedId) => set({ selectedId }),
+  setSelectedRecipient: (selectedRecipient) => set({ selectedRecipient }),
   setActiveTab: (activeTab) => set({ activeTab }),
-  reset: () => set({ search: '', selectedId: null, activeTab: 'recents' }),
+  reset: () => set({ search: '', selectedRecipient: null, activeTab: 'recents' }),
 }));

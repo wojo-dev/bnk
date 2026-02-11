@@ -16,7 +16,7 @@ export const transferDetailStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: spacing.md,
+    paddingVertical: spacing.sm + spacing.xs,
   },
   divider: {
     height: 1,

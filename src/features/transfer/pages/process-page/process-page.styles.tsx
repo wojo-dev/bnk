@@ -1,20 +1,24 @@
 import { colors } from '@/tokens/colors';
+import { scale } from '@/tokens/scale';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
-import { scale } from '@/tokens/scale';
 import { StyleSheet } from 'react-native';
 
-export const styles = StyleSheet.create({
+export const processPageStyles = StyleSheet.create({
+  safeArea: {
+    backgroundColor: colors.background.neutral,
+    flex: 1,
+  },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: spacing.md,
+    paddingHorizontal: spacing.md,
   },
   iconContainer: {
-    width: scale(120),
-    height: scale(120),
-    borderRadius: radius['2xl'],
+    width: scale(64),
+    height: scale(64),
+    borderRadius: radius.xl,
     backgroundColor: '#EEF2FF',
     borderWidth: 1,
     borderColor: '#DEE5F5',

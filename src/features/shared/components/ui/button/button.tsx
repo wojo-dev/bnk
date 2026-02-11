@@ -1,4 +1,4 @@
-import { haptic } from '@/features/shared/lib/haptics';
+import { haptic } from '@/lib/haptics';
 import { Pressable, StyleProp, Text, ViewStyle } from 'react-native';
 import { labelVariantStyle, buttonStyles as styles, variantStyle } from './button.styles';
 import { ButtonProps } from './button.types';

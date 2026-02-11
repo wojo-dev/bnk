@@ -2,19 +2,18 @@
 
 import { useBalance } from '@/features/balance/hooks/use-balance';
 import { RecipientCard } from '@/features/recipient/components/recipient-card/recipient-card';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { randomUUID } from 'expo-crypto';
-import { useLocalSearchParams, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { ScrollView, View } from 'react-native';
-import { useRecipient } from '../../hooks/use-recipient';
 import { transferPageStyles as styles } from './transfer-page.styles';
 
 export function TransferPage() {
   const { data: balance } = useBalance();
-  const { recipientId } = useLocalSearchParams<{ recipientId: string }>();
-  const { data: recipient } = useRecipient(recipientId);
+  const recipient = useRecipientStore((s) => s.selectedRecipient);
   const router = useRouter();
   const setTransferDetail = useTransferStore((s) => s.setTransferDetail);
   const setTransferRequest = useTransferStore((s) => s.setTransferRequest);

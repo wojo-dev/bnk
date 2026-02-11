@@ -4,8 +4,8 @@ import { scale } from './scale';
 
 export const typography = {
   display: {
-    fontSize: scale(32),
-    lineHeight: scale(40),
+    fontSize: scale(28),
+    lineHeight: scale(32),
     fontWeight: '700' as const,
     fontFamily: fonts.display,
     color: colors.label.text,

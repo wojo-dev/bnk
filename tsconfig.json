@@ -8,7 +8,8 @@
       "@/tokens/*": ["./src/features/shared/styles/tokens/*"],
       "@/ui/*": ["./src/features/shared/components/ui/*"],
       "@/hooks/*": ["./src/features/shared/hooks/*"],
-      "@/utils/*": ["./src/features/shared/utils/*"]
+      "@/utils/*": ["./src/features/shared/utils/*"],
+      "@/lib/*": ["./src/features/shared/lib/*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]

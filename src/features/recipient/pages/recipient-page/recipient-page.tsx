@@ -4,9 +4,9 @@ import { useContacts } from '@/features/recipient/hooks/use-contacts';
 import { useRecipients } from '@/features/recipient/hooks/use-recipients';
 import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
 import { getRecipientFromContact } from '@/features/recipient/utils/get-recipient-from-contact';
-import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
-import { haptic } from '@/features/shared/lib/haptics';
+import { haptic } from '@/lib/haptics';
 import { Button } from '@/ui/button/button';
+import { Tabs } from '@/ui/tabs/tabs';
 import { router, Stack } from 'expo-router';
 import { useCallback, useMemo, useRef } from 'react';
 import { ActivityIndicator, View } from 'react-native';
@@ -20,7 +20,7 @@ const TABS = [
 ];
 
 export function RecipientPage() {
-  const { search, selectedId, activeTab, setSearch, setSelectedId, setActiveTab } =
+  const { search, selectedRecipient, activeTab, setSearch, setSelectedRecipient, setActiveTab } =
     useRecipientStore();
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useRecipients(search);
   const recipients = data?.pages.flatMap((p) => p.data) ?? [];
@@ -36,18 +36,18 @@ export function RecipientPage() {
       const index = TABS.findIndex((t) => t.key === key);
       pagerRef.current?.setPage(index);
       setActiveTab(key);
-      setSelectedId(null);
+      setSelectedRecipient(null);
       haptic.light();
     },
-    [setActiveTab, setSelectedId],
+    [setActiveTab, setSelectedRecipient],
   );
 
   const handlePageSelected = useCallback(
     (e: { nativeEvent: { position: number } }) => {
       setActiveTab(TABS[e.nativeEvent.position].key);
-      setSelectedId(null);
+      setSelectedRecipient(null);
     },
-    [setActiveTab, setSelectedId],
+    [setActiveTab, setSelectedRecipient],
   );
 
   const handlePageScroll = useCallback(
@@ -85,9 +85,9 @@ export function RecipientPage() {
           <View key="recents" style={styles.page}>
             <RecipientList
               recipients={recipients}
-              selectedId={selectedId ?? undefined}
+              selectedId={selectedRecipient?.id}
               onSelect={(recipient) => {
-                setSelectedId(recipient.id);
+                setSelectedRecipient(recipient);
                 haptic.light();
               }}
               onEndReached={() => hasNextPage && fetchNextPage()}
@@ -98,9 +98,9 @@ export function RecipientPage() {
             {hasPermissions ? (
               <RecipientList
                 recipients={contactRecipients}
-                selectedId={selectedId ?? undefined}
+                selectedId={selectedRecipient?.id}
                 onSelect={(recipient) => {
-                  setSelectedId(recipient.id);
+                  setSelectedRecipient(recipient);
                   haptic.light();
                 }}
               />
@@ -109,19 +109,9 @@ export function RecipientPage() {
             )}
           </View>
         </PagerView>
-        {selectedId ? (
+        {selectedRecipient ? (
           <View style={styles.buttonContainer}>
-            <Button
-              title="Continue"
-              onPress={() =>
-                router.push({
-                  pathname: '/transfer',
-                  params: {
-                    recipientId: selectedId,
-                  },
-                })
-              }
-            />
+            <Button title="Continue" onPress={() => router.push('/transfer')} />
           </View>
         ) : null}
       </View>

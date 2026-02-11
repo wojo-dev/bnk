@@ -1,5 +1,6 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
 import { TransactionList } from '@/features/transaction/components/transaction-list/transaction-list';
 import { useTransaction } from '@/features/transaction/hooks/use-transaction';
 import { Card } from '@/ui/card/card';
@@ -17,6 +18,7 @@ import { styles } from './home-page.styles';
 
 export function HomePage() {
   const router = useRouter();
+  const setSelectedRecipient = useRecipientStore((s) => s.setSelectedRecipient);
   const { data: profile } = useProfile();
   const { data: balance } = useBalance();
   const { data, isLoading } = useTransaction();
@@ -51,14 +53,10 @@ export function HomePage() {
           />
         </View>
         <RecentRecipients
-          onPress={(item) =>
-            router.push({
-              pathname: '/transfer',
-              params: {
-                recipientId: item.id,
-              },
-            })
-          }
+          onPress={(item) => {
+            setSelectedRecipient(item);
+            router.push('/transfer');
+          }}
         />
         <View style={styles.container}>
           <SectionTitle

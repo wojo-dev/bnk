@@ -1,11 +1,12 @@
 import { Button } from '@/ui/button/button';
 import { Chip } from '@/ui/chip/chip';
-import { Input } from '@/ui/input/input';
 import { TextArea } from '@/ui/textarea/textarea';
+import { colors } from '@/tokens/colors';
 import { Feather } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
+import { Keyboard, Text, TextInput, TouchableWithoutFeedback, View } from 'react-native';
 import { transferFormStyles as styles } from './transfer-form.styles';
 import {
   defaultValues,
@@ -17,6 +18,7 @@ import {
 const QUICK_AMOUNTS = [50, 100, 150, 250, 500];
 
 export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormProps) => {
+  const [amountFocused, setAmountFocused] = useState(false);
   const form = useForm<TransferFormSchema>({
     resolver: zodResolver(transferFormSchema),
     defaultValues: {
@@ -40,17 +42,35 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
             name="amount"
             control={form.control}
             render={({ field, fieldState }) => (
-              <View>
-                <Input
-                  title="Amount"
-                  placeholder="Amount"
-                  keyboardType="numeric"
-                  icon={<Text style={styles.currencyLabel}>RM</Text>}
-                  value={field.value ? field.value.toString() : ''}
-                  onChangeText={(text) => field.onChange(Number(text) || 0)}
-                  onBlur={field.onBlur}
-                  error={fieldState.error?.message}
-                />
+              <View style={styles.amountContainer}>
+                <Text style={styles.amountLabel}>Amount</Text>
+                <View
+                  style={[
+                    styles.amountInputWrapper,
+                    amountFocused && styles.amountInputWrapperFocused,
+                    fieldState.error && styles.amountInputWrapperError,
+                  ]}>
+                  <Text style={styles.amountCurrency}>RM</Text>
+                  <TextInput
+                    style={styles.amountInput}
+                    placeholder="0.00"
+                    placeholderTextColor={colors.label.placeholder}
+                    keyboardType="numeric"
+                    value={field.value ? field.value.toString() : ''}
+                    onChangeText={(text) => field.onChange(Number(text) || 0)}
+                    onFocus={() => setAmountFocused(true)}
+                    onBlur={() => {
+                      setAmountFocused(false);
+                      field.onBlur();
+                    }}
+                  />
+                </View>
+                {fieldState.error && (
+                  <View style={styles.amountError}>
+                    <Feather name="alert-circle" size={14} color={colors.label.error} />
+                    <Text style={styles.amountErrorText}>{fieldState.error.message}</Text>
+                  </View>
+                )}
                 <View style={styles.chipGroup}>
                   {QUICK_AMOUNTS.map((amount) => (
                     <Chip
@@ -79,6 +99,7 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
             )}
           />
 
+          <View style={styles.spacer} />
           <Button
             onPress={form.handleSubmit(onSubmit)}
             title={`Send RM ${form.watch('amount') || '0.00'}`}

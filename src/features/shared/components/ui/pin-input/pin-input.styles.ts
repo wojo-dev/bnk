@@ -1,10 +1,10 @@
 import { colors } from '@/tokens/colors';
-import { radius, spacing } from '@/tokens/spacing';
+import { spacing } from '@/tokens/spacing';
 import { scale } from '@/tokens/scale';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
-const CELL_SIZE = scale(48);
+const DOT_SIZE = scale(16);
 
 export const pinInputStyles = StyleSheet.create({
   container: {
@@ -13,38 +13,33 @@ export const pinInputStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'center',
-    gap: spacing.sm,
+    gap: spacing.md,
   },
-  cell: {
-    width: CELL_SIZE,
-    height: CELL_SIZE,
+  dot: {
+    width: DOT_SIZE,
+    height: DOT_SIZE,
+    borderRadius: DOT_SIZE / 2,
     borderWidth: 1.5,
-    borderRadius: radius.md,
-    borderColor: colors.border.input,
-    backgroundColor: colors.background.neutral,
-    alignItems: 'center',
-    justifyContent: 'center',
+    borderColor: colors.border.secondary,
+    backgroundColor: 'transparent',
   },
-  cellFocused: {
-    borderColor: colors.border.focus,
-    borderWidth: 2,
+  dotFilled: {
+    backgroundColor: colors.primary,
+    borderColor: colors.primary,
   },
-  cellFilled: {
-    borderColor: colors.border.primary,
+  dotFocused: {
+    borderColor: colors.primary,
   },
-  cellError: {
+  dotError: {
     borderColor: colors.border.error,
   },
-  cellDisabled: {
-    borderColor: colors.border.disabled,
-    backgroundColor: colors.background.background,
+  dotErrorFilled: {
+    backgroundColor: colors.border.error,
+    borderColor: colors.border.error,
   },
-  cellText: {
-    fontSize: typography.heading.fontSize,
-    fontWeight: '600',
-    fontFamily: typography.heading.fontFamily,
-    color: colors.label.text,
-    textAlign: 'center',
+  dotDisabled: {
+    borderColor: colors.border.disabled,
+    opacity: 0.5,
   },
   hiddenInput: {
     position: 'absolute',
@@ -61,15 +56,16 @@ export const pinInputStyles = StyleSheet.create({
   },
 });
 
-export const getCellStyle = (
+export const getDotStyle = (
   isFocused: boolean,
   isFilled: boolean,
   error?: string,
   disabled?: boolean,
 ) => {
-  if (disabled) return pinInputStyles.cellDisabled;
-  if (error) return pinInputStyles.cellError;
-  if (isFocused) return pinInputStyles.cellFocused;
-  if (isFilled) return pinInputStyles.cellFilled;
+  if (disabled) return pinInputStyles.dotDisabled;
+  if (error && isFilled) return pinInputStyles.dotErrorFilled;
+  if (error) return pinInputStyles.dotError;
+  if (isFilled) return pinInputStyles.dotFilled;
+  if (isFocused) return pinInputStyles.dotFocused;
   return undefined;
 };

@@ -1,4 +1,5 @@
 import { Button } from '@/ui/button/button';
+import { Ionicons } from '@expo/vector-icons';
 import { Alert, Share } from 'react-native';
 import { styles } from './share-button.styles';
 import { ShareButtonProps } from './share-button.types';
@@ -36,6 +37,7 @@ export function ShareButton({ data, style }: ShareButtonProps) {
 
   return (
     <Button
+      icon={<Ionicons name="share-outline" size={24} color="black" />}
       style={[styles.button, style]}
       title="Share"
       variant="secondary"

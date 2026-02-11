@@ -1,27 +1,35 @@
+import { sizes } from '@/features/shared/styles/tokens/sizes';
 import { colors } from '@/tokens/colors';
+import { greenShadow } from '@/tokens/shadows';
 import { spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  safeArea: {
+  container: {
     flex: 1,
-    backgroundColor: colors.background.background,
+    backgroundColor: colors.background.neutral,
   },
   scrollContent: {
-    flexGrow: 1,
+    backgroundColor: colors.background.neutral,
     alignItems: 'center',
-    padding: spacing.md,
-    paddingTop: spacing['2xl'],
+    paddingHorizontal: spacing.md,
+    paddingTop: sizes['6xl'],
+  },
+  checkCircleWrapper: {
+    width: sizes['6xl'],
+    height: sizes['6xl'],
+    borderRadius: sizes['6xl'] / 2,
+    marginBottom: spacing.lg,
+    ...greenShadow,
   },
   checkCircle: {
-    width: 96,
-    height: 96,
-    borderRadius: 48,
-    backgroundColor: colors.background.success,
+    width: sizes['6xl'],
+    height: sizes['6xl'],
+    borderRadius: sizes['6xl'] / 2,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: spacing.lg,
+    overflow: 'hidden',
   },
   title: {
     ...typography.display,

@@ -3,10 +3,10 @@ import { ShareButton } from '@/features/transfer/components/share-button/share-b
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
-import { Feather } from '@expo/vector-icons';
+import { Feather, Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import { ScrollView, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './success-page.styles';
 
 export function SuccessPage() {
@@ -19,10 +19,16 @@ export function SuccessPage() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        <View style={styles.checkCircle}>
-          <Feather name="check" size={48} color="#16A34A" />
+        <View style={styles.checkCircleWrapper}>
+          <LinearGradient
+            colors={['#DCFCE7', '#BBF7D0', '#86EFAC']}
+            start={{ x: 0.5, y: 0 }}
+            end={{ x: 0.5, y: 1 }}
+            style={styles.checkCircle}>
+            <Feather name="check" size={48} color="#16A34A" />
+          </LinearGradient>
         </View>
 
         <Text style={styles.title}>Transfer Successful!</Text>
@@ -32,12 +38,12 @@ export function SuccessPage() {
 
         <View style={styles.actionRow}>
           <ShareButton data={transferDetail} style={styles.actionButton} />
-          <Button style={styles.actionButton} title="Receipt" variant="secondary" />
         </View>
 
         <Button
           style={styles.backButton}
           title="Back to Home"
+          icon={<Ionicons name="arrow-back" size={24} color="white" />}
           variant="primary"
           onPress={() => {
             clearTransferDetail();
@@ -48,6 +54,6 @@ export function SuccessPage() {
 
         <Text style={styles.transactionId}>Transaction ID: {transferDetail.reference}</Text>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
