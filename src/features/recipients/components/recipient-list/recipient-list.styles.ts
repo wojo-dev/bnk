@@ -1,7 +1,5 @@
 import { colors } from '@/tokens/colors';
-import { sizes } from '@/tokens/sizes';
-import { radius, spacing } from '@/tokens/spacing';
-import { typography } from '@/tokens/typography';
+import { spacing } from '@/tokens/spacing';
 import { StyleSheet } from 'react-native';
 
 export const recipientListStyles = StyleSheet.create({
@@ -12,50 +10,5 @@ export const recipientListStyles = StyleSheet.create({
   contentContainer: {
     paddingVertical: spacing.sm,
     gap: spacing.sm,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
-    marginHorizontal: spacing.sm,
-    gap: spacing.md,
-    borderWidth: 1.5,
-    borderColor: colors.border.input,
-    borderRadius: radius.xl,
-    backgroundColor: colors.background.neutral,
-  },
-  rowSelected: {
-    borderColor: colors.primary,
-    backgroundColor: '#EEF2FF',
-  },
-  rowContent: {
-    flex: 1,
-    gap: 2,
-  },
-  name: {
-    fontSize: typography.body.fontSize,
-    fontWeight: '600',
-    fontFamily: typography.body.fontFamily,
-    color: colors.label.text,
-  },
-  subtitle: {
-    fontSize: typography.caption.fontSize,
-    fontWeight: typography.caption.fontWeight,
-    fontFamily: typography.caption.fontFamily,
-    color: colors.border.icon,
-  },
-  radio: {
-    width: sizes.xl,
-    height: sizes.xl,
-    borderRadius: radius.lg,
-    borderWidth: sizes['xs'],
-    borderColor: colors.border.input,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  radioSelected: {
-    borderColor: colors.primary,
-    backgroundColor: colors.primary,
   },
 });

@@ -2,5 +2,5 @@
 import { balance } from '@/server/balance';
 
 export async function GET() {
-  return Response.json({ balance: balance.amount, success: true });
+  return Response.json({ balance: { amount: balance.amount }, success: true });
 }

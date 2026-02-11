@@ -1,7 +1,7 @@
 // input styles
 
 import { colors } from '@/tokens/colors';
-import { spacing } from '@/tokens/spacing';
+import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
@@ -13,12 +13,21 @@ export const inputStyles = StyleSheet.create({
     fontSize: typography.label.fontSize,
     color: typography.label.color,
   },
-  input: {
+  inputWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
     borderWidth: 1,
-    padding: 12,
-    borderRadius: 8,
+    borderRadius: radius.md,
     borderColor: colors.border.input,
     backgroundColor: colors.background.neutral,
+    paddingHorizontal: spacing.md,
+  },
+  icon: {
+    marginRight: spacing.sm,
+  },
+  input: {
+    flex: 1,
+    paddingVertical: spacing.md,
   },
   error: {
     fontSize: typography.error.fontSize,

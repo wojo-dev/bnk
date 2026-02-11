@@ -1,3 +1,4 @@
+import { Recipient } from '@/features/recipients/types/recipient';
 import { z } from 'zod';
 
 export const transferFormSchema = z.object({
@@ -14,4 +15,10 @@ export const defaultValues: TransferFormSchema = {
   description: '',
   date: new Date().toISOString(),
   recipientId: '',
+};
+
+export type TransferFormProps = {
+  recipient: Recipient;
+  balance: number;
+  onTransfer: (data: TransferFormSchema) => Promise<void>;
 };

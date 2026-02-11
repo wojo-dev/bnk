@@ -1,17 +1,18 @@
-import { Recipient } from '@/features/recipients/types/recipient';
-import { Input } from '@/features/shared/components/ui/input/input';
 import { Button } from '@/ui/button/button';
+import { Chip } from '@/ui/chip/chip';
+import { Input } from '@/ui/input/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { Text, View } from 'react-native';
 import { transferFormStyles as styles } from './transfer-form.styles';
-import { TransferFormSchema, defaultValues, transferFormSchema } from './transfer-form.types';
+import {
+  defaultValues,
+  TransferFormProps,
+  transferFormSchema,
+  TransferFormSchema,
+} from './transfer-form.types';
 
-type TransferFormProps = {
-  recipient: Recipient;
-  balance: number;
-  onTransfer: (data: TransferFormSchema) => Promise<void>;
-};
+const QUICK_AMOUNTS = [50, 100, 150, 250, 500];
 
 export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormProps) => {
   const form = useForm<TransferFormSchema>({
@@ -36,15 +37,28 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
           name="amount"
           control={form.control}
           render={({ field, fieldState }) => (
-            <Input
-              title="Amount"
-              placeholder="Amount"
-              keyboardType="numeric"
-              value={field.value ? field.value.toString() : ''}
-              onChangeText={(text) => field.onChange(Number(text) || 0)}
-              onBlur={field.onBlur}
-              error={fieldState.error?.message}
-            />
+            <View>
+              <Input
+                title="Amount"
+                placeholder="Amount"
+                keyboardType="numeric"
+                icon={<Text style={styles.currencyLabel}>RM</Text>}
+                value={field.value ? field.value.toString() : ''}
+                onChangeText={(text) => field.onChange(Number(text) || 0)}
+                onBlur={field.onBlur}
+                error={fieldState.error?.message}
+              />
+              <View style={styles.chipGroup}>
+                {QUICK_AMOUNTS.map((amount) => (
+                  <Chip
+                    key={amount}
+                    label={`RM ${amount}`}
+                    selected={field.value === amount}
+                    onPress={() => field.onChange(amount)}
+                  />
+                ))}
+              </View>
+            </View>
           )}
         />
         <Controller
@@ -61,7 +75,7 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
             />
           )}
         />
-        <Text>{recipient?.name}</Text>
+
         <Button
           onPress={form.handleSubmit(onSubmit)}
           title={form.formState.isSubmitting ? 'Submitting...' : 'Submit'}

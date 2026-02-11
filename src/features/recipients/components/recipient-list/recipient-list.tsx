@@ -1,41 +1,8 @@
-import { Avatar } from '@/ui/avatar/avatar';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FlashList } from '@shopify/flash-list';
-import { ActivityIndicator, Pressable, Text, View } from 'react-native';
-import { Recipient } from '../../types/recipient';
+import { ActivityIndicator, View } from 'react-native';
+import { RecipientCard } from '../recipient-card/recipient-card';
 import { recipientListStyles as styles } from './recipient-list.styles';
 import { RecipientListProps } from './recipient-list.types';
-
-const RadioIndicator = ({ selected }: { selected: boolean }) => (
-  <View style={[styles.radio, selected && styles.radioSelected]}>
-    {selected && <MaterialCommunityIcons name="check" size={18} color="#FFFFFF" />}
-  </View>
-);
-
-const RecipientRow = ({
-  item,
-  selected,
-  onPress,
-}: {
-  item: Recipient;
-  selected: boolean;
-  onPress: () => void;
-}) => (
-  <Pressable
-    style={[styles.row, selected && styles.rowSelected]}
-    onPress={onPress}
-    accessibilityRole="radio"
-    accessibilityState={{ selected }}>
-    <Avatar name={item.name} />
-    <View style={styles.rowContent}>
-      <Text style={styles.name}>{item.name}</Text>
-      <Text style={styles.subtitle}>
-        {item.bank} {item.maskedNumber}
-      </Text>
-    </View>
-    <RadioIndicator selected={selected} />
-  </Pressable>
-);
 
 export const RecipientList = ({
   recipients,
@@ -51,7 +18,7 @@ export const RecipientList = ({
       <FlashList
         data={recipients}
         renderItem={({ item }) => (
-          <RecipientRow
+          <RecipientCard
             item={item}
             selected={item.id === selectedId}
             onPress={() => onSelect?.(item)}

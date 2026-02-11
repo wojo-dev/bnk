@@ -4,28 +4,33 @@ import { Text, TextInput, View } from 'react-native';
 import { getBorderColor, inputStyles } from './input.styles';
 import { InputProps } from './input.types';
 
-export const Input = ({ disabled, title, error, ...props }: InputProps) => {
+export const Input = ({ disabled, title, error, icon, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View style={inputStyles.container}>
-      <Text id="input-label" style={inputStyles.label}>
-        {title}
-      </Text>
+      {title && (
+        <Text id="input-label" style={inputStyles.label}>
+          {title}
+        </Text>
+      )}
 
-      <TextInput
-        aria-labelledby="input-label"
-        aria-disabled={disabled}
-        style={[inputStyles.input, { borderColor: getBorderColor(isFocused, error) }]}
-        editable={!disabled}
-        onFocus={() => {
-          setIsFocused(true);
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-        }}
-        {...props}
-      />
+      <View style={[inputStyles.inputWrapper, { borderColor: getBorderColor(isFocused, error) }]}>
+        {icon && <View style={inputStyles.icon}>{icon}</View>}
+        <TextInput
+          aria-labelledby="input-label"
+          aria-disabled={disabled}
+          style={inputStyles.input}
+          editable={!disabled}
+          onFocus={() => {
+            setIsFocused(true);
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+          }}
+          {...props}
+        />
+      </View>
 
       {error && <Text style={inputStyles.error}>{error}</Text>}
     </View>
