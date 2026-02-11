@@ -12,7 +12,7 @@ export const buttonStyles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius: radius.xl,
+    borderRadius: radius.md + radius.md,
     paddingVertical: spacing.sm + spacing.sm,
     paddingHorizontal: spacing.md,
     gap: spacing.xs,

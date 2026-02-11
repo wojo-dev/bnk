@@ -52,6 +52,13 @@ export const typography = {
     fontFamily: fonts.input,
     color: colors.label.text,
   },
+  textarea: {
+    fontSize: scale(16),
+    lineHeight: scale(16),
+    fontWeight: '400' as const,
+    fontFamily: fonts.body,
+    color: colors.label.text,
+  },
   placeholder: {
     fontSize: scale(16),
     lineHeight: scale(24),

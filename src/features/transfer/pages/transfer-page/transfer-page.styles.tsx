@@ -8,10 +8,16 @@ export const transferPageStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.neutral,
-    paddingHorizontal: spacing.md + spacing.xs,
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   content: {
+    flex: 1,
     marginTop: spacing.md,
     gap: spacing.sm,
+  },
+  section: {
+    paddingHorizontal: spacing.md,
   },
 });

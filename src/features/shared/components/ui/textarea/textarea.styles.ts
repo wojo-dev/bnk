@@ -13,8 +13,10 @@ export const textareaStyles = StyleSheet.create({
     gap: spacing.xs,
   },
   label: {
-    fontSize: typography.label.fontSize,
     color: typography.label.color,
+    fontSize: typography.medium.fontSize,
+    fontWeight: '600',
+    paddingBottom: spacing.xs,
   },
   inputWrapper: {
     borderWidth: 1,
@@ -27,10 +29,10 @@ export const textareaStyles = StyleSheet.create({
   input: {
     minHeight: 100,
     textAlignVertical: 'top',
-    fontSize: typography.input.fontSize,
-    lineHeight: typography.input.lineHeight,
-    fontFamily: typography.input.fontFamily,
-    color: typography.input.color,
+    fontSize: typography.textarea.fontSize,
+    lineHeight: typography.textarea.lineHeight,
+    fontFamily: typography.textarea.fontFamily,
+    color: typography.textarea.color,
   },
   footer: {
     flexDirection: 'row',

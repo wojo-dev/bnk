@@ -1,9 +1,9 @@
 // components/textarea.tsx
+import { colors } from '@/tokens/colors';
 import { Feather } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { colors } from '@/tokens/colors';
-import { errorStyles, getBorderColor, textareaStyles } from './textarea.styles';
+import { errorStyles, getBorderColor, textareaStyles as styles } from './textarea.styles';
 import { TextAreaProps } from './textarea.types';
 
 export const TextArea = ({
@@ -19,39 +19,41 @@ export const TextArea = ({
   const hasError = !!error;
 
   return (
-    <View style={textareaStyles.container}>
+    <View style={styles.container}>
       {title && (
-        <Text id="textarea-label" style={textareaStyles.label}>
+        <Text id="textarea-label" style={styles.label}>
           {title}
         </Text>
       )}
 
       <View
         style={[
-          textareaStyles.inputWrapper,
+          styles.inputWrapper,
           { borderColor: getBorderColor(isFocused, error) },
           hasError && errorStyles.inputWrapperError,
         ]}>
         <TextInput
           aria-labelledby="textarea-label"
           aria-disabled={disabled}
-          style={[textareaStyles.input, hasError && errorStyles.inputError, style]}
+          style={[styles.input, hasError && errorStyles.inputError, style]}
           editable={!disabled}
           multiline
           maxLength={maxLength}
           value={value}
-          onFocus={() => {
-            setIsFocused(true);
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-          }}
           {...props}
+          onFocus={(e) => {
+            setIsFocused(true);
+            props.onFocus?.(e);
+          }}
+          onBlur={(e) => {
+            setIsFocused(false);
+            props.onBlur?.(e);
+          }}
         />
       </View>
 
       {(error || maxLength) && (
-        <View style={textareaStyles.footer}>
+        <View style={styles.footer}>
           {error ? (
             <View style={errorStyles.errorContainer}>
               <Feather name="alert-circle" size={14} color={colors.label.error} />
@@ -61,7 +63,7 @@ export const TextArea = ({
             <View />
           )}
           {maxLength && (
-            <Text style={textareaStyles.charCount}>
+            <Text style={styles.charCount}>
               {value?.length ?? 0}/{maxLength}
             </Text>
           )}

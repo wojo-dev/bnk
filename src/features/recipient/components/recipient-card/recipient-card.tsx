@@ -1,3 +1,4 @@
+import { haptic } from '@/lib/haptics';
 import { Avatar } from '@/ui/avatar/avatar';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
@@ -20,7 +21,10 @@ export const RecipientCard = React.memo(function RecipientCard({
   return (
     <Pressable
       style={[styles.row, variant === 'radio' && selected && styles.rowSelected]}
-      onPress={onPress}
+      onPress={() => {
+        haptic.light();
+        onPress();
+      }}
       accessibilityRole={variant === 'radio' ? 'radio' : 'button'}
       accessibilityState={variant === 'radio' ? { selected } : undefined}>
       <Avatar name={item.name} />

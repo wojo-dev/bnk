@@ -10,11 +10,15 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
   const [securityLevel, setSecurityLevel] = useState<LocalAuthentication.SecurityLevel>(
     LocalAuthentication.SecurityLevel.NONE,
   );
+  const [ready, setReady] = useState(false);
   const onSuccessRef = useRef(onSuccess);
   onSuccessRef.current = onSuccess;
 
   useEffect(() => {
-    LocalAuthentication.getEnrolledLevelAsync().then(setSecurityLevel);
+    LocalAuthentication.getEnrolledLevelAsync().then((level) => {
+      setSecurityLevel(level);
+      setReady(true);
+    });
   }, []);
 
   const authenticate = useCallback(async () => {
@@ -36,8 +40,8 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
 
     const authResult = await LocalAuthentication.authenticateAsync({
       promptMessage: isBiometric ? 'Verify with Face ID / Fingerprint' : 'Verify your identity',
-      fallbackLabel: 'Use Passcode',
-      disableDeviceFallback: false,
+      fallbackLabel: 'Use PIN instead',
+      disableDeviceFallback: true,
     });
 
     if (authResult.success) {
@@ -49,5 +53,5 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
     }
   }, [securityLevel]);
 
-  return { result, requiresPin, securityLevel, authenticate };
+  return { result, requiresPin, securityLevel, ready, authenticate };
 }

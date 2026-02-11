@@ -61,17 +61,17 @@ export function ProcessPage() {
     handleTransfer();
   }, [setAuthTimestamp, handleTransfer]);
 
-  const { result, requiresPin, securityLevel, authenticate } = useBiometric({
+  const { result, requiresPin, securityLevel, ready, authenticate } = useBiometric({
     onSuccess: onAuthSuccess,
   });
 
   const authTriggered = useRef(false);
   useEffect(() => {
-    if (!authTriggered.current) {
+    if (ready && !authTriggered.current) {
       authTriggered.current = true;
       authenticate();
     }
-  }, [authenticate]);
+  }, [ready, authenticate]);
 
   const [showPin, setShowPin] = useState(false);
   const [pin, setPin] = useState('');
@@ -180,8 +180,25 @@ export function ProcessPage() {
           <Text style={styles.errorText}>
             {result.cancelled ? 'Verification cancelled' : result.error || 'Authentication failed'}
           </Text>
-          {!result.cancelled && <Button onPress={authenticate} title="Try Again" />}
-          <Button onPress={() => router.back()} title="Go Back" variant="secondary" />
+          {!result.cancelled && (
+            <Button
+              icon={
+                <MaterialCommunityIcons
+                  name="refresh"
+                  size={24}
+                  color={colors.background.neutral}
+                />
+              }
+              onPress={authenticate}
+              title="Try Again"
+            />
+          )}
+          <Button
+            icon={<MaterialCommunityIcons name="arrow-left" size={24} color={colors.label.text} />}
+            onPress={() => router.back()}
+            title="Go Back"
+            variant="secondary"
+          />
         </View>
       </SafeAreaView>
     );

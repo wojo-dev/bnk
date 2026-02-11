@@ -1,14 +1,16 @@
-import { colors } from '@/tokens/colors';
-import { radius, spacing } from '@/features/shared/styles/tokens/spacing';
 import { scale } from '@/features/shared/styles/tokens/scale';
+import { radius, spacing } from '@/features/shared/styles/tokens/spacing';
+import { colors } from '@/tokens/colors';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
 export const transferFormStyles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingVertical: spacing.xs + spacing.sm,
+    paddingTop: spacing.xs + spacing.sm,
+    paddingBottom: spacing.xl,
     gap: spacing.sm + spacing.xs,
+    paddingHorizontal: spacing.md,
   },
   spacer: {
     flex: 1,
@@ -25,8 +27,8 @@ export const transferFormStyles = StyleSheet.create({
   },
   amountLabel: {
     fontSize: typography.medium.fontSize,
-    color: colors.primary,
     fontWeight: '600',
+    paddingBottom: spacing.xs,
   },
   amountInputWrapper: {
     flexDirection: 'row',
@@ -37,6 +39,7 @@ export const transferFormStyles = StyleSheet.create({
     backgroundColor: colors.background.neutral,
     paddingHorizontal: spacing.lg,
     paddingVertical: spacing.md,
+    marginBottom: spacing.md,
   },
   amountInputWrapperFocused: {
     borderColor: colors.border.focus,
@@ -67,5 +70,9 @@ export const transferFormStyles = StyleSheet.create({
   amountErrorText: {
     fontSize: typography.error.fontSize,
     color: colors.label.error,
+  },
+  section: {
+    paddingHorizontal: spacing.xs,
+    gap: spacing.lg,
   },
 });

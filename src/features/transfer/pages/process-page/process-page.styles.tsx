@@ -11,9 +11,10 @@ export const processPageStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
+    // alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.lg,
+    gap: spacing.md,
   },
   iconContainer: {
     width: scale(64),

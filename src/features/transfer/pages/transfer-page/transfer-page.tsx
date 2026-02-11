@@ -19,15 +19,20 @@ export function TransferPage() {
   const setTransferRequest = useTransferStore((s) => s.setTransferRequest);
   return (
     <View style={styles.container}>
-      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>
+      <ScrollView
+        keyboardShouldPersistTaps="handled"
+        automaticallyAdjustKeyboardInsets
+        contentContainerStyle={styles.scrollContent}>
         {recipient && (
           <View style={styles.content}>
-            <RecipientCard
-              item={recipient}
-              selected={false}
-              variant="change"
-              onPress={() => router.back()}
-            />
+            <View style={styles.section}>
+              <RecipientCard
+                item={recipient}
+                selected={false}
+                variant="change"
+                onPress={() => router.back()}
+              />
+            </View>
             <TransferForm
               recipient={recipient}
               balance={balance?.data.balance.amount ?? 0}
