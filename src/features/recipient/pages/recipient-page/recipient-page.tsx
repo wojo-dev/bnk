@@ -29,7 +29,12 @@ export function RecipientPage() {
   const pagerRef = useRef<PagerView>(null);
   const scrollOffset = useSharedValue(0);
 
-  const contactRecipients = useMemo(() => contacts.map(getRecipientFromContact), [contacts]);
+  const contactRecipients = useMemo(() => {
+    const all = contacts.map(getRecipientFromContact);
+    if (!search) return all;
+    const term = search.toLowerCase();
+    return all.filter((r) => r.name.toLowerCase().includes(term) || r.accountNumber.includes(term));
+  }, [contacts, search]);
 
   const handleTabChange = useCallback(
     (key: string) => {
@@ -99,6 +104,7 @@ export function RecipientPage() {
               <RecipientList
                 recipients={contactRecipients}
                 selectedId={selectedRecipient?.id}
+                extraData={search}
                 onSelect={(recipient) => {
                   setSelectedRecipient(recipient);
                   haptic.light();

@@ -5,16 +5,16 @@ export default function TabLayout() {
     <NativeTabs
       minimizeBehavior="onScrollDown"
       backgroundColor="white"
-      tintColor="white"
+      tintColor="#057efa"
       indicatorColor="white"
       labelStyle={{ selected: { color: 'black' } }}>
       <NativeTabs.Trigger name="index">
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/home.png')} />
+        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/bm.png')} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="recipients" role="search">
         <NativeTabs.Trigger.Label>Search</NativeTabs.Trigger.Label>
-        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/explore.png')} />
+        <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/sd.png')} />
       </NativeTabs.Trigger>
     </NativeTabs>
   );

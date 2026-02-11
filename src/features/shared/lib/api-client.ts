@@ -16,7 +16,7 @@ function getBaseUrl() {
   if (host) {
     return `http://${host}/api`;
   }
-  return 'http://localhost:8081/api';
+  return 'http://192.168.0.5:8081/api';
 }
 
 export class ApiError extends Error {

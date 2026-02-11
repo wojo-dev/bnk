@@ -18,6 +18,7 @@ export const transactionListStyles = StyleSheet.create({
     letterSpacing: 1,
     color: colors.label.primary,
     textTransform: 'uppercase',
+    paddingTop: spacing.sm,
   },
 
   contentContainer: {

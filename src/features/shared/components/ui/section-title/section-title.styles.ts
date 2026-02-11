@@ -18,10 +18,10 @@ export const sectionTitleStyles = StyleSheet.create({
     color: colors.label.text,
   },
   action: {
-    fontSize: typography.badge.fontSize,
-    lineHeight: typography.badge.lineHeight,
+    fontSize: typography.caption.fontSize,
+    lineHeight: typography.caption.lineHeight,
     fontWeight: '600' as const,
-    fontFamily: typography.badge.fontFamily,
+    fontFamily: typography.caption.fontFamily,
     color: colors.accent.primary,
   },
 });

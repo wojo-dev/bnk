@@ -12,6 +12,7 @@ export const RecipientList = ({
   onSelect,
   onEndReached,
   isFetchingNextPage,
+  extraData,
   style,
   ...props
 }: RecipientListProps) => {
@@ -34,6 +35,7 @@ export const RecipientList = ({
         data={recipients}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
+        extraData={extraData}
         contentContainerStyle={styles.contentContainer}
         onEndReached={onEndReached}
         isFetchingNextPage={isFetchingNextPage}

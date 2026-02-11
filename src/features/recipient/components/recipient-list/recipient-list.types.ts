@@ -7,4 +7,5 @@ export type RecipientListProps = ViewProps & {
   onSelect?: (recipient: Recipient) => void;
   onEndReached?: () => void;
   isFetchingNextPage?: boolean;
+  extraData?: unknown;
 };

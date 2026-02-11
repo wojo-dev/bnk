@@ -31,17 +31,17 @@ export function LoginPage() {
     }
   }, [login]);
 
-  const { result, requiresPin, securityLevel, authenticate } = useBiometric({
+  const { result, requiresPin, securityLevel, ready, authenticate } = useBiometric({
     onSuccess: handleBiometricSuccess,
   });
 
   const authTriggered = useRef(false);
   useEffect(() => {
-    if (!authTriggered.current) {
+    if (ready && !authTriggered.current) {
       authTriggered.current = true;
       authenticate();
     }
-  }, [authenticate]);
+  }, [ready, authenticate]);
 
   const [showPin, setShowPin] = useState(false);
   const [pin, setPin] = useState('');
