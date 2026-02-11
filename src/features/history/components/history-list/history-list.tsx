@@ -2,8 +2,9 @@ import { getFormatTime } from '@/hooks/get-format-date';
 import { getFormatPrice } from '@/hooks/get-format-price';
 import { Avatar } from '@/ui/avatar/avatar';
 import { Badge } from '@/ui/badge/badge';
-import { FlashList } from '@shopify/flash-list';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { List } from '@/ui/list/list';
+import React, { useCallback, useMemo } from 'react';
+import { Text, View } from 'react-native';
 import { getHistorySections } from '../../hooks/get-history-sections';
 import { History } from '../../types/history';
 import { badgeLabel, badgeVariant, historyListStyles as styles } from './history-list.styles';
@@ -14,7 +15,7 @@ const SectionHeader = ({ title }: { title: string }) => (
   </View>
 );
 
-const TransactionRow = ({ item }: { item: History }) => {
+const TransactionRow = React.memo(function TransactionRow({ item }: { item: History }) {
   return (
     <View style={styles.row}>
       <Avatar name={item.name} />
@@ -39,7 +40,7 @@ const TransactionRow = ({ item }: { item: History }) => {
       </View>
     </View>
   );
-};
+});
 
 export const HistoryList = ({
   history,
@@ -50,25 +51,26 @@ export const HistoryList = ({
   onEndReached?: () => void;
   isFetchingNextPage?: boolean;
 }) => {
-  const data = getHistorySections(history);
+  const data = useMemo(() => getHistorySections(history), [history]);
+
+  const renderItem = useCallback(({ item }: { item: string | History }) => {
+    if (typeof item === 'string') {
+      return <SectionHeader title={item} />;
+    }
+    return <TransactionRow item={item} />;
+  }, []);
 
   return (
-    <FlashList
+    <List<string | History>
       data={data}
-      renderItem={({ item }) => {
-        if (typeof item === 'string') {
-          return <SectionHeader title={item} />;
-        }
-        return <TransactionRow item={item} />;
-      }}
+      renderItem={renderItem}
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}
       keyExtractor={(item) => (typeof item === 'string' ? item : item.id)}
       contentContainerStyle={styles.contentContainer}
       onEndReached={onEndReached}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? <ActivityIndicator style={{ paddingVertical: 16 }} /> : null
-      }
+      isFetchingNextPage={isFetchingNextPage}
+      emptyTitle="No transactions yet"
+      emptySubtitle="Your transfer history will appear here"
     />
   );
 };
