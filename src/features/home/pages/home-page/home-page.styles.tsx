@@ -5,7 +5,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    paddingHorizontal: spacing.sm,
+    paddingHorizontal: spacing.md,
     alignItems: 'center',
     gap: spacing.xs,
     paddingBottom: spacing.sm + spacing.xs,
@@ -15,6 +15,7 @@ export const styles = StyleSheet.create({
     height: 900,
   },
   balanceCardContainer: {
-    width: dimensions.width - spacing.xl - spacing.sm,
+    marginVertical: spacing.md,
+    width: dimensions.width - spacing.md - spacing.sm,
   },
 });

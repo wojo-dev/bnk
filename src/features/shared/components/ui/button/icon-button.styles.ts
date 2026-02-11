@@ -6,13 +6,13 @@ import { IconButtonColor, IconButtonSize } from './icon-button.types';
 
 const containerSizeMap = {
   sm: 48,
-  md: 64,
+  md: 56,
   lg: 80,
 } as const;
 
 export const iconSizeMap = {
   sm: 20,
-  md: 28,
+  md: 24,
   lg: 32,
 } as const;
 
@@ -47,7 +47,7 @@ export const iconButtonStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
     justifyContent: 'center',
-    borderWidth: 1.5,
+    borderWidth: 1,
   },
   disabled: {
     opacity: 0.4,
@@ -62,7 +62,7 @@ export const iconButtonStyles = StyleSheet.create({
 export const containerStyle = (size: IconButtonSize, color: IconButtonColor) => ({
   width: containerSizeMap[size],
   height: containerSizeMap[size],
-  borderRadius: radius.lg,
+  borderRadius: radius.lg + radius.sm,
   backgroundColor: colorScheme[color].background,
   borderColor: colorScheme[color].border,
 });

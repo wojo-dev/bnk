@@ -1,4 +1,5 @@
 import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
+import { ShareButton } from '@/features/transfer/components/share-button/share-button';
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
@@ -30,7 +31,7 @@ export function SuccessPage() {
         <TransferDetail data={transferDetail} style={styles.detail} />
 
         <View style={styles.actionRow}>
-          <Button style={styles.actionButton} title="Share" variant="secondary" />
+          <ShareButton data={transferDetail} style={styles.actionButton} />
           <Button style={styles.actionButton} title="Receipt" variant="secondary" />
         </View>
 

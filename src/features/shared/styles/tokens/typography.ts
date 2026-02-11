@@ -73,4 +73,11 @@ export const typography = {
     fontFamily: fonts.body,
     color: colors.label.text,
   },
+  small: {
+    fontSize: scale(10),
+    lineHeight: scale(16),
+    fontWeight: '400' as const,
+    fontFamily: fonts.body,
+    color: colors.label.text,
+  },
 } as const;

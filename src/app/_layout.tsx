@@ -1,8 +1,10 @@
 import { ApiError } from '@/features/shared/lib/api-client';
+import { STUB_TOKEN } from '@/server/auth';
 import { useNetworkStore } from '@/features/shared/store/use-network-store';
 import { OfflineBanner } from '@/ui/offline-banner/offline-banner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
+import * as SecureStore from 'expo-secure-store';
 import React, { useEffect } from 'react';
 import { StyleSheet, View } from 'react-native';
 
@@ -34,6 +36,10 @@ const queryClient = new QueryClient({
 function RootLayoutContent() {
   const isConnected = useNetworkStore((s) => s.isConnected);
   const initNetworkListener = useNetworkStore((s) => s.initNetworkListener);
+
+  useEffect(() => {
+    SecureStore.setItemAsync('auth_token', STUB_TOKEN);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = initNetworkListener();

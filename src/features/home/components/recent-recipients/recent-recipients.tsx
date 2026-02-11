@@ -1,22 +1,26 @@
 // recent recipients
 
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { recipients } from '@/server/recipients';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';
-import { Text, View } from 'react-native';
+import { Pressable, Text, View } from 'react-native';
 import { styles } from './recent-recipients.styles';
 
-export const RecentRecipients = () => {
+export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => void }) => {
+  const handlePress = (item: Recipient) => {
+    onPress(item);
+  };
   return (
     <View style={styles.container}>
       <FlashList
         data={recipients}
         horizontal={true}
         renderItem={({ item }) => (
-          <View style={styles.recipient}>
+          <Pressable style={styles.recipient} onPress={() => handlePress(item)}>
             <Avatar name={item.name} />
-            <Text>{item.name}</Text>
-          </View>
+            <Text style={styles.name}>{item.name}</Text>
+          </Pressable>
         )}
         keyExtractor={(item) => item.id}
       />

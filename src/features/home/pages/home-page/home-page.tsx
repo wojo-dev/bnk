@@ -4,7 +4,7 @@ import { HistoryList } from '@/features/history/components/history-list/history-
 import { useHistory } from '@/features/history/hooks/use-history';
 import { Card } from '@/ui/card/card';
 import { Link, RelativePathString, useRouter } from 'expo-router';
-import { ActivityIndicator, Button, Pressable, ScrollView, View } from 'react-native';
+import { ActivityIndicator, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ActionButtons } from '../../components/action-buttons/action-buttons';
 import { ProfileHeader } from '../../components/profile-header/profile-header';
@@ -28,8 +28,10 @@ export function HomePage() {
   return (
     <ScrollView>
       <SafeAreaView style={styles.safeArea}>
-        <Button title="Storybook" onPress={() => router.push('/storybook')} />
-        <ProfileHeader name={profile?.data.profile.name ?? ''} />
+        <ProfileHeader
+          name={profile?.data.profile.name ?? ''}
+          onNotificationPress={() => router.push('/storybook')}
+        />
         <View style={styles.balanceCardContainer}>
           <BalanceCard amount={balance?.data.balance.amount ?? 0} />
         </View>
@@ -39,7 +41,16 @@ export function HomePage() {
             router.push(action.route as RelativePathString);
           }}
         />
-        <RecentRecipients />
+        <RecentRecipients
+          onPress={(item) =>
+            router.push({
+              pathname: '/transfer',
+              params: {
+                recipientId: item.id,
+              },
+            })
+          }
+        />
         <Link href="/history" asChild={true}>
           <Link.AppleZoom>
             <Pressable>

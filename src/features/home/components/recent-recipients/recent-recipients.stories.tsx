@@ -5,6 +5,9 @@ import { RecentRecipients } from './recent-recipients';
 const meta = {
   title: 'Home/RecentRecipients',
   component: RecentRecipients,
+  args: {
+    onPress: () => {},
+  },
   decorators: [
     (Story) => (
       <View style={{ padding: 16 }}>
