@@ -1,6 +1,8 @@
 // transfer API
 import { TransferRequest } from '@/features/transfer/types/transfer.types';
 import { deductBalance, getBalance } from '@/server/data/balance.data';
+import { recipients } from '@/server/data/recipients.data';
+import { addTransaction, getTransactions } from '@/server/data/transaction.data';
 import { requireAuth } from '@/server/utils/auth';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -36,6 +38,20 @@ export async function POST(request: Request) {
   }
 
   deductBalance(amount);
+
+  const recipient = recipients.find((r) => r.id === recipientId);
+  const newId = String(getTransactions().length + 1);
+
+  addTransaction({
+    id: newId,
+    recipientId,
+    name: recipient?.name ?? 'Unknown',
+    bank: recipient?.bank ?? 'Unknown',
+    currency: 'RM',
+    amount,
+    status: 'completed',
+    createdAt: date ?? new Date().toISOString(),
+  });
 
   if (idempotencyKey) {
     processedKeys.add(idempotencyKey);

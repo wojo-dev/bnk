@@ -1,4 +1,19 @@
-export const transactions = [
+type Transaction = {
+  id: string;
+  recipientId: string;
+  name: string;
+  bank: string;
+  currency: string;
+  amount: number;
+  status: string;
+  createdAt: string;
+};
+
+declare global {
+  var __transactions: Transaction[] | undefined;
+}
+
+const seedTransactions: Transaction[] = [
   {
     id: '1',
     recipientId: 'rcp_001',
@@ -200,3 +215,10 @@ export const transactions = [
     createdAt: '2026-02-01T14:30:00Z',
   },
 ];
+
+globalThis.__transactions ??= seedTransactions;
+
+export const getTransactions = () => globalThis.__transactions!;
+export const addTransaction = (transaction: Transaction) => {
+  globalThis.__transactions!.unshift(transaction);
+};

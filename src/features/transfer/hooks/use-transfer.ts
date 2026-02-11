@@ -1,6 +1,7 @@
 // use transfer hook
 
 import { apiClient } from '@/features/shared/lib/api-client';
+import { queryKeys } from '@/features/shared/lib/query-keys';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { router } from 'expo-router';
 import { Alert } from 'react-native';
@@ -18,7 +19,8 @@ export function useTransfer() {
         .then((res) => res.data);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['balance'] as const });
+      queryClient.invalidateQueries({ queryKey: queryKeys.balance });
+      queryClient.invalidateQueries({ queryKey: queryKeys.transaction() });
       router.push('/transfer/success');
     },
     onError: (error) => {

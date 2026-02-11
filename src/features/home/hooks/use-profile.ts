@@ -1,4 +1,5 @@
 import { apiClient } from '@/features/shared/lib/api-client';
+import { queryKeys } from '@/features/shared/lib/query-keys';
 import { useQuery } from '@tanstack/react-query';
 
 type ProfileResponse = {
@@ -8,7 +9,7 @@ type ProfileResponse = {
 
 export function useProfile() {
   return useQuery({
-    queryKey: ['profile'],
+    queryKey: queryKeys.profile,
     queryFn: () => apiClient.get<ProfileResponse>('/profile').then((res) => res.data),
   });
 }

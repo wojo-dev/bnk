@@ -1,4 +1,4 @@
-import { transactions } from '@/server/data/transaction.data';
+import { getTransactions } from '@/server/data/transaction.data';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
 import { Transaction } from '../../types/transaction.types';
@@ -22,6 +22,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    transactions: transactions as Transaction[],
+    transactions: getTransactions() as Transaction[],
   },
 };
