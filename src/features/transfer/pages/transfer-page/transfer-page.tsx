@@ -1,6 +1,5 @@
 // transfer page
 
-import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
 import { RecipientCard } from '@/features/recipient/components/recipient-card/recipient-card';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
@@ -8,8 +7,7 @@ import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
 import { randomUUID } from 'expo-crypto';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { ScrollView, View } from 'react-native';
 import { useRecipient } from '../../hooks/use-recipient';
 import { transferPageStyles as styles } from './transfer-page.styles';
 
@@ -21,28 +19,29 @@ export function TransferPage() {
   const setTransferDetail = useTransferStore((s) => s.setTransferDetail);
   const setTransferRequest = useTransferStore((s) => s.setTransferRequest);
   return (
-    <SafeAreaView style={styles.container}>
-      <BalanceCard amount={balance?.data.balance.amount ?? 0} compact={true} />
-      {recipient && (
-        <View style={styles.content}>
-          <RecipientCard
-            item={recipient}
-            selected={false}
-            variant="change"
-            onPress={() => router.back()}
-          />
-          <TransferForm
-            recipient={recipient}
-            balance={balance?.data.balance.amount ?? 0}
-            onTransfer={async (data) => {
-              const request = { ...data, idempotencyKey: randomUUID() };
-              setTransferDetail(getTransferDetail(data, recipient));
-              setTransferRequest(request);
-              router.push('/transfer/process');
-            }}
-          />
-        </View>
-      )}
-    </SafeAreaView>
+    <View style={styles.container}>
+      <ScrollView keyboardShouldPersistTaps="handled" automaticallyAdjustKeyboardInsets>
+        {recipient && (
+          <View style={styles.content}>
+            <RecipientCard
+              item={recipient}
+              selected={false}
+              variant="change"
+              onPress={() => router.back()}
+            />
+            <TransferForm
+              recipient={recipient}
+              balance={balance?.data.balance.amount ?? 0}
+              onTransfer={async (data) => {
+                const request = { ...data, idempotencyKey: randomUUID() };
+                setTransferDetail(getTransferDetail(data, recipient));
+                setTransferRequest(request);
+                router.push('/transfer/process');
+              }}
+            />
+          </View>
+        )}
+      </ScrollView>
+    </View>
   );
 }

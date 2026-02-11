@@ -9,7 +9,7 @@ export function useContacts() {
   const fetchContacts = async () => {
     try {
       const { data } = await Contacts.getContactsAsync({
-        fields: [Contacts.Fields.Emails],
+        fields: [Contacts.Fields.PhoneNumbers],
       });
       setContacts(data);
     } catch (e: unknown) {

@@ -1,11 +1,14 @@
 // components/input.tsx
+import { Feather } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Text, TextInput, View } from 'react-native';
-import { getBorderColor, inputStyles as styles } from './input.styles';
+import { colors } from '@/tokens/colors';
+import { errorStyles, getBorderColor, inputStyles as styles } from './input.styles';
 import { InputProps } from './input.types';
 
-export const Input = ({ disabled, title, error, icon, ...props }: InputProps) => {
+export const Input = ({ disabled, title, error, icon, style, ...props }: InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
+  const hasError = !!error;
 
   return (
     <View style={styles.container}>
@@ -15,12 +18,17 @@ export const Input = ({ disabled, title, error, icon, ...props }: InputProps) =>
         </Text>
       )}
 
-      <View style={[styles.inputWrapper, { borderColor: getBorderColor(isFocused, error) }]}>
+      <View
+        style={[
+          styles.inputWrapper,
+          { borderColor: getBorderColor(isFocused, error) },
+          hasError && errorStyles.inputWrapperError,
+        ]}>
         {icon && <View style={styles.icon}>{icon}</View>}
         <TextInput
           aria-labelledby="input-label"
           aria-disabled={disabled}
-          style={styles.input}
+          style={[styles.input, hasError && errorStyles.inputError, style]}
           editable={!disabled}
           onFocus={() => {
             setIsFocused(true);
@@ -32,7 +40,12 @@ export const Input = ({ disabled, title, error, icon, ...props }: InputProps) =>
         />
       </View>
 
-      {error && <Text style={styles.error}>{error}</Text>}
+      {error && (
+        <View style={errorStyles.errorContainer}>
+          <Feather name="alert-circle" size={14} color={colors.label.error} />
+          <Text style={errorStyles.errorText}>{error}</Text>
+        </View>
+      )}
     </View>
   );
 };

@@ -7,6 +7,7 @@ export const Button = ({
   title,
   variant = 'primary',
   disabled,
+  icon,
   style,
   ...props
 }: ButtonProps & { style?: StyleProp<ViewStyle> }) => {
@@ -22,6 +23,7 @@ export const Button = ({
       onPressIn={() => haptic.light()}
       accessibilityRole="button"
       {...props}>
+      {icon}
       <Text style={[styles.label, labelVariantStyle(variant), disabled && styles.disabledLabel]}>
         {title}
       </Text>

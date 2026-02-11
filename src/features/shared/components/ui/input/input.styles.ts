@@ -1,9 +1,12 @@
 // input styles
 
 import { colors } from '@/tokens/colors';
+import { errorStyles, getBorderColor } from '@/tokens/error';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
+
+export { errorStyles, getBorderColor };
 
 export const inputStyles = StyleSheet.create({
   container: {
@@ -29,18 +32,4 @@ export const inputStyles = StyleSheet.create({
     flex: 1,
     paddingVertical: spacing.md,
   },
-  error: {
-    fontSize: typography.error.fontSize,
-    fontWeight: typography.error.fontWeight,
-    fontFamily: typography.error.fontFamily,
-    color: typography.error.color,
-  },
 });
-
-export const getBorderColor = (isFocused: boolean, error?: string) => {
-  if (error) {
-    return colors.border.error;
-  }
-
-  return isFocused ? colors.border.focus : colors.border.input;
-};

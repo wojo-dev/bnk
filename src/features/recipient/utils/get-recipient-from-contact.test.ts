@@ -7,6 +7,7 @@ const makeContact = (overrides: Partial<ExistingContact> = {}): ExistingContact 
   name: 'John Doe',
   firstName: 'John',
   lastName: 'Doe',
+  phoneNumbers: [{ number: '+60123456789', label: 'mobile' }],
   ...overrides,
 });
 
@@ -18,10 +19,10 @@ describe('getRecipientFromContact', () => {
       id: '1',
       name: 'John Doe',
       initials: 'JD',
-      bank: '',
+      bank: 'Mobile',
       bankCode: '',
-      accountNumber: '',
-      maskedNumber: '',
+      accountNumber: '+60123456789',
+      maskedNumber: '********6789',
       isFavourite: false,
       avatarColor: 'blue',
       addedAt: '',
@@ -55,5 +56,13 @@ describe('getRecipientFromContact', () => {
     const result = getRecipientFromContact(makeContact({ id: undefined }));
 
     expect(result.id).toBe('');
+  });
+
+  it('handles missing phone numbers', () => {
+    const result = getRecipientFromContact(makeContact({ phoneNumbers: undefined }));
+
+    expect(result.accountNumber).toBe('');
+    expect(result.maskedNumber).toBe('');
+    expect(result.bank).toBe('Mobile');
   });
 });

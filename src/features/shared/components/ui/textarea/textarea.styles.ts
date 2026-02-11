@@ -1,9 +1,12 @@
 // textarea styles
 
 import { colors } from '@/tokens/colors';
+import { errorStyles, getBorderColor } from '@/tokens/error';
 import { radius, spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
+
+export { errorStyles, getBorderColor };
 
 export const textareaStyles = StyleSheet.create({
   container: {
@@ -34,23 +37,8 @@ export const textareaStyles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  error: {
-    fontSize: typography.error.fontSize,
-    fontWeight: typography.error.fontWeight,
-    fontFamily: typography.error.fontFamily,
-    color: typography.error.color,
-    flex: 1,
-  },
   charCount: {
     fontSize: typography.caption.fontSize,
     color: typography.caption.color,
   },
 });
-
-export const getBorderColor = (isFocused: boolean, error?: string) => {
-  if (error) {
-    return colors.border.error;
-  }
-
-  return isFocused ? colors.border.focus : colors.border.input;
-};

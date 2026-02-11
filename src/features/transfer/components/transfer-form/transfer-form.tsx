@@ -2,9 +2,10 @@ import { Button } from '@/ui/button/button';
 import { Chip } from '@/ui/chip/chip';
 import { Input } from '@/ui/input/input';
 import { TextArea } from '@/ui/textarea/textarea';
+import { Feather } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
-import { Text, View } from 'react-native';
+import { Keyboard, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { transferFormStyles as styles } from './transfer-form.styles';
 import {
   defaultValues,
@@ -33,56 +34,59 @@ export const TransferForm = ({ recipient, balance, onTransfer }: TransferFormPro
   };
   return (
     <FormProvider {...form}>
-      <View style={styles.container}>
-        <Controller
-          name="amount"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <View>
-              <Input
-                title="Amount"
-                placeholder="Amount"
-                keyboardType="numeric"
-                icon={<Text style={styles.currencyLabel}>RM</Text>}
-                value={field.value ? field.value.toString() : ''}
-                onChangeText={(text) => field.onChange(Number(text) || 0)}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={styles.container}>
+          <Controller
+            name="amount"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <View>
+                <Input
+                  title="Amount"
+                  placeholder="Amount"
+                  keyboardType="numeric"
+                  icon={<Text style={styles.currencyLabel}>RM</Text>}
+                  value={field.value ? field.value.toString() : ''}
+                  onChangeText={(text) => field.onChange(Number(text) || 0)}
+                  onBlur={field.onBlur}
+                  error={fieldState.error?.message}
+                />
+                <View style={styles.chipGroup}>
+                  {QUICK_AMOUNTS.map((amount) => (
+                    <Chip
+                      key={amount}
+                      label={`RM ${amount}`}
+                      selected={field.value === amount}
+                      onPress={() => field.onChange(amount)}
+                    />
+                  ))}
+                </View>
+              </View>
+            )}
+          />
+          <Controller
+            name="description"
+            control={form.control}
+            render={({ field, fieldState }) => (
+              <TextArea
+                title="Description"
+                placeholder="Description"
+                value={field.value}
+                onChangeText={field.onChange}
                 onBlur={field.onBlur}
                 error={fieldState.error?.message}
               />
-              <View style={styles.chipGroup}>
-                {QUICK_AMOUNTS.map((amount) => (
-                  <Chip
-                    key={amount}
-                    label={`RM ${amount}`}
-                    selected={field.value === amount}
-                    onPress={() => field.onChange(amount)}
-                  />
-                ))}
-              </View>
-            </View>
-          )}
-        />
-        <Controller
-          name="description"
-          control={form.control}
-          render={({ field, fieldState }) => (
-            <TextArea
-              title="Description"
-              placeholder="Description"
-              value={field.value}
-              onChangeText={field.onChange}
-              onBlur={field.onBlur}
-              error={fieldState.error?.message}
-            />
-          )}
-        />
+            )}
+          />
 
-        <Button
-          onPress={form.handleSubmit(onSubmit)}
-          title={form.formState.isSubmitting ? 'Submitting...' : 'Submit'}
-          disabled={form.formState.isSubmitting}
-        />
-      </View>
+          <Button
+            onPress={form.handleSubmit(onSubmit)}
+            title={`Send RM ${form.watch('amount') || '0.00'}`}
+            icon={<Feather name="send" size={18} color="#FFFFFF" />}
+            disabled={form.formState.isSubmitting}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     </FormProvider>
   );
 };

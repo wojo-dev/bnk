@@ -5,6 +5,7 @@ import { useRecipients } from '@/features/recipient/hooks/use-recipients';
 import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
 import { getRecipientFromContact } from '@/features/recipient/utils/get-recipient-from-contact';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
+import { haptic } from '@/features/shared/lib/haptics';
 import { Button } from '@/ui/button/button';
 import { router, Stack } from 'expo-router';
 import { useCallback, useMemo, useRef } from 'react';
@@ -35,15 +36,18 @@ export function RecipientPage() {
       const index = TABS.findIndex((t) => t.key === key);
       pagerRef.current?.setPage(index);
       setActiveTab(key);
+      setSelectedId(null);
+      haptic.light();
     },
-    [setActiveTab],
+    [setActiveTab, setSelectedId],
   );
 
   const handlePageSelected = useCallback(
     (e: { nativeEvent: { position: number } }) => {
       setActiveTab(TABS[e.nativeEvent.position].key);
+      setSelectedId(null);
     },
-    [setActiveTab],
+    [setActiveTab, setSelectedId],
   );
 
   const handlePageScroll = useCallback(
@@ -82,7 +86,10 @@ export function RecipientPage() {
             <RecipientList
               recipients={recipients}
               selectedId={selectedId ?? undefined}
-              onSelect={(recipient) => setSelectedId(recipient.id)}
+              onSelect={(recipient) => {
+                setSelectedId(recipient.id);
+                haptic.light();
+              }}
               onEndReached={() => hasNextPage && fetchNextPage()}
               isFetchingNextPage={isFetchingNextPage}
             />
@@ -92,7 +99,10 @@ export function RecipientPage() {
               <RecipientList
                 recipients={contactRecipients}
                 selectedId={selectedId ?? undefined}
-                onSelect={(recipient) => setSelectedId(recipient.id)}
+                onSelect={(recipient) => {
+                  setSelectedId(recipient.id);
+                  haptic.light();
+                }}
               />
             ) : (
               <ContactsPermission onRequestPermission={requestPermissions} />
