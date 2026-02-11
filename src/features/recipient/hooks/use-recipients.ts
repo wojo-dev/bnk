@@ -1,4 +1,4 @@
-import { RecipientsPaginatedResponse } from '@/features/recipients/types/recipient.types';
+import { RecipientsPaginatedResponse } from '@/features/recipient/types/recipient.types';
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
 

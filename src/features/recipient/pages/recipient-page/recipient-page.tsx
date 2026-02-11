@@ -1,9 +1,9 @@
-import { ContactsPermission } from '@/features/recipients/components/contacts-permission/contacts-permission';
-import { RecipientList } from '@/features/recipients/components/recipient-list/recipient-list';
-import { useContacts } from '@/features/recipients/hooks/use-contacts';
-import { useRecipients } from '@/features/recipients/hooks/use-recipients';
-import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
-import { getRecipientFromContact } from '@/features/recipients/utils/get-recipient-from-contact';
+import { ContactsPermission } from '@/features/recipient/components/contacts-permission/contacts-permission';
+import { RecipientList } from '@/features/recipient/components/recipient-list/recipient-list';
+import { useContacts } from '@/features/recipient/hooks/use-contacts';
+import { useRecipients } from '@/features/recipient/hooks/use-recipients';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
+import { getRecipientFromContact } from '@/features/recipient/utils/get-recipient-from-contact';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
 import { Button } from '@/ui/button/button';
 import { router, Stack } from 'expo-router';

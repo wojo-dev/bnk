@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient.types';
+import { Recipient } from '@/features/recipient/types/recipient.types';
 import { ExistingContact } from 'expo-contacts';
 
 export function getRecipientFromContact(contact: ExistingContact): Recipient {

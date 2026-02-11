@@ -1,7 +1,7 @@
 // recent recipients
 
 import { useRecentRecipients } from '@/features/home/hooks/use-recent-recipients';
-import { Recipient } from '@/features/recipients/types/recipient.types';
+import { Recipient } from '@/features/recipient/types/recipient.types';
 import { getHalfInitials } from '@/features/shared/hooks/get-initials';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';

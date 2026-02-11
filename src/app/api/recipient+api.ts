@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient.types';
+import { Recipient } from '@/features/recipient/types/recipient.types';
 import { recipients } from '@/server/data/recipients.data';
 import { requireAuth } from '@/server/utils/auth';
 

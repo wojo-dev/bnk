@@ -1,4 +1,4 @@
-import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
 import { ShareButton } from '@/features/transfer/components/share-button/share-button';
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';

@@ -1,7 +1,7 @@
-import { apiClient } from '@/features/shared/lib/api-client';
 import { useBiometric } from '@/features/biometric/hooks/use-biometric';
+import { useRecipientStore } from '@/features/recipient/store/use-recipient-store';
+import { apiClient } from '@/features/shared/lib/api-client';
 import { useTransfer } from '@/features/transfer/hooks/use-transfer';
-import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { colors } from '@/tokens/colors';
 import { spacing } from '@/tokens/spacing';
