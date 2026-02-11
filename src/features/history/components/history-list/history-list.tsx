@@ -1,11 +1,11 @@
-import { getFormatTime } from '@/hooks/get-format-date';
-import { getFormatPrice } from '@/hooks/get-format-price';
+import { getFormatTime } from '@/utils/get-format-date';
+import { getFormatPrice } from '@/utils/get-format-price';
 import { Avatar } from '@/ui/avatar/avatar';
 import { Badge } from '@/ui/badge/badge';
 import { List } from '@/ui/list/list';
 import React, { useCallback, useMemo } from 'react';
 import { Text, View } from 'react-native';
-import { getHistorySections } from '../../hooks/get-history-sections';
+import { getHistorySections } from '../../utils/get-history-sections';
 import { History } from '../../types/history';
 import { badgeLabel, badgeVariant, historyListStyles as styles } from './history-list.styles';
 

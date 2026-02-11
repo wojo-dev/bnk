@@ -1,8 +1,8 @@
 import { getHistorySections } from './get-history-sections';
 import { History } from '@/features/history/types/history';
-import * as formatDate from '@/hooks/get-format-date';
+import * as formatDate from '@/utils/get-format-date';
 
-jest.mock('@/hooks/get-format-date');
+jest.mock('@/utils/get-format-date');
 const mockGetIsTodayYesterday = jest.mocked(formatDate.getIsTodayYesterday);
 
 const makeItem = (overrides: Partial<History> = {}): History => ({

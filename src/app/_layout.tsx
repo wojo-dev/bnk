@@ -11,6 +11,7 @@ export { ErrorBoundary } from '@/features/shared/components/ui/error-boundary/er
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      staleTime: 1000 * 60,
       retry: (failureCount, error) => {
         if (
           error instanceof ApiError &&

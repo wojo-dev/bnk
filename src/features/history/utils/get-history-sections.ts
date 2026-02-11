@@ -1,5 +1,5 @@
 import { History } from '@/features/history/types/history';
-import { getIsTodayYesterday } from '@/hooks/get-format-date';
+import { getIsTodayYesterday } from '@/utils/get-format-date';
 
 export function getHistorySections(history: History[]): (string | History)[] {
   const grouped: Record<string, History[]> = {};

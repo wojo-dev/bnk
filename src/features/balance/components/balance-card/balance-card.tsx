@@ -1,5 +1,5 @@
 import { useHideAmount } from '@/features/balance/hooks/use-hide-amount';
-import { getFormatPrice } from '@/hooks/get-format-price';
+import { getFormatPrice } from '@/utils/get-format-price';
 import { gradients } from '@/tokens/colors';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
