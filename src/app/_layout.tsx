@@ -1,6 +1,6 @@
 import { ApiError } from '@/features/shared/lib/api-client';
-import { STUB_TOKEN } from '@/server/auth';
 import { useNetworkStore } from '@/features/shared/store/use-network-store';
+import { STUB_TOKEN } from '@/server/utils/auth';
 import { OfflineBanner } from '@/ui/offline-banner/offline-banner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';

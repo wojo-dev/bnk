@@ -1,5 +1,5 @@
-import { requireAuth } from '@/server/auth';
-import { profile } from '@/server/profile.data';
+import { profile } from '@/server/data/profile.data';
+import { requireAuth } from '@/server/utils/auth';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);

@@ -1,6 +1,6 @@
 import { Recipient } from '@/features/recipients/types/recipient.types';
-import { requireAuth } from '@/server/auth';
-import { recipients } from '@/server/recipients.data';
+import { recipients } from '@/server/data/recipients.data';
+import { requireAuth } from '@/server/utils/auth';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);

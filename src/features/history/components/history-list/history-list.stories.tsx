@@ -1,4 +1,4 @@
-import { history } from '@/server/history.data';
+import { history } from '@/server/data/history.data';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { History } from '../../types/history';
 import { HistoryList } from './history-list';

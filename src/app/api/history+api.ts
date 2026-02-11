@@ -1,8 +1,8 @@
 // history API
 
-import { requireAuth } from '@/server/auth';
-import { paginate } from '@/server/helpers';
-import { history } from '@/server/history.data';
+import { history } from '@/server/data/history.data';
+import { requireAuth } from '@/server/utils/auth';
+import { paginate } from '@/server/utils/helpers';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);
