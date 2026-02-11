@@ -10,4 +10,7 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.background.neutral,
     paddingHorizontal: spacing.md,
   },
+  safeArea: {
+    flex: 1,
+  },
 });

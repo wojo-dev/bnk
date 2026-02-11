@@ -2,7 +2,7 @@ import { RecipientList } from '@/features/recipients/components/recipient-list/r
 import { useContacts } from '@/features/recipients/hooks/use-contacts';
 import { useRecipients } from '@/features/recipients/hooks/use-recipients';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
 import { useState } from 'react';
 import { ActivityIndicator, Button, Text, View } from 'react-native';
 import { styles } from './recipient-page.styles';
@@ -12,7 +12,7 @@ export function RecipientPage() {
   const { data, isLoading, hasNextPage, fetchNextPage, isFetchingNextPage } = useRecipients(search);
   const recipients = data?.pages.flatMap((p) => p.data) ?? [];
   const { hasPermissions, requestPermissions } = useContacts();
-
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   if (isLoading) {
     return <ActivityIndicator />;
   }
@@ -40,7 +40,26 @@ export function RecipientPage() {
           activeTab="all"
           onTabChange={() => {}}
         />
-        <RecipientList recipients={recipients} />
+        <RecipientList
+          recipients={recipients}
+          selectedId={selectedId ?? undefined}
+          onSelect={(recipient) => setSelectedId(recipient.id)}
+          onEndReached={() => hasNextPage && fetchNextPage()}
+          isFetchingNextPage={isFetchingNextPage}
+        />
+        {selectedId ? (
+          <Button
+            title="Continue"
+            onPress={() =>
+              router.push({
+                pathname: '/transfer',
+                params: {
+                  recipientId: selectedId,
+                },
+              })
+            }
+          />
+        ) : null}
       </View>
     </>
   );

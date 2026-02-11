@@ -12,6 +12,9 @@ export const styles = StyleSheet.create({
   },
   historyCard: {
     width: dimensions.width - spacing.xl - spacing.sm,
-    height: 400,
+    height: 900,
+  },
+  balanceCardContainer: {
+    width: dimensions.width - spacing.xl - spacing.sm,
   },
 });

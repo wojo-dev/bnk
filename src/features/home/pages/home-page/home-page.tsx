@@ -3,9 +3,13 @@ import { useBalance } from '@/features/balance/hooks/use-balance';
 import { HistoryList } from '@/features/history/components/history-list/history-list';
 import { useHistory } from '@/features/history/hooks/use-history';
 import { Card } from '@/ui/card/card';
-import { Link, useRouter } from 'expo-router';
-import { ActivityIndicator, Button, Pressable } from 'react-native';
+import { Link, RelativePathString, useRouter } from 'expo-router';
+import { ActivityIndicator, Button, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { ActionButtons } from '../../components/action-buttons/action-buttons';
+import { RecentRecipients } from '../../components/recent-recipients/recent-recipients';
+import { actions } from '../../constants/actions';
+import { Action } from '../../types/action.types';
 import { styles } from './home-page.styles';
 
 export function HomePage() {
@@ -19,19 +23,30 @@ export function HomePage() {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea}>
-      <Button title="Storybook" onPress={() => router.push('/storybook')} />
-      <BalanceCard amount={balance?.data.balance.amount ?? 0} />
-      <Button title="Transfer" onPress={() => router.push('/transfer')} />
-      <Link href="/history" asChild={true}>
-        <Link.AppleZoom>
-          <Pressable>
-            <Card title="History" style={styles.historyCard}>
-              <HistoryList history={history} />
-            </Card>
-          </Pressable>
-        </Link.AppleZoom>
-      </Link>
-    </SafeAreaView>
+    <ScrollView>
+      <SafeAreaView style={styles.safeArea}>
+        <Button title="Storybook" onPress={() => router.push('/storybook')} />
+        <View style={styles.balanceCardContainer}>
+          <BalanceCard amount={balance?.data.balance.amount ?? 0} />
+        </View>
+        <ActionButtons
+          actions={actions as Action[]}
+          onActionPress={(action) => {
+            router.push(action.route as RelativePathString);
+          }}
+        />
+        <RecentRecipients />
+        <Button title="Transfer" onPress={() => router.push('/transfer')} />
+        <Link href="/history" asChild={true}>
+          <Link.AppleZoom>
+            <Pressable>
+              <Card style={styles.historyCard}>
+                <HistoryList history={history} />
+              </Card>
+            </Pressable>
+          </Link.AppleZoom>
+        </Link>
+      </SafeAreaView>
+    </ScrollView>
   );
 }

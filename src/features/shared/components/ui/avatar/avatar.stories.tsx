@@ -44,7 +44,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
-    name: 'Ahmed Hassan',
+    name: 'Mohd Hassan',
     size: 64,
   },
 };

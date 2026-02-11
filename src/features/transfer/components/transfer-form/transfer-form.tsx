@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import { Button, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { styles } from './transfer-form.styles';
+import { transferFormStyles as styles } from './transfer-form.styles';
 import { TransferFormSchema, defaultValues, transferFormSchema } from './transfer-form.types';
 
 export const TransferForm = ({ recipient }: { recipient: Recipient }) => {

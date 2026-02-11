@@ -12,7 +12,7 @@ export async function GET(request: Request) {
     filtered = filtered.filter((t) => t.name.toLowerCase().includes(search));
   }
 
-  const pageSize = 3;
+  const pageSize = 8;
   const page = Math.max(1, Number(url.searchParams.get('page')) || 1);
   const { data, nextPage } = paginate(filtered, page, pageSize);
 

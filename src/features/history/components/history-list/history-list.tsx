@@ -3,7 +3,7 @@ import { getFormatPrice } from '@/hooks/get-format-price';
 import { Avatar } from '@/ui/avatar/avatar';
 import { Badge } from '@/ui/badge/badge';
 import { FlashList } from '@shopify/flash-list';
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 import { getHistorySections } from '../../hooks/get-history-sections';
 import { History } from '../../types/history';
 import { badgeLabel, badgeVariant, historyListStyles as styles } from './history-list.styles';
@@ -41,7 +41,15 @@ const TransactionRow = ({ item }: { item: History }) => {
   );
 };
 
-export const HistoryList = ({ history }: { history: History[] }) => {
+export const HistoryList = ({
+  history,
+  onEndReached,
+  isFetchingNextPage,
+}: {
+  history: History[];
+  onEndReached?: () => void;
+  isFetchingNextPage?: boolean;
+}) => {
   const data = getHistorySections(history);
 
   return (
@@ -56,6 +64,11 @@ export const HistoryList = ({ history }: { history: History[] }) => {
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}
       keyExtractor={(item) => (typeof item === 'string' ? item : item.id)}
       contentContainerStyle={styles.contentContainer}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        isFetchingNextPage ? <ActivityIndicator style={{ paddingVertical: 16 }} /> : null
+      }
     />
   );
 };

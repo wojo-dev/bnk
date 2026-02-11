@@ -1,5 +1,5 @@
+import { getGradient } from '@/hooks/get-gradient';
 import { getInitials } from '@/hooks/get-initials';
-import { getRandomAvatarGradient } from '@/hooks/get-random-gradient';
 import { scale } from '@/tokens/scale';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Text } from 'react-native';
@@ -12,7 +12,7 @@ export const Avatar = ({ name, size = DEFAULT_SIZE, style, ...props }: AvatarPro
   const scaledSize = scale(size);
   const fontSize = scale(size * 0.34);
   const initials = getInitials(name);
-  const gradientColors = getRandomAvatarGradient();
+  const gradientColors = getGradient(name);
 
   return (
     <LinearGradient
