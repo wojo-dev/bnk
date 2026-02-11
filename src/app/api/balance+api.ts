@@ -1,6 +1,6 @@
 // balance API
 import { requireAuth } from '@/server/auth';
-import { balance } from '@/server/balance';
+import { balance } from '@/server/balance.data';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);

@@ -1,7 +1,7 @@
 // recent recipients
 
 import { Recipient } from '@/features/recipients/types/recipient.types';
-import { recipients } from '@/server/recipients';
+import { recipients } from '@/server/recipients.data';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';
 import { Pressable, Text, View } from 'react-native';

@@ -1,4 +1,4 @@
-import { recipients } from '@/server/recipients';
+import { recipients } from '@/server/recipients.data';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
 import { Recipient } from '../../types/recipient.types';

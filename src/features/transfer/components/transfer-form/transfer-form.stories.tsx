@@ -1,5 +1,5 @@
 import { Recipient } from '@/features/recipients/types/recipient.types';
-import { recipients } from '@/server/recipients';
+import { recipients } from '@/server/recipients.data';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { Alert, View } from 'react-native';
 import { TransferForm } from './transfer-form';

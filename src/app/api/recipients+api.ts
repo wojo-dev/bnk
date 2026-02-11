@@ -1,6 +1,6 @@
 import { requireAuth } from '@/server/auth';
 import { paginate } from '@/server/helpers';
-import { recipients } from '@/server/recipients';
+import { recipients } from '@/server/recipients.data';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);

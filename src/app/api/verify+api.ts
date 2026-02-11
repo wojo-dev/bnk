@@ -1,7 +1,7 @@
 // verify-pin API
 import { STUB_TOKEN } from '@/server/auth';
 import { delay } from '@/server/helpers';
-import { pin } from '@/server/pin';
+import { pin } from '@/server/pin.data';
 
 export async function POST(request: Request) {
   await delay(500);

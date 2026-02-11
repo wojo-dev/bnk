@@ -2,7 +2,7 @@
 
 import { requireAuth } from '@/server/auth';
 import { paginate } from '@/server/helpers';
-import { history } from '@/server/history';
+import { history } from '@/server/history.data';
 
 export async function GET(request: Request) {
   const authError = requireAuth(request);
