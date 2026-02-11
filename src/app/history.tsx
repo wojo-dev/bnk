@@ -5,7 +5,7 @@ export default function HistoryScreen() {
   const [search, setSearch] = useState('');
   return (
     <>
-      <Stack.Screen.Title>History</Stack.Screen.Title>
+      <Stack.Screen.Title>Transactions</Stack.Screen.Title>
       <Stack.SearchBar
         placement="automatic"
         placeholder="Search"

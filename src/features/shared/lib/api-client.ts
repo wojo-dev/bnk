@@ -3,6 +3,13 @@ import * as SecureStore from 'expo-secure-store';
 import axios, { AxiosError } from 'axios';
 
 const AUTH_TOKEN_KEY = 'auth_token';
+const AUTH_ENDPOINTS = ['/verify', '/auth'];
+
+let onAuthExpired: (() => void) | null = null;
+
+export function setOnAuthExpired(cb: () => void) {
+  onAuthExpired = cb;
+}
 
 function getBaseUrl() {
   const host = Constants.expoConfig?.hostUri;
@@ -59,7 +66,7 @@ apiClient.interceptors.request.use(async (config) => {
 
 apiClient.interceptors.response.use(
   (response) => response,
-  (error: AxiosError<{ error?: string }>) => {
+  async (error: AxiosError<{ error?: string }>) => {
     if (error.code === 'ECONNABORTED') {
       return Promise.reject(
         new ApiError('Request timed out. Please check your connection and try again.', {
@@ -79,6 +86,15 @@ apiClient.interceptors.response.use(
     const status = error.response.status;
     const serverMessage = error.response.data?.error;
     const message = serverMessage || getStatusMessage(status);
+
+    if (status === 401) {
+      const url = error.config?.url ?? '';
+      const isAuthEndpoint = AUTH_ENDPOINTS.some((ep) => url.endsWith(ep));
+      if (!isAuthEndpoint) {
+        await SecureStore.deleteItemAsync(AUTH_TOKEN_KEY);
+        onAuthExpired?.();
+      }
+    }
 
     return Promise.reject(new ApiError(message, { status }));
   },

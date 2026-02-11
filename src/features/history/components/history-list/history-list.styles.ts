@@ -18,8 +18,6 @@ export const historyListStyles = StyleSheet.create({
     paddingBottom: spacing['2xl'],
   },
   sectionHeader: {
-    paddingHorizontal: spacing.md,
-    paddingTop: spacing.lg,
     paddingBottom: spacing.sm,
   },
   sectionTitle: {
@@ -33,9 +31,8 @@ export const historyListStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: spacing.xs,
     paddingVertical: spacing.md,
-    gap: spacing.md,
+    gap: spacing.sm + spacing.xs,
   },
   rowContent: {
     flex: 1,
@@ -48,15 +45,15 @@ export const historyListStyles = StyleSheet.create({
     gap: 2,
   },
   name: {
-    fontSize: typography.body.fontSize,
-    fontWeight: '600',
-    fontFamily: typography.body.fontFamily,
+    fontSize: typography.medium.fontSize,
+    fontWeight: typography.medium.fontWeight,
+    fontFamily: typography.medium.fontFamily,
     color: colors.label.text,
   },
   subtitle: {
-    fontSize: typography.caption.fontSize,
-    fontWeight: typography.caption.fontWeight,
-    fontFamily: typography.caption.fontFamily,
+    fontSize: typography.small.fontSize,
+    fontWeight: typography.small.fontWeight,
+    fontFamily: typography.small.fontFamily,
     color: colors.border.icon,
   },
   rowRight: {
@@ -68,15 +65,15 @@ export const historyListStyles = StyleSheet.create({
     alignItems: 'center',
   },
   amountMinus: {
-    fontSize: typography.body.fontSize,
-    fontWeight: '700',
-    color: colors.label.error,
-    marginRight: 2,
+    fontSize: typography.small.fontSize,
+    fontWeight: typography.medium.fontWeight,
+    fontFamily: typography.medium.fontFamily,
+    marginRight: 4,
   },
   amount: {
-    fontSize: typography.body.fontSize,
+    fontSize: typography.medium.fontSize,
     fontWeight: '700',
-    fontFamily: typography.body.fontFamily,
+    fontFamily: typography.medium.fontFamily,
     color: colors.label.primary,
   },
   badge: {

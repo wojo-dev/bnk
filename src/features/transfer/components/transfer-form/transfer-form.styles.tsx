@@ -3,7 +3,8 @@ import { StyleSheet } from 'react-native';
 
 export const transferFormStyles = StyleSheet.create({
   container: {
-    padding: spacing.xs,
+    paddingHorizontal: spacing.xs + spacing.sm,
+    paddingVertical: spacing.xs + spacing.sm,
     gap: spacing.sm + spacing.xs,
   },
   chipGroup: {

@@ -1,4 +1,4 @@
-import { getInitials } from './get-initials';
+import { getHalfInitials, getInitials } from './get-initials';
 
 describe('getInitials', () => {
   it('returns first letters of first and last name', () => {
@@ -15,5 +15,11 @@ describe('getInitials', () => {
 
   it('handles lowercase names', () => {
     expect(getInitials('alice smith')).toBe('as');
+  });
+});
+
+describe('getHalfInitials', () => {
+  it('returns first letters of first and last name', () => {
+    expect(getHalfInitials('John Doe')).toBe('John D.');
   });
 });

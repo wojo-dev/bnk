@@ -3,6 +3,7 @@ import { useBalance } from '@/features/balance/hooks/use-balance';
 import { HistoryList } from '@/features/history/components/history-list/history-list';
 import { useHistory } from '@/features/history/hooks/use-history';
 import { Card } from '@/ui/card/card';
+import { SectionTitle } from '@/ui/section-title/section-title';
 import { Link, RelativePathString, useRouter } from 'expo-router';
 import { ActivityIndicator, Pressable, ScrollView, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -28,19 +29,27 @@ export function HomePage() {
   return (
     <ScrollView>
       <SafeAreaView style={styles.safeArea}>
-        <ProfileHeader
-          name={profile?.data.profile.name ?? ''}
-          onNotificationPress={() => router.push('/storybook')}
-        />
-        <View style={styles.balanceCardContainer}>
-          <BalanceCard amount={balance?.data.balance.amount ?? 0} />
+        <View style={styles.container}>
+          <ProfileHeader
+            name={profile?.data.profile.name ?? ''}
+            onNotificationPress={() => router.push('/storybook')}
+          />
+          <View style={styles.balanceCardContainer}>
+            <BalanceCard amount={balance?.data.balance.amount ?? 0} />
+          </View>
+          <ActionButtons
+            actions={actions as Action[]}
+            onActionPress={(action) => {
+              router.push(action.route as RelativePathString);
+            }}
+          />
+          <SectionTitle
+            title="Recent"
+            actionLabel="View All"
+            onAction={() => router.push('/recipients')}
+            style={styles.sectionTitle}
+          />
         </View>
-        <ActionButtons
-          actions={actions as Action[]}
-          onActionPress={(action) => {
-            router.push(action.route as RelativePathString);
-          }}
-        />
         <RecentRecipients
           onPress={(item) =>
             router.push({
@@ -51,15 +60,23 @@ export function HomePage() {
             })
           }
         />
-        <Link href="/history" asChild={true}>
-          <Link.AppleZoom>
-            <Pressable>
-              <Card style={styles.historyCard}>
-                <HistoryList history={history} />
-              </Card>
-            </Pressable>
-          </Link.AppleZoom>
-        </Link>
+        <View style={styles.container}>
+          <SectionTitle
+            title="Transactions"
+            actionLabel="See All"
+            onAction={() => router.push('/history')}
+            style={styles.sectionTitle}
+          />
+          <Link href="/history" asChild={true}>
+            <Link.AppleZoom>
+              <Pressable>
+                <Card style={styles.historyCard}>
+                  <HistoryList history={history} />
+                </Card>
+              </Pressable>
+            </Link.AppleZoom>
+          </Link>
+        </View>
       </SafeAreaView>
     </ScrollView>
   );

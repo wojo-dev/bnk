@@ -1,4 +1,4 @@
-import { BiometricResult, UseBiometricOptions } from '@/features/transfer/types/biometric.types';
+import { BiometricResult, UseBiometricOptions } from '@/features/biometric/types/biometric.types';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { useCallback, useEffect, useRef, useState } from 'react';
 

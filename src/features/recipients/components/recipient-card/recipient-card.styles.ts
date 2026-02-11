@@ -8,8 +8,9 @@ export const recipientCardStyles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.md,
+    paddingHorizontal: spacing.xs + spacing.sm,
+    paddingVertical: spacing.xs + spacing.sm,
+    paddingRight: spacing.xs + spacing.md,
     gap: spacing.md,
     borderWidth: 1.5,
     borderColor: colors.border.input,

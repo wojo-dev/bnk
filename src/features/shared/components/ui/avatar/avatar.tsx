@@ -6,7 +6,7 @@ import { Text } from 'react-native';
 import { avatarStyles as styles } from './avatar.styles';
 import { AvatarProps } from './avatar.types';
 
-const DEFAULT_SIZE = 52;
+const DEFAULT_SIZE = 42;
 
 export const Avatar = ({ name, size = DEFAULT_SIZE, style, ...props }: AvatarProps) => {
   const scaledSize = scale(size);

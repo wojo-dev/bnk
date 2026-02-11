@@ -1,12 +1,11 @@
-import { ApiError } from '@/features/shared/lib/api-client';
+import { useAuthStore } from '@/features/auth/store/use-auth-store';
+import { ApiError, setOnAuthExpired } from '@/features/shared/lib/api-client';
 import { useNetworkStore } from '@/features/shared/store/use-network-store';
-import { STUB_TOKEN } from '@/server/utils/auth';
 import { OfflineBanner } from '@/ui/offline-banner/offline-banner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import * as SecureStore from 'expo-secure-store';
 import React, { useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
 export { ErrorBoundary } from '@/features/shared/components/ui/error-boundary/error-boundary';
 
@@ -37,25 +36,54 @@ function RootLayoutContent() {
   const isConnected = useNetworkStore((s) => s.isConnected);
   const initNetworkListener = useNetworkStore((s) => s.initNetworkListener);
 
+  const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
+  const isLoading = useAuthStore((s) => s.isLoading);
+  const checkAuth = useAuthStore((s) => s.checkAuth);
+  const logout = useAuthStore((s) => s.logout);
+
   useEffect(() => {
-    SecureStore.setItemAsync('auth_token', STUB_TOKEN);
-  }, []);
+    checkAuth();
+  }, [checkAuth]);
+
+  useEffect(() => {
+    setOnAuthExpired(() => logout());
+  }, [logout]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      queryClient.clear();
+    }
+  }, [isAuthenticated]);
 
   useEffect(() => {
     const unsubscribe = initNetworkListener();
     return unsubscribe;
   }, [initNetworkListener]);
 
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
       <OfflineBanner visible={!isConnected} />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="history" />
-      </Stack>
-      <Stack.Protected guard={__DEV__}>
-        <Stack.Screen name="storybook" />
-      </Stack.Protected>
+      {isAuthenticated ? (
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(tabs)" options={{ headerBackTitle: 'Home' }} />
+          <Stack.Screen name="history" />
+          <Stack.Protected guard={__DEV__}>
+            <Stack.Screen name="storybook" />
+          </Stack.Protected>
+        </Stack>
+      ) : (
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="login" />
+        </Stack>
+      )}
     </View>
   );
 }
@@ -71,5 +99,10 @@ export default function RootLayout() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  loadingContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

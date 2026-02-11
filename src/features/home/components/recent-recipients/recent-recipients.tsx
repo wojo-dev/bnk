@@ -2,6 +2,7 @@
 
 import { useRecentRecipients } from '@/features/home/hooks/use-recent-recipients';
 import { Recipient } from '@/features/recipients/types/recipient.types';
+import { getHalfInitials } from '@/features/shared/hooks/get-initials';
 import { Avatar } from '@/ui/avatar/avatar';
 import { FlashList } from '@shopify/flash-list';
 import { Pressable, Text, View } from 'react-native';
@@ -19,10 +20,11 @@ export const RecentRecipients = ({ onPress }: { onPress: (item: Recipient) => vo
       <FlashList
         data={recipients}
         horizontal={true}
+        showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <Pressable style={styles.recipient} onPress={() => handlePress(item)}>
-            <Avatar name={item.name} />
-            <Text style={styles.name}>{item.name}</Text>
+            <Avatar name={item.name} size={48} />
+            <Text style={styles.name}>{getHalfInitials(item.name)}</Text>
           </Pressable>
         )}
         keyExtractor={(item) => item.id}
