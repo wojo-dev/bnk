@@ -1,4 +1,5 @@
 import { recipients } from '@/server/data/recipients.data';
+import { getTransactions } from '@/server/data/transaction.data';
 import { requireAuth } from '@/server/utils/auth';
 import { paginate } from '@/server/utils/helpers';
 
@@ -9,7 +10,23 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const search = url.searchParams.get('q')?.toLowerCase();
   const favourites = url.searchParams.get('favourites');
-  let filtered = [...recipients];
+
+  const transactions = getTransactions();
+  const latestByRecipient = new Map<string, string>();
+  for (const t of transactions) {
+    if (!latestByRecipient.has(t.recipientId)) {
+      latestByRecipient.set(t.recipientId, t.createdAt);
+    }
+  }
+
+  let filtered = [...recipients].sort((a, b) => {
+    const aTime = latestByRecipient.get(a.id);
+    const bTime = latestByRecipient.get(b.id);
+    if (!aTime && !bTime) return 0;
+    if (!aTime) return 1;
+    if (!bTime) return -1;
+    return new Date(bTime).getTime() - new Date(aTime).getTime();
+  });
 
   if (favourites === 'true') {
     filtered = filtered.filter((r) => r.isFavourite);

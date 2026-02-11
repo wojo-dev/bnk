@@ -21,6 +21,7 @@ export function useTransfer() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: queryKeys.balance });
       queryClient.invalidateQueries({ queryKey: queryKeys.transaction() });
+      queryClient.invalidateQueries({ queryKey: queryKeys.recentRecipients });
       router.push('/transfer/success');
     },
     onError: (error) => {

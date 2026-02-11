@@ -3,7 +3,7 @@ import { ShareButton } from '@/features/transfer/components/share-button/share-b
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
-import { StackActions } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
 import { Feather, Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from 'expo-router';
@@ -50,7 +50,12 @@ export function SuccessPage() {
           onPress={() => {
             clearTransferDetail();
             resetRecipientStore();
-            rootNavigation?.dispatch(StackActions.popToTop());
+            rootNavigation?.dispatch(
+              CommonActions.navigate({
+                name: '(tabs)',
+                params: { screen: 'index' },
+              }),
+            );
           }}
         />
 
