@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { getFormatDate, getFormatTime } from '@/utils/get-format-date';
 import { TransferDetailData } from '../components/transfer-detail/transfer-detail.type';
 import { TransferFormSchema } from '../components/transfer-form/transfer-form.types';

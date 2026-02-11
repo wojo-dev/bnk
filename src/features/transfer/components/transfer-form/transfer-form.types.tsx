@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { z } from 'zod';
 
 export const transferFormSchema = z.object({

@@ -2,7 +2,7 @@ import { ContactsPermission } from '@/features/recipients/components/contacts-pe
 import { RecipientList } from '@/features/recipients/components/recipient-list/recipient-list';
 import { useContacts } from '@/features/recipients/hooks/use-contacts';
 import { useRecipients } from '@/features/recipients/hooks/use-recipients';
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { Tabs } from '@/features/shared/components/ui/tabs/tabs';
 import { Button } from '@/ui/button/button';
 import { router, Stack } from 'expo-router';
@@ -68,7 +68,7 @@ export function RecipientPage() {
 
   return (
     <>
-      <Stack.Screen.Title>Search</Stack.Screen.Title>
+      <Stack.Screen.Title>Recipients</Stack.Screen.Title>
       <Stack.SearchBar
         placement="automatic"
         placeholder="Search"
@@ -109,17 +109,19 @@ export function RecipientPage() {
           </View>
         </PagerView>
         {selectedId ? (
-          <Button
-            title="Continue"
-            onPress={() =>
-              router.push({
-                pathname: '/transfer',
-                params: {
-                  recipientId: selectedId,
-                },
-              })
-            }
-          />
+          <View style={styles.buttonContainer}>
+            <Button
+              title="Continue"
+              onPress={() =>
+                router.push({
+                  pathname: '/transfer',
+                  params: {
+                    recipientId: selectedId,
+                  },
+                })
+              }
+            />
+          </View>
         ) : null}
       </View>
     </>

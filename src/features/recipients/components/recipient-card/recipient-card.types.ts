@@ -1,4 +1,4 @@
-import { Recipient } from '../../types/recipient';
+import { Recipient } from '../../types/recipient.types';
 
 export type RecipientCardProps = {
   item: Recipient;

@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { recipients } from '@/server/recipients';
 
 export async function GET(request: Request) {

@@ -11,4 +11,6 @@ export const sizes = {
   '4xl': 64,
   '5xl': 80,
   '6xl': 96,
+  '7xl': 112,
+  '8xl': 128,
 } as const;

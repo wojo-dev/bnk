@@ -1,4 +1,4 @@
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { TransferFormSchema } from '../components/transfer-form/transfer-form.types';
 import { getTransferDetail } from './get-transfer-detail';
 

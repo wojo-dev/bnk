@@ -1,6 +1,6 @@
 // use recipient hook
 
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useQuery } from '@tanstack/react-query';
 

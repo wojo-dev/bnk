@@ -1,7 +1,7 @@
 import { List } from '@/ui/list/list';
 import { useCallback } from 'react';
 import { View } from 'react-native';
-import { Recipient } from '../../types/recipient';
+import { Recipient } from '../../types/recipient.types';
 import { RecipientCard } from '../recipient-card/recipient-card';
 import { recipientListStyles as styles } from './recipient-list.styles';
 import { RecipientListProps } from './recipient-list.types';

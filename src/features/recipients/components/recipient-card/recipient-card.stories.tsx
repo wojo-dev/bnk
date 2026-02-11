@@ -1,6 +1,6 @@
 import { recipients } from '@/server/recipients';
 import { Meta, StoryObj } from '@storybook/react-native';
-import { Recipient } from '../../types/recipient';
+import { Recipient } from '../../types/recipient.types';
 import { RecipientCard } from './recipient-card';
 
 const recipient = recipients[0] as Recipient;

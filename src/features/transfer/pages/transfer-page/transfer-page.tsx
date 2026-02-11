@@ -3,7 +3,7 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
 import { RecipientCard } from '@/features/recipients/components/recipient-card/recipient-card';
-import { Recipient } from '@/features/recipients/types/recipient';
+import { Recipient } from '@/features/recipients/types/recipient.types';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';

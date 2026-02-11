@@ -1,5 +1,5 @@
 import { ViewProps } from 'react-native';
-import { Recipient } from '../../types/recipient';
+import { Recipient } from '../../types/recipient.types';
 
 export type RecipientListProps = ViewProps & {
   recipients: Recipient[];

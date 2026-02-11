@@ -1,7 +1,7 @@
 import { recipients } from '@/server/recipients';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { Recipient } from '../../types/recipient';
+import { Recipient } from '../../types/recipient.types';
 import { RecipientList } from './recipient-list';
 
 const meta = {
