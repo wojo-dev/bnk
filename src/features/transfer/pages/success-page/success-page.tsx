@@ -1,3 +1,4 @@
+import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
 import { TransferDetail } from '@/features/transfer/components/transfer-detail/transfer-detail';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
@@ -10,6 +11,7 @@ import { styles } from './success-page.styles';
 export function SuccessPage() {
   const transferDetail = useTransferStore((s) => s.transferDetail);
   const clearTransferDetail = useTransferStore((s) => s.clearTransferDetail);
+  const resetRecipientStore = useRecipientStore((s) => s.reset);
 
   if (!transferDetail) {
     return null;
@@ -38,6 +40,7 @@ export function SuccessPage() {
           variant="primary"
           onPress={() => {
             clearTransferDetail();
+            resetRecipientStore();
             router.replace('/');
           }}
         />

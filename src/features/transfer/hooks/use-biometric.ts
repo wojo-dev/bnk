@@ -1,6 +1,6 @@
 import { BiometricResult, UseBiometricOptions } from '@/features/transfer/types/biometric.types';
 import * as LocalAuthentication from 'expo-local-authentication';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const CANCEL_ERRORS = new Set(['user_cancel', 'system_cancel', 'app_cancel']);
 
@@ -10,6 +10,8 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
   const [securityLevel, setSecurityLevel] = useState<LocalAuthentication.SecurityLevel>(
     LocalAuthentication.SecurityLevel.NONE,
   );
+  const onSuccessRef = useRef(onSuccess);
+  onSuccessRef.current = onSuccess;
 
   useEffect(() => {
     LocalAuthentication.getEnrolledLevelAsync().then(setSecurityLevel);
@@ -40,12 +42,12 @@ export function useBiometric({ onSuccess }: UseBiometricOptions = {}) {
 
     if (authResult.success) {
       setResult({ success: true, error: '', cancelled: false });
-      onSuccess?.();
+      onSuccessRef.current?.();
     } else {
       const cancelled = CANCEL_ERRORS.has(authResult.error);
-      setResult({ success: false, error: authResult.error, cancelled });
+      setResult({ success: false, error: authResult.error ?? 'Authentication failed', cancelled });
     }
-  }, [onSuccess, securityLevel]);
+  }, [securityLevel]);
 
   return { result, requiresPin, securityLevel, authenticate };
 }

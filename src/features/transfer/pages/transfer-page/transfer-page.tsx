@@ -3,10 +3,10 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
 import { RecipientCard } from '@/features/recipients/components/recipient-card/recipient-card';
-import { Recipient } from '@/features/recipients/types/recipient.types';
 import { TransferForm } from '@/features/transfer/components/transfer-form/transfer-form';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { getTransferDetail } from '@/features/transfer/utils/get-transfer-detail';
+import { randomUUID } from 'expo-crypto';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRecipient } from '../../hooks/use-recipient';
@@ -24,17 +24,18 @@ export function TransferPage() {
       {recipient && (
         <>
           <RecipientCard
-            item={recipient as Recipient}
+            item={recipient}
             selected={false}
             variant="change"
             onPress={() => router.back()}
           />
           <TransferForm
-            recipient={recipient as Recipient}
+            recipient={recipient}
             balance={balance?.data.balance.amount ?? 0}
             onTransfer={async (data) => {
-              setTransferDetail(getTransferDetail(data, recipient as Recipient));
-              setTransferRequest(data);
+              const request = { ...data, idempotencyKey: randomUUID() };
+              setTransferDetail(getTransferDetail(data, recipient));
+              setTransferRequest(request);
               router.push('/transfer/process');
             }}
           />

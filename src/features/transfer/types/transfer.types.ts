@@ -19,4 +19,5 @@ export type TransferRequest = {
   description: string;
   date: string;
   recipientId: string;
+  idempotencyKey: string;
 };

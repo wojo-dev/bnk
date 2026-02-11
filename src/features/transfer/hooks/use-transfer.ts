@@ -9,7 +9,12 @@ import { TransferRequest, TransferResponse } from '../types/transfer.types';
 export function useTransfer() {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (data: TransferRequest) => apiClient.post<TransferResponse>('/transfer', data),
+    mutationFn: (data: TransferRequest) => {
+      const { idempotencyKey, ...body } = data;
+      return apiClient.post<TransferResponse>('/transfer', body, {
+        headers: { 'Idempotency-Key': idempotencyKey },
+      });
+    },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['balance'] as const });
       router.push('/transfer/success');

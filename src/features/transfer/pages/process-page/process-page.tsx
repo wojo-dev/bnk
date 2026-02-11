@@ -1,29 +1,56 @@
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useBiometric } from '@/features/transfer/hooks/use-biometric';
 import { useTransfer } from '@/features/transfer/hooks/use-transfer';
+import { useRecipientStore } from '@/features/recipients/store/use-recipient-store';
 import { useTransferStore } from '@/features/transfer/store/use-transfer-store';
 import { Button } from '@/ui/button/button';
 import { PinInput } from '@/ui/pin-input/pin-input';
 import { SecurityLevel } from 'expo-local-authentication';
 import { router } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { styles } from './process-page.styles';
 
 const MAX_PIN_ATTEMPTS = 3;
+const AUTH_TTL_MS = 30_000;
 
 export function ProcessPage() {
   const { mutateAsync } = useTransfer();
+  const transferSucceeded = useRef(false);
+  const clearTransferDetail = useTransferStore((s) => s.clearTransferDetail);
+  const setAuthTimestamp = useTransferStore((s) => s.setAuthTimestamp);
+  const resetRecipientStore = useRecipientStore((s) => s.reset);
 
   const handleTransfer = useCallback(async () => {
-    const transferRequest = useTransferStore.getState().transferRequest;
+    const { transferRequest, authTimestamp } = useTransferStore.getState();
     if (!transferRequest) return;
+
+    if (!authTimestamp || Date.now() - authTimestamp > AUTH_TTL_MS) {
+      useTransferStore.setState({ authTimestamp: null });
+      return;
+    }
+
+    transferSucceeded.current = true;
     await mutateAsync(transferRequest);
   }, [mutateAsync]);
 
+  useEffect(() => {
+    return () => {
+      if (!transferSucceeded.current) {
+        clearTransferDetail();
+        resetRecipientStore();
+      }
+    };
+  }, [clearTransferDetail, resetRecipientStore]);
+
+  const onAuthSuccess = useCallback(() => {
+    setAuthTimestamp(Date.now());
+    handleTransfer();
+  }, [setAuthTimestamp, handleTransfer]);
+
   const { result, requiresPin, securityLevel, authenticate } = useBiometric({
-    onSuccess: handleTransfer,
+    onSuccess: onAuthSuccess,
   });
   const [pin, setPin] = useState('');
   const [pinError, setPinError] = useState('');
@@ -39,6 +66,7 @@ export function ProcessPage() {
       try {
         await apiClient.post('/verify', { pin: value });
         setPin('');
+        setAuthTimestamp(Date.now());
         await handleTransfer();
       } catch {
         const attempts = pinAttempts + 1;
@@ -53,7 +81,7 @@ export function ProcessPage() {
         setVerifyingPin(false);
       }
     },
-    [pinAttempts, handleTransfer],
+    [pinAttempts, handleTransfer, setAuthTimestamp],
   );
 
   if (!result) {
