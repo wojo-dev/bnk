@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "bnk",
+    "platforms": ["ios", "android"],
     "userInterfaceStyle": "automatic",
     "ios": {
       "bundleIdentifier": "com.wes.biometricauth",

@@ -1,11 +1,11 @@
-import { history } from '@/server/data/history.data';
+import { transactions } from '@/server/data/transaction.data';
 import { Meta, StoryObj } from '@storybook/react-native';
 import { View } from 'react-native';
-import { History } from '../../types/history.types';
+import { Transaction } from '../../types/transaction.types';
 import { TransactionCard } from './transaction-card';
 
 const meta = {
-  title: 'History/TransactionCard',
+  title: 'Transaction/TransactionCard',
   component: TransactionCard,
   decorators: [
     (Story) => (
@@ -20,7 +20,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-const items = history as History[];
+const items = transactions as Transaction[];
 
 export const Completed: Story = {
   args: {

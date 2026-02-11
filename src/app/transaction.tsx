@@ -1,7 +1,7 @@
-import { HistoryPage } from '@/features/transaction/pages/history-page/history-page';
+import { TransactionPage } from '@/features/transaction/pages/transaction-page/transaction-page';
 import { Stack } from 'expo-router';
 import React, { useState } from 'react';
-export default function HistoryScreen() {
+export default function TransactionScreen() {
   const [search, setSearch] = useState('');
   return (
     <>
@@ -11,7 +11,7 @@ export default function HistoryScreen() {
         placeholder="Search"
         onChangeText={(e) => setSearch(e.nativeEvent.text)}
       />
-      <HistoryPage search={search} />
+      <TransactionPage search={search} />
     </>
   );
 }

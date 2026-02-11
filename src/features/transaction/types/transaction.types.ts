@@ -1,6 +1,4 @@
-// history types
-
-export type History = {
+export type Transaction = {
   id: string;
   name: string;
   bank: string;
@@ -12,7 +10,7 @@ export type History = {
 
 export type TransactionStatus = 'completed' | 'pending';
 
-export type HistoryPaginatedResponse = {
-  data: History[];
+export type TransactionPaginatedResponse = {
+  data: Transaction[];
   nextPage: number | null;
 };

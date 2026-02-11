@@ -1,13 +1,13 @@
 import { apiClient } from '@/features/shared/lib/api-client';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { HistoryPaginatedResponse } from '../types/history.types';
+import { TransactionPaginatedResponse } from '../types/transaction.types';
 
-export function useHistory(search?: string) {
+export function useTransaction(search?: string) {
   return useInfiniteQuery({
-    queryKey: ['history', search],
+    queryKey: ['transaction', search],
     queryFn: ({ signal, pageParam }) =>
       apiClient
-        .get<HistoryPaginatedResponse>('/history', {
+        .get<TransactionPaginatedResponse>('/transaction', {
           signal,
           params: { page: pageParam, q: search || undefined },
         })

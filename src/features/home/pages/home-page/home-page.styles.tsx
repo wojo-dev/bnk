@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     gap: spacing.xs,
     paddingBottom: spacing.sm + spacing.xs,
   },
-  historyCard: {
+  transactionCard: {
     width: dimensions.width - spacing.xl - spacing.sm,
   },
   balanceCardContainer: {

@@ -12,8 +12,8 @@ export default function TabLayout() {
         <NativeTabs.Trigger.Label>Home</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/home.png')} />
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="history">
-        <NativeTabs.Trigger.Label>History</NativeTabs.Trigger.Label>
+      <NativeTabs.Trigger name="transaction">
+        <NativeTabs.Trigger.Label>Transactions</NativeTabs.Trigger.Label>
         <NativeTabs.Trigger.Icon src={require('@/assets/images/tabIcons/explore.png')} />
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="recipients" role="search">

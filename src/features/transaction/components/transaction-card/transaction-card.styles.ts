@@ -2,7 +2,7 @@ import { colors } from '@/tokens/colors';
 import { spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
-import { TransactionStatus } from '../../types/history.types';
+import { TransactionStatus } from '../../types/transaction.types';
 
 export const badgeVariant = (status: TransactionStatus) =>
   status === 'completed' ? 'success' : 'warning';

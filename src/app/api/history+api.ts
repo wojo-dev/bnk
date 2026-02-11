@@ -1,6 +1,6 @@
-// history API
+// transaction API
 
-import { history } from '@/server/data/history.data';
+import { transactions } from '@/server/data/transaction.data';
 import { requireAuth } from '@/server/utils/auth';
 import { paginate } from '@/server/utils/helpers';
 
@@ -10,7 +10,7 @@ export async function GET(request: Request) {
 
   const url = new URL(request.url);
   const search = url.searchParams.get('q')?.toLowerCase();
-  let filtered = [...history];
+  let filtered = [...transactions];
 
   if (search) {
     filtered = filtered.filter((t) => t.name.toLowerCase().includes(search));

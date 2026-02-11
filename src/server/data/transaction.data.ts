@@ -1,4 +1,4 @@
-export const history = [
+export const transactions = [
   {
     id: '1',
     name: 'Sarah Lim',

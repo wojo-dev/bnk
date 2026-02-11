@@ -1,7 +1,7 @@
 import { BalanceCard } from '@/features/balance/components/balance-card/balance-card';
 import { useBalance } from '@/features/balance/hooks/use-balance';
-import { HistoryList } from '@/features/transaction/components/history-list/history-list';
-import { useHistory } from '@/features/transaction/hooks/use-history';
+import { TransactionList } from '@/features/transaction/components/transaction-list/transaction-list';
+import { useTransaction } from '@/features/transaction/hooks/use-transaction';
 import { Card } from '@/ui/card/card';
 import { SectionTitle } from '@/ui/section-title/section-title';
 import { Link, RelativePathString, useRouter } from 'expo-router';
@@ -19,8 +19,8 @@ export function HomePage() {
   const router = useRouter();
   const { data: profile } = useProfile();
   const { data: balance } = useBalance();
-  const { data, isLoading } = useHistory();
-  const history = data?.pages.flatMap((p) => p.data) ?? [];
+  const { data, isLoading } = useTransaction();
+  const transactions = data?.pages.flatMap((p) => p.data) ?? [];
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -64,14 +64,14 @@ export function HomePage() {
           <SectionTitle
             title="Transactions"
             actionLabel="See All"
-            onAction={() => router.push('/history')}
+            onAction={() => router.push('/transaction')}
             style={styles.sectionTitle}
           />
-          <Link href="/history" asChild={true}>
+          <Link href="/transaction" asChild={true}>
             <Link.AppleZoom>
               <Pressable>
-                <Card style={styles.historyCard}>
-                  <HistoryList history={history} />
+                <Card style={styles.transactionCard}>
+                  <TransactionList transactions={transactions} />
                 </Card>
               </Pressable>
             </Link.AppleZoom>

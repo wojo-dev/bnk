@@ -4,14 +4,18 @@ import { getFormatTime } from '@/utils/get-format-date';
 import { getFormatPrice } from '@/utils/get-format-price';
 import React from 'react';
 import { Text, View } from 'react-native';
-import { History } from '../../types/history.types';
+import { Transaction } from '../../types/transaction.types';
 import {
   badgeLabel,
   badgeVariant,
   transactionCardStyles as styles,
 } from './transaction-card.styles';
 
-export const TransactionCard = React.memo(function TransactionCard({ item }: { item: History }) {
+export const TransactionCard = React.memo(function TransactionCard({
+  item,
+}: {
+  item: Transaction;
+}) {
   return (
     <View style={styles.row}>
       <Avatar name={item.name} />

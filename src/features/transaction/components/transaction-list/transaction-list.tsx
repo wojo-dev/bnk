@@ -1,10 +1,10 @@
 import { List } from '@/ui/list/list';
 import React, { useCallback, useMemo } from 'react';
 import { Text, View } from 'react-native';
-import { History } from '../../types/history.types';
-import { getHistorySections } from '../../utils/get-history-sections';
+import { Transaction } from '../../types/transaction.types';
+import { getTransactionSections } from '../../utils/get-transaction-sections';
 import { TransactionCard } from '../transaction-card/transaction-card';
-import { historyListStyles as styles } from './history-list.styles';
+import { transactionListStyles as styles } from './transaction-list.styles';
 
 const SectionHeader = ({ title }: { title: string }) => (
   <View style={styles.sectionHeader}>
@@ -12,18 +12,18 @@ const SectionHeader = ({ title }: { title: string }) => (
   </View>
 );
 
-export const HistoryList = ({
-  history,
+export const TransactionList = ({
+  transactions,
   onEndReached,
   isFetchingNextPage,
 }: {
-  history: History[];
+  transactions: Transaction[];
   onEndReached?: () => void;
   isFetchingNextPage?: boolean;
 }) => {
-  const data = useMemo(() => getHistorySections(history), [history]);
+  const data = useMemo(() => getTransactionSections(transactions), [transactions]);
 
-  const renderItem = useCallback(({ item }: { item: string | History }) => {
+  const renderItem = useCallback(({ item }: { item: string | Transaction }) => {
     if (typeof item === 'string') {
       return <SectionHeader title={item} />;
     }
@@ -31,7 +31,7 @@ export const HistoryList = ({
   }, []);
 
   return (
-    <List<string | History>
+    <List<string | Transaction>
       data={data}
       renderItem={renderItem}
       getItemType={(item) => (typeof item === 'string' ? 'sectionHeader' : 'row')}
@@ -39,7 +39,7 @@ export const HistoryList = ({
       onEndReached={onEndReached}
       isFetchingNextPage={isFetchingNextPage}
       emptyTitle="No transactions yet"
-      emptySubtitle="Your transfer history will appear here"
+      emptySubtitle="Your transactions will appear here"
     />
   );
 };

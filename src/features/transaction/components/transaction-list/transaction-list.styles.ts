@@ -3,7 +3,7 @@ import { spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
 
-export const historyListStyles = StyleSheet.create({
+export const transactionListStyles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background.neutral,

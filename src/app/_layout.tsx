@@ -3,7 +3,7 @@ import { ApiError, setOnAuthExpired } from '@/features/shared/lib/api-client';
 import { useNetworkStore } from '@/features/shared/store/use-network-store';
 import { OfflineBanner } from '@/ui/offline-banner/offline-banner';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
+import { router, Stack, useSegments } from 'expo-router';
 import React, { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, View } from 'react-native';
 
@@ -55,6 +55,18 @@ function RootLayoutContent() {
     }
   }, [isAuthenticated]);
 
+  const segments = useSegments();
+
+  useEffect(() => {
+    if (isLoading) return;
+    const onLoginScreen = segments[0] === 'login';
+    if (!isAuthenticated && !onLoginScreen) {
+      router.replace('/login');
+    } else if (isAuthenticated && onLoginScreen) {
+      router.replace('/(tabs)');
+    }
+  }, [isAuthenticated, isLoading, segments]);
+
   useEffect(() => {
     const unsubscribe = initNetworkListener();
     return unsubscribe;
@@ -71,19 +83,14 @@ function RootLayoutContent() {
   return (
     <View style={styles.container}>
       <OfflineBanner visible={!isConnected} />
-      {isAuthenticated ? (
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" options={{ title: 'Home', headerBackTitle: 'Home' }} />
-          <Stack.Screen name="history" options={{ headerShadowVisible: false }} />
-          <Stack.Protected guard={__DEV__}>
-            <Stack.Screen name="storybook" />
-          </Stack.Protected>
-        </Stack>
-      ) : (
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="login" />
-        </Stack>
-      )}
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" options={{ title: 'Home', headerBackTitle: 'Home' }} />
+        <Stack.Screen name="transaction" options={{ headerShadowVisible: false }} />
+        <Stack.Screen name="login" />
+        <Stack.Protected guard={__DEV__}>
+          <Stack.Screen name="storybook" />
+        </Stack.Protected>
+      </Stack>
     </View>
   );
 }
