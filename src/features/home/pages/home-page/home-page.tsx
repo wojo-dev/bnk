@@ -71,7 +71,7 @@ export function HomePage() {
             <Link.AppleZoom>
               <Pressable>
                 <Card style={styles.transactionCard}>
-                  <TransactionList transactions={transactions} />
+                  <TransactionList transactions={transactions} isHome={true} />
                 </Card>
               </Pressable>
             </Link.AppleZoom>

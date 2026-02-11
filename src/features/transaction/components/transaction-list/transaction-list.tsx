@@ -16,10 +16,12 @@ export const TransactionList = ({
   transactions,
   onEndReached,
   isFetchingNextPage,
+  isHome = false,
 }: {
   transactions: Transaction[];
   onEndReached?: () => void;
   isFetchingNextPage?: boolean;
+  isHome?: boolean;
 }) => {
   const data = useMemo(() => getTransactionSections(transactions), [transactions]);
 
@@ -40,6 +42,7 @@ export const TransactionList = ({
       isFetchingNextPage={isFetchingNextPage}
       emptyTitle="No transactions yet"
       emptySubtitle="Your transactions will appear here"
+      contentContainerStyle={isHome ? undefined : styles.contentContainer}
     />
   );
 };

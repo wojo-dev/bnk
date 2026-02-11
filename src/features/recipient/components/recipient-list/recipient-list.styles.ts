@@ -12,6 +12,6 @@ export const recipientListStyles = StyleSheet.create({
     gap: spacing.sm,
   },
   recipientRow: {
-    margin: spacing.sm,
+    margin: spacing.xs,
   },
 });

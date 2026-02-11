@@ -10,7 +10,8 @@ export const styles = StyleSheet.create({
     paddingBottom: spacing.sm + spacing.xs,
   },
   transactionCard: {
-    width: dimensions.width - spacing.xl - spacing.sm,
+    width: dimensions.width - spacing.xl,
+    alignSelf: 'stretch',
   },
   balanceCardContainer: {
     marginVertical: spacing.md,

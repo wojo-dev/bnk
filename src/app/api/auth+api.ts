@@ -1,8 +1,6 @@
 import { STUB_TOKEN } from '@/server/utils/auth';
-import { delay } from '@/server/utils/helpers';
 
 export async function POST(request: Request) {
-  await delay(300);
   const { method } = (await request.json()) as { method: string };
 
   if (method !== 'biometric') {

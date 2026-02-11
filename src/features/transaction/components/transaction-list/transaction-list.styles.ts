@@ -1,8 +1,8 @@
 import { colors } from '@/tokens/colors';
+import { sizes } from '@/tokens/sizes';
 import { spacing } from '@/tokens/spacing';
 import { typography } from '@/tokens/typography';
 import { StyleSheet } from 'react-native';
-
 export const transactionListStyles = StyleSheet.create({
   container: {
     flex: 1,
@@ -18,5 +18,8 @@ export const transactionListStyles = StyleSheet.create({
     letterSpacing: 1,
     color: colors.label.primary,
     textTransform: 'uppercase',
+  },
+  contentContainer: {
+    paddingBottom: sizes['7xl'] + spacing.sm,
   },
 });
